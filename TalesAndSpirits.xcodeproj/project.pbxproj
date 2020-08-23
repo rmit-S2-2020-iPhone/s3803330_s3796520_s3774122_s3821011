@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A48B67C24F2446B00BA61E4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B67B24F2446B00BA61E4 /* HomeViewController.swift */; };
+		0A48B67E24F2447D00BA61E4 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */; };
+		0A48B68024F2448E00BA61E4 /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B67F24F2448E00BA61E4 /* MyDiaryViewController.swift */; };
+		0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68124F244A400BA61E4 /* MoreViewController.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
 		A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A824E69E4F0089659A /* ViewController.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A48B67B24F2446B00BA61E4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
+		0A48B67F24F2448E00BA61E4 /* MyDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
+		0A48B68124F244A400BA61E4 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9CA41A824E69E4F0089659A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,12 +84,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A948460424EA661E00E85AF3 /* Controller */ = {
+		A948460424EA661E00E85AF3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				A9CA41A824E69E4F0089659A /* ViewController.swift */,
+				0A48B67B24F2446B00BA61E4 /* HomeViewController.swift */,
+				0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */,
+				0A48B67F24F2448E00BA61E4 /* MyDiaryViewController.swift */,
+				0A48B68124F244A400BA61E4 /* MoreViewController.swift */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A948460524EA663000E85AF3 /* View */ = {
@@ -126,7 +138,7 @@
 			children = (
 				A948460624EA664300E85AF3 /* Model */,
 				A948460524EA663000E85AF3 /* View */,
-				A948460424EA661E00E85AF3 /* Controller */,
+				A948460424EA661E00E85AF3 /* ViewModel */,
 				A9CA41B024E69E540089659A /* Assets.xcassets */,
 				A9CA41B524E69E540089659A /* Info.plist */,
 				A9CA41AD24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld */,
@@ -283,9 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */,
+				0A48B68024F2448E00BA61E4 /* MyDiaryViewController.swift in Sources */,
+				0A48B67E24F2447D00BA61E4 /* CocktailsViewController.swift in Sources */,
 				A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */,
 				A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */,
 				A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */,
+				0A48B67C24F2446B00BA61E4 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

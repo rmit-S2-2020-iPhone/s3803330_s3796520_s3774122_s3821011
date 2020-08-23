@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IpV-vn-2fJ">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,19 +10,94 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HomeViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="icons8-home-50" id="FJY-fl-MLC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1077" y="-741"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="das-SK-Ayt">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IpV-vn-2fJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TFO-ol-2Ta">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="oOb-wm-c1n"/>
+                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="viewControllers" id="V5h-15-rvt"/>
+                        <segue destination="E8u-uc-dLC" kind="relationship" relationship="viewControllers" id="Djq-ob-HQJ"/>
+                        <segue destination="i4o-EX-Ad1" kind="relationship" relationship="viewControllers" id="OxQ-Gj-j0T"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Swv-h2-Ahs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+        </scene>
+        <!--Cocktails-->
+        <scene sceneID="Gvv-Qn-EQC">
+            <objects>
+                <viewController id="eMd-4D-nt4" customClass="CocktailsViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7wH-hv-IJT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JSw-oP-Las"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Cocktails" image="icons8-cocktail-50" id="oWK-9a-AOF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xn0-sQ-L13" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="60"/>
+        </scene>
+        <!--My Diary-->
+        <scene sceneID="KiT-vA-35H">
+            <objects>
+                <viewController id="E8u-uc-dLC" customClass="MyDiaryViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="heF-KL-y2e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8B9-eh-u4g"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My Diary" image="icons8-diary-50" id="bQH-vi-NZi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6IR-gr-dry" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="824"/>
+        </scene>
+        <!--More View Controller-->
+        <scene sceneID="ocS-59-UbS">
+            <objects>
+                <viewController id="i4o-EX-Ad1" customClass="MoreViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6BH-xJ-yI6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Sl3-4I-qlp"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="Auu-RR-FT9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Thp-Kr-wb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1113" y="1583"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-cocktail-50" width="25" height="25"/>
+        <image name="icons8-diary-50" width="25" height="25"/>
+        <image name="icons8-home-50" width="25" height="25"/>
+    </resources>
 </document>
