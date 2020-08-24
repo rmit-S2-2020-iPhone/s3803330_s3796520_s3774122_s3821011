@@ -32,6 +32,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IpV-vn-2fJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TFO-ol-2Ta">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -69,14 +70,95 @@
                     <view key="view" contentMode="scaleToFill" id="heF-KL-y2e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Diary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yE-hQ-Df8">
+                                <rect key="frame" x="20" y="53" width="374" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qpa-rZ-nfa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv7-Pb-R7L">
+                                <rect key="frame" x="127" y="111" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Pv7-Pb-R7L" secondAttribute="height" multiplier="1:1" id="1x9-6G-F6L"/>
+                                    <constraint firstAttribute="width" constant="160" id="CVj-66-hC7"/>
+                                    <constraint firstAttribute="height" constant="160" id="jKy-RM-hxq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" backgroundImage="icons8-add-100"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new cocktail to library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yie-yZ-TNX">
+                                <rect key="frame" x="20" y="271" width="374" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KEW-ZX-LRj">
+                                <rect key="frame" x="20" y="308.5" width="374" height="504.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CKCell" rowHeight="100" id="5PN-b8-MqM">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5PN-b8-MqM" id="MGM-Ef-5Ia">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocktail Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ET-Qf-2aD">
+                                                    <rect key="frame" x="101" y="4" width="265" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="manhattan" translatesAutoresizingMaskIntoConstraints="NO" id="B2Q-ek-x64">
+                                                    <rect key="frame" x="8" y="4" width="85" height="85"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="B2Q-ek-x64" secondAttribute="height" multiplier="1:1" id="pvU-yz-Z3i"/>
+                                                        <constraint firstAttribute="width" constant="85" id="yhs-ke-raa"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="B2Q-ek-x64" firstAttribute="top" secondItem="MGM-Ef-5Ia" secondAttribute="top" constant="4" id="5DY-pg-wcj"/>
+                                                <constraint firstItem="3ET-Qf-2aD" firstAttribute="leading" secondItem="B2Q-ek-x64" secondAttribute="trailing" constant="8" id="HMs-gW-twb"/>
+                                                <constraint firstAttribute="trailing" secondItem="3ET-Qf-2aD" secondAttribute="trailing" constant="8" id="Zfv-0S-BgS"/>
+                                                <constraint firstItem="B2Q-ek-x64" firstAttribute="leading" secondItem="MGM-Ef-5Ia" secondAttribute="leading" constant="8" id="ouO-xy-1ag"/>
+                                                <constraint firstAttribute="bottom" secondItem="3ET-Qf-2aD" secondAttribute="bottom" constant="65.5" id="u3f-ZE-kdB"/>
+                                                <constraint firstItem="3ET-Qf-2aD" firstAttribute="top" secondItem="MGM-Ef-5Ia" secondAttribute="top" constant="4" id="vg1-46-Wkd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pv7-Pb-R7L" firstAttribute="centerX" secondItem="8B9-eh-u4g" secondAttribute="centerX" id="5ex-I3-S2o"/>
+                            <constraint firstItem="KEW-ZX-LRj" firstAttribute="top" secondItem="yie-yZ-TNX" secondAttribute="bottom" constant="16" id="7xV-kV-kb5"/>
+                            <constraint firstItem="8B9-eh-u4g" firstAttribute="trailing" secondItem="6yE-hQ-Df8" secondAttribute="trailing" constant="20" id="Bxa-Ph-vuP"/>
+                            <constraint firstItem="8B9-eh-u4g" firstAttribute="trailing" secondItem="yie-yZ-TNX" secondAttribute="trailing" constant="20" id="Geb-No-AsJ"/>
+                            <constraint firstItem="KEW-ZX-LRj" firstAttribute="leading" secondItem="8B9-eh-u4g" secondAttribute="leading" constant="20" id="MLA-qS-HfY"/>
+                            <constraint firstItem="8B9-eh-u4g" firstAttribute="bottom" secondItem="KEW-ZX-LRj" secondAttribute="bottom" id="R2j-UG-2vL"/>
+                            <constraint firstItem="6yE-hQ-Df8" firstAttribute="leading" secondItem="8B9-eh-u4g" secondAttribute="leading" constant="20" id="WEC-fZ-eFH"/>
+                            <constraint firstItem="yie-yZ-TNX" firstAttribute="leading" secondItem="8B9-eh-u4g" secondAttribute="leading" constant="20" id="YhB-TD-Fvi"/>
+                            <constraint firstItem="6yE-hQ-Df8" firstAttribute="top" secondItem="8B9-eh-u4g" secondAttribute="top" constant="9" id="knk-Vq-HH4"/>
+                            <constraint firstItem="yie-yZ-TNX" firstAttribute="top" secondItem="Pv7-Pb-R7L" secondAttribute="bottom" id="sk0-KR-1t4"/>
+                            <constraint firstItem="Pv7-Pb-R7L" firstAttribute="top" secondItem="6yE-hQ-Df8" secondAttribute="bottom" constant="28" id="syw-JV-U3F"/>
+                            <constraint firstItem="8B9-eh-u4g" firstAttribute="trailing" secondItem="KEW-ZX-LRj" secondAttribute="trailing" constant="20" id="ug5-by-BD3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8B9-eh-u4g"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Diary" image="icons8-diary-50" id="bQH-vi-NZi"/>
+                    <connections>
+                        <outlet property="myDiaryTableView" destination="KEW-ZX-LRj" id="Czq-0d-izu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6IR-gr-dry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1114" y="824"/>
+            <point key="canvasLocation" x="1537.68115942029" y="827.67857142857144"/>
         </scene>
         <!--More View Controller-->
         <scene sceneID="ocS-59-UbS">
@@ -96,8 +178,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icons8-add-100" width="33.333332061767578" height="33.333332061767578"/>
         <image name="icons8-cocktail-50" width="25" height="25"/>
         <image name="icons8-diary-50" width="25" height="25"/>
         <image name="icons8-home-50" width="25" height="25"/>
+        <image name="manhattan" width="650" height="650"/>
     </resources>
 </document>
