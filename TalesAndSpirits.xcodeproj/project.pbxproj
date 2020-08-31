@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		326C97E924F4BB7300DDE7A0 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326C97E824F4BB7300DDE7A0 /* Cocktail.swift */; };
+		326C97EF24F4EFE100DDE7A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326C97EE24F4EFE100DDE7A0 /* Assets.xcassets */; };
+		326C982B24F6810200DDE7A0 /* RecipeSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326C982A24F6810200DDE7A0 /* RecipeSceneViewModel.swift */; };
+		326C983124F75A0100DDE7A0 /* RecipeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326C983024F75A0100DDE7A0 /* RecipeSceneViewController.swift */; };
+		326C983324FCBB3400DDE7A0 /* DrinkInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326C983224FCBB3300DDE7A0 /* DrinkInfoViewCell.swift */; };
+		326C983524FCC9DF00DDE7A0 /* cocktailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326C983424FCC9DF00DDE7A0 /* cocktailImage.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
 		A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A824E69E4F0089659A /* ViewController.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
 		A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41AD24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld */; };
-		A9CA41B124E69E540089659A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41B024E69E540089659A /* Assets.xcassets */; };
 		A9CA41B424E69E540089659A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41B224E69E540089659A /* LaunchScreen.storyboard */; };
 		A9CA41BF24E69E540089659A /* TalesAndSpiritsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41BE24E69E540089659A /* TalesAndSpiritsTests.swift */; };
 		A9CA41CA24E69E540089659A /* TalesAndSpiritsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41C924E69E540089659A /* TalesAndSpiritsUITests.swift */; };
@@ -35,12 +40,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		326C97E824F4BB7300DDE7A0 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
+		326C97EE24F4EFE100DDE7A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		326C982A24F6810200DDE7A0 /* RecipeSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSceneViewModel.swift; sourceTree = "<group>"; };
+		326C983024F75A0100DDE7A0 /* RecipeSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSceneViewController.swift; sourceTree = "<group>"; };
+		326C983224FCBB3300DDE7A0 /* DrinkInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkInfoViewCell.swift; sourceTree = "<group>"; };
+		326C983424FCC9DF00DDE7A0 /* cocktailImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cocktailImage.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9CA41A824E69E4F0089659A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9CA41AB24E69E4F0089659A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9CA41AE24E69E4F0089659A /* TalesAndSpirits.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TalesAndSpirits.xcdatamodel; sourceTree = "<group>"; };
-		A9CA41B024E69E540089659A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9CA41B324E69E540089659A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9CA41B524E69E540089659A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9CA41BA24E69E540089659A /* TalesAndSpiritsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TalesAndSpiritsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,10 +86,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		326C982F24F7599900DDE7A0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				326C983024F75A0100DDE7A0 /* RecipeSceneViewController.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		A948460424EA661E00E85AF3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				A9CA41A824E69E4F0089659A /* ViewController.swift */,
+				326C983224FCBB3300DDE7A0 /* DrinkInfoViewCell.swift */,
+				326C982A24F6810200DDE7A0 /* RecipeSceneViewModel.swift */,
+				326C983424FCC9DF00DDE7A0 /* cocktailImage.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -97,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				A9CA41A624E69E4F0089659A /* AppDelegate.swift */,
+				326C97E824F4BB7300DDE7A0 /* Cocktail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -104,6 +126,7 @@
 		A9CA419A24E69E4F0089659A = {
 			isa = PBXGroup;
 			children = (
+				326C97EE24F4EFE100DDE7A0 /* Assets.xcassets */,
 				A9CA41A524E69E4F0089659A /* TalesAndSpirits */,
 				A9CA41BD24E69E540089659A /* TalesAndSpiritsTests */,
 				A9CA41C824E69E540089659A /* TalesAndSpiritsUITests */,
@@ -124,10 +147,10 @@
 		A9CA41A524E69E4F0089659A /* TalesAndSpirits */ = {
 			isa = PBXGroup;
 			children = (
+				326C982F24F7599900DDE7A0 /* ViewModel */,
 				A948460624EA664300E85AF3 /* Model */,
 				A948460524EA663000E85AF3 /* View */,
 				A948460424EA661E00E85AF3 /* Controller */,
-				A9CA41B024E69E540089659A /* Assets.xcassets */,
 				A9CA41B524E69E540089659A /* Info.plist */,
 				A9CA41AD24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld */,
 			);
@@ -257,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9CA41B424E69E540089659A /* LaunchScreen.storyboard in Resources */,
-				A9CA41B124E69E540089659A /* Assets.xcassets in Resources */,
+				326C97EF24F4EFE100DDE7A0 /* Assets.xcassets in Resources */,
 				A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +308,12 @@
 			files = (
 				A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */,
 				A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */,
+				326C982B24F6810200DDE7A0 /* RecipeSceneViewModel.swift in Sources */,
+				326C983524FCC9DF00DDE7A0 /* cocktailImage.swift in Sources */,
+				326C983124F75A0100DDE7A0 /* RecipeSceneViewController.swift in Sources */,
 				A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */,
+				326C983324FCBB3400DDE7A0 /* DrinkInfoViewCell.swift in Sources */,
+				326C97E924F4BB7300DDE7A0 /* Cocktail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
