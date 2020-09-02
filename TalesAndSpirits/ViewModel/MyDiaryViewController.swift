@@ -48,6 +48,19 @@ class MyDiaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let selectedRow = myDiaryTableView.indexPathForSelectedRow
+            else {return}
+        
+        let destination = segue.destination as? TempViewController
+        
+        if let destination = destination {
+            destination.cocktailDetails = diaryModelView.getCocktail(byIndex: selectedRow.row)
+        }
+        
+    }
+    
 
     /*
     // MARK: - Navigation

@@ -32,6 +32,42 @@ class Cocktail {
         }
     }
     
+    var ingredients: Dictionary<String, String> {
+        get { return _ingredients}
+        set(newIngredients){
+            _ingredients = newIngredients
+        }
+    }
+    
+    var category: String {
+        get { return _category }
+        set(newcategory) {
+            _category = newcategory
+        }
+    }
+    
+    var iBA: String {
+        get { return _iBA }
+        set(newiBA) {
+            _iBA = newiBA
+        }
+    }
+    
+    var instructions: String {
+        get { return _instructions }
+        set(newInstructions) {
+            _instructions = newInstructions
+        }
+    }
+    
+    var glassType: String {
+        get { return _glassType }
+        set(newGlassType) {
+            _glassType = newGlassType
+        }
+    }
+    
+    
     init(cocktailName: String, imageName: String) {
         self._cocktailName = cocktailName
         self._imageName = imageName
