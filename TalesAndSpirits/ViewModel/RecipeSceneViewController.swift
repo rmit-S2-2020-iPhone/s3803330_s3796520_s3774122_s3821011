@@ -58,18 +58,18 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         if tableView == self.drinkInfoTableView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath)
             let infoLabel = cell.viewWithTag(1000) as? UILabel
-            //let infoLabel2 = cell.viewWithTag(1002) as? UILabel
+            let infoLabel2 = cell.viewWithTag(1010) as? UILabel
             
-            if let infoLabel = infoLabel, let cocktail = displayCocktail {
+            if let infoLabel = infoLabel, let infoLabel2 = infoLabel2, let cocktail = displayCocktail {
                 if indexPath.row == 0{
                     infoLabel.text = cocktail.category
-                    //infoLabel.text = "category"
+                    infoLabel2.text = "Category"
                 }else if indexPath.row == 1{
                     infoLabel.text = cocktail.iBA
-                    //infoLabel.text = "iBA"
+                    infoLabel2.text = "iBA"
                 }else if indexPath.row == 2{
                     infoLabel.text = cocktail.glassType
-                    //infoLabel.text = "glass"
+                    infoLabel2.text = "Glass"
                 }
             }
             
@@ -77,12 +77,12 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         }else if tableView == self.ingredientsTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
             let infoLabel = cell.viewWithTag(1001) as? UILabel
-            //let infoLabel2 = cell.viewWithTag(1004) as? UILabel
+            let infoLabel2 = cell.viewWithTag(1020) as? UILabel
             
-            if let infoLabel = infoLabel, /*let infoLabel2 = infoLabel2,*/ let cocktail = displayCocktail {
+            if let infoLabel = infoLabel, let infoLabel2 = infoLabel2, let cocktail = displayCocktail {
                 let currentIngredient = cocktail.ingredients[indexPath.row]
                 infoLabel.text = currentIngredient.name
-                //infoLabel2.text = currentIngredient.quantity
+                infoLabel2.text = currentIngredient.quantity
             }
             
             finalCell = cell
