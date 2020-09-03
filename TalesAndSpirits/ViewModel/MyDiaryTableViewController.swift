@@ -14,7 +14,7 @@ class MyDiaryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo"))
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -54,7 +54,7 @@ class MyDiaryTableViewController: UITableViewController {
                 
                 //imageView.image = UIImage(named: "liit")
                 //cocktailNameLabel.text = "Long Island Ice Tea"
-                let currentCocktail = diaryModelView.getCocktail(byIndex: (indexPath.row - 2))
+                let currentCocktail: (cocktailName: String, image: UIImage?) = diaryModelView.getCocktail(byIndex: (indexPath.row - 2))
                 
                 imageView.image = currentCocktail.image
                 cocktailNameLabel.text = currentCocktail.cocktailName
@@ -119,7 +119,13 @@ class MyDiaryTableViewController: UITableViewController {
         let destination = segue.destination as? TempViewController
         
         if let destination = destination {
-            destination.cocktailDetails = diaryModelView.getCocktail(byIndex: selectedRow.row)
+            destination.cocktailDetails = diaryModelView.getCocktail(byIndex: (selectedRow.row - 2))
+        }
+        
+        let newDestination = segue.destination as? RecipeSceneViewController
+        
+        if let newDestination = newDestination{
+            newDestination.displayCocktail = diaryModelView.getCocktail(byIndex: (selectedRow.row - 2))
         }
         
     }

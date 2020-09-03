@@ -12,7 +12,7 @@ class Cocktail {
     
     private var _cocktailName: String
     private var _imageName: String
-    private var _ingredients: Dictionary<String, String>
+    private var _ingredients: [(name: String, quantity: String)]
     private var _category: String
     private var _iBA: String
     private var _instructions: String
@@ -32,7 +32,7 @@ class Cocktail {
         }
     }
     
-    var ingredients: Dictionary<String, String> {
+    var ingredients: [(name: String, quantity: String)] {
         get { return _ingredients}
         set(newIngredients){
             _ingredients = newIngredients
@@ -71,7 +71,7 @@ class Cocktail {
     init(cocktailName: String, imageName: String) {
         self._cocktailName = cocktailName
         self._imageName = imageName
-        self._ingredients = Dictionary<String, String>()
+        self._ingredients = []
         self._category = ""
         self._iBA = ""
         self._glassType = ""

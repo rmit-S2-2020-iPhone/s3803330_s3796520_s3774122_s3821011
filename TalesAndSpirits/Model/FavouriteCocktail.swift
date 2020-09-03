@@ -8,12 +8,26 @@
 
 import Foundation
 class FavouriteCocktail: Cocktail {
-    private var review: String
-    private var personalizedNote: String
+    private var _isUserDefined: Bool
+    private var _personalizedNote: String
     
-    init(cocktailName: String, imageName: String, review: String, personalizedNote: String) {
-        self.review = review
-        self.personalizedNote = personalizedNote
+    var isUserDefined: Bool {
+        get { return _isUserDefined }
+        set(newValue) {
+            _isUserDefined = newValue
+        }
+    }
+    
+    var personalizedNote: String {
+        get { return _personalizedNote }
+        set(newNote) {
+            _personalizedNote = newNote
+        }
+    }
+    
+    init(cocktailName: String, imageName: String, isUserDefined: Bool, personalizedNote: String) {
+        self._isUserDefined = isUserDefined
+        self._personalizedNote = personalizedNote
         super.init(cocktailName: cocktailName, imageName: imageName)
     }
 }

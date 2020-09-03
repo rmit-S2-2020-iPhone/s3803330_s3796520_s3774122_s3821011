@@ -46,6 +46,12 @@ struct MyDiaryViewModel {
         
     }
     
+    func getCocktail(byIndex index: Int) -> Cocktail {
+        
+        return cocktails[index]
+        
+    }
+    
     mutating func addCocktail(cocktailName: String, imageName: String){
         
         self.cocktails.append(Cocktail(cocktailName: cocktailName, imageName: imageName))
@@ -95,38 +101,59 @@ struct MyDiaryViewModel {
         }
         
         //Populating ingredients
-        var ingredientsList: [String: String] = [:]
+        var ingredientsList: [(name: String, quantity: String)] = []
+        var ingredient: (name: String, quantity: String)
 
         if let ingredientName = cocktailJson.strIngredient1, let quantity = cocktailJson.strMeasure1 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient2, let quantity = cocktailJson.strMeasure2 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient3, let quantity = cocktailJson.strMeasure3 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient4, let quantity = cocktailJson.strMeasure4 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient5, let quantity = cocktailJson.strMeasure5 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient6, let quantity = cocktailJson.strMeasure6 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient7, let quantity = cocktailJson.strMeasure7 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         
         if let ingredientName = cocktailJson.strIngredient8, let quantity = cocktailJson.strMeasure8 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient9, let quantity = cocktailJson.strMeasure9 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         if let ingredientName = cocktailJson.strIngredient10, let quantity = cocktailJson.strMeasure10 {
-            ingredientsList[ingredientName] = quantity
+            ingredient.name = ingredientName
+            ingredient.quantity = quantity
+            ingredientsList.append(ingredient)
         }
         
         newCocktail.ingredients = ingredientsList

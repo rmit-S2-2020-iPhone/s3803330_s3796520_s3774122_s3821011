@@ -38,7 +38,7 @@ class MyDiaryViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //imageView.image = UIImage(named: "liit")
             //cocktailNameLabel.text = "Long Island Ice Tea"
-            let currentCocktail = diaryModelView.getCocktail(byIndex: indexPath.row)
+            let currentCocktail: (cocktailName: String, image: UIImage?) = diaryModelView.getCocktail(byIndex: indexPath.row)
             
             imageView.image = currentCocktail.image
             cocktailNameLabel.text = currentCocktail.cocktailName
