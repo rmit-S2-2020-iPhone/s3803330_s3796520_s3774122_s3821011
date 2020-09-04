@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                                         <subviews>
                                             <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="manhattan" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rv3-oO-nfT">
-                                                <rect key="frame" x="0.0" y="73.5" width="414" height="236.00000000000023"/>
+                                                <rect key="frame" x="0.0" y="73.5" width="414" height="236"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="236" id="Pa2-M1-vRb"/>
                                                     <constraint firstAttribute="width" constant="414" id="QRz-sX-gbi"/>
