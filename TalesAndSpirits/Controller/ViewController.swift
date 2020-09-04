@@ -10,8 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var recipenum: UILabel!
+    var strText = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        recipenum.text = strText
         // Do any additional setup after loading the view.
     }
 
