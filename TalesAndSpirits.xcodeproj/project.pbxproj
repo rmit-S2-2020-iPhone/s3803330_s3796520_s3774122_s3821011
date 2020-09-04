@@ -11,6 +11,7 @@
 		0A48B67E24F2447D00BA61E4 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */; };
 		0A48B68024F2448E00BA61E4 /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B67F24F2448E00BA61E4 /* MyDiaryViewController.swift */; };
 		0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68124F244A400BA61E4 /* MoreViewController.swift */; };
+		A991484524F79ECD00E03DE5 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991484424F79ECD00E03DE5 /* Cocktail.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
 		A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A824E69E4F0089659A /* ViewController.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
@@ -43,8 +44,9 @@
 		0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
 		0A48B67F24F2448E00BA61E4 /* MyDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		0A48B68124F244A400BA61E4 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		A991484424F79ECD00E03DE5 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Model/AppDelegate.swift; sourceTree = "<group>"; };
 		A9CA41A824E69E4F0089659A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9CA41AB24E69E4F0089659A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9CA41AE24E69E4F0089659A /* TalesAndSpirits.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TalesAndSpirits.xcdatamodel; sourceTree = "<group>"; };
@@ -108,7 +110,7 @@
 		A948460624EA664300E85AF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A9CA41A624E69E4F0089659A /* AppDelegate.swift */,
+				A991484424F79ECD00E03DE5 /* Cocktail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +138,7 @@
 		A9CA41A524E69E4F0089659A /* TalesAndSpirits */ = {
 			isa = PBXGroup;
 			children = (
+				A9CA41A624E69E4F0089659A /* AppDelegate.swift */,
 				A948460624EA664300E85AF3 /* Model */,
 				A948460524EA663000E85AF3 /* View */,
 				A948460424EA661E00E85AF3 /* ViewModel */,
@@ -298,6 +301,7 @@
 				0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */,
 				0A48B68024F2448E00BA61E4 /* MyDiaryViewController.swift in Sources */,
 				0A48B67E24F2447D00BA61E4 /* CocktailsViewController.swift in Sources */,
+				A991484524F79ECD00E03DE5 /* Cocktail.swift in Sources */,
 				A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */,
 				A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */,
 				A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */,
