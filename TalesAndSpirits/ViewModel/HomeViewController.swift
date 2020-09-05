@@ -54,10 +54,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = collectionView.bounds
         let position = indexPath.row
-        if(position == 0){return CGSize(width: bounds.width, height: 90)}
-        else if(position == 1){return CGSize(width: bounds.width, height: 40)}
+        if(position == 0){return CGSize(width: bounds.width, height: 50)}
+        else if(position == 1){return CGSize(width: bounds.width, height: 60)}
         else{
-            return CGSize(width: bounds.width/3, height: 160)}
+            return CGSize(width: bounds.width/2, height: 160)}
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
