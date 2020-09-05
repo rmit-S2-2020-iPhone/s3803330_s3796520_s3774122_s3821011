@@ -20,17 +20,16 @@ struct MyDiaryViewModel {
     }
     
     private mutating func loadData(){
-//        cocktails.append(Cocktail(cocktailName: "Manhattan", imageName: "manhattan"))
-//        cocktails.append(Cocktail(cocktailName: "LITT", imageName: "liit"))
-//        cocktails.append(Cocktail(cocktailName: "Margarita", imageName: "margarita"))
-//        cocktails.append(Cocktail(cocktailName: "Old Fashioned", imageName: "oldfashioned"))
-//        cocktails.append(Cocktail(cocktailName: "Mojito", imageName: "mojito"))
-//        cocktails.append(Cocktail(cocktailName: "Manhattan", imageName: "manhattan"))
-//        cocktails.append(Cocktail(cocktailName: "LITT", imageName: "liit"))
-//        cocktails.append(Cocktail(cocktailName: "Margarita", imageName: "margarita"))
-//        cocktails.append(Cocktail(cocktailName: "Old Fashioned", imageName: "oldfashioned"))
-//        cocktails.append(Cocktail(cocktailName: "Mojito", imageName: "mojito"))
         getCocktailDetailFromJSON()
+        
+        /*Hard coding Long Island Iced Tea to be a favorite cocktail which will be displayed in MyDiary TabBar
+         *This hard coding will be removed in assignment.
+        */
+        for cocktail in cocktails {
+            if cocktail.cocktailName == "Long Island Iced Tea"{
+                cocktail.isFavorite = true
+            }
+        }
     }
     
     init() {

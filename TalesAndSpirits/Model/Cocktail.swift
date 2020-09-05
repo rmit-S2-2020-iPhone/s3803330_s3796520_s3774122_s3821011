@@ -17,6 +17,9 @@ class Cocktail {
     private var _iBA: String
     private var _instructions: String
     private var _glassType: String
+    private var _isUserDefined: Bool
+    private var _personalizedNote: String
+    private var _isFavorite: Bool
     
     var cocktailName: String {
         get { return _cocktailName }
@@ -67,6 +70,26 @@ class Cocktail {
         }
     }
     
+    var isUserDefined: Bool {
+        get { return _isUserDefined }
+        set(newValue) {
+            _isUserDefined = newValue
+        }
+    }
+    
+    var personalizedNote: String {
+        get { return _personalizedNote }
+        set(newNote) {
+            _personalizedNote = newNote
+        }
+    }
+    
+    var isFavorite: Bool {
+        get { return _isFavorite }
+        set(newValue) {
+            _isFavorite = newValue
+        }
+    }
     
     init(cocktailName: String, imageName: String) {
         self._cocktailName = cocktailName
@@ -76,6 +99,9 @@ class Cocktail {
         self._iBA = ""
         self._glassType = ""
         self._instructions = ""
+        _isUserDefined = false
+        _personalizedNote = ""
+        _isFavorite = false
     }
     
 }

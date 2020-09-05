@@ -11,19 +11,19 @@ class FavouriteCocktail: Cocktail {
     private var _isUserDefined: Bool
     private var _personalizedNote: String
     
-    var isUserDefined: Bool {
-        get { return _isUserDefined }
-        set(newValue) {
-            _isUserDefined = newValue
-        }
-    }
-    
-    var personalizedNote: String {
-        get { return _personalizedNote }
-        set(newNote) {
-            _personalizedNote = newNote
-        }
-    }
+//    var isUserDefined: Bool {
+//        get { return _isUserDefined }
+//        set(newValue) {
+//            _isUserDefined = newValue
+//        }
+//    }
+//
+//    var personalizedNote: String {
+//        get { return _personalizedNote }
+//        set(newNote) {
+//            _personalizedNote = newNote
+//        }
+//    }
     
     init(cocktailName: String, imageName: String, isUserDefined: Bool, personalizedNote: String) {
         self._isUserDefined = isUserDefined

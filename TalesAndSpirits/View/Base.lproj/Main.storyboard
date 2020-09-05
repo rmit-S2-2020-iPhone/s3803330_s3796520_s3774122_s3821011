@@ -22,7 +22,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Le3-9f-HLc" kind="relationship" relationship="viewControllers" id="SdR-zD-CJK"/>
-                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="viewControllers" id="V5h-15-rvt"/>
+                        <segue destination="9hi-a8-JwJ" kind="relationship" relationship="viewControllers" id="V5h-15-rvt"/>
                         <segue destination="L8V-C6-Ld3" kind="relationship" relationship="viewControllers" id="TfH-w0-X8j"/>
                         <segue destination="i4o-EX-Ad1" kind="relationship" relationship="viewControllers" id="OxQ-Gj-j0T"/>
                     </connections>
@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="-2328" y="94"/>
         </scene>
-        <!--Cocktails-->
+        <!--Cocktails View Controller-->
         <scene sceneID="Gvv-Qn-EQC">
             <objects>
                 <viewController id="eMd-4D-nt4" customClass="CocktailsViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
@@ -103,17 +103,34 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <segue destination="sFw-bP-GyJ" kind="show" id="axx-rt-Uaw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Cocktails" image="icons8-cocktail-50" id="oWK-9a-AOF"/>
+                    <navigationItem key="navigationItem" id="vc1-Vc-8Rm">
+                        <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title="Cocktails" id="apO-Us-fTS"/>
+                        <view key="titleView" contentMode="scaleToFill" id="9NG-WB-0pI">
+                            <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="jir-OQ-S0k">
+                                    <rect key="frame" x="-120" y="-29" width="240" height="49"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="cocktailsTableView" destination="RRh-7A-ozg" id="RCH-bx-C3r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xn0-sQ-L13" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1188.4057971014495" y="-916.07142857142856"/>
+            <point key="canvasLocation" x="-278.26086956521743" y="-916.07142857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QBR-nJ-9nQ">
@@ -318,7 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aaB-Cn-Cau" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111.594202898551" y="-498.21428571428567"/>
+            <point key="canvasLocation" x="3021.739130434783" y="-498.21428571428567"/>
         </scene>
         <!--My Diary Table View Controller-->
         <scene sceneID="zsy-9h-7Cg">
@@ -896,6 +913,9 @@
                                                     <constraint firstAttribute="height" constant="28" id="o6F-W4-PjN"/>
                                                 </constraints>
                                                 <state key="normal" image="Star"/>
+                                                <connections>
+                                                    <action selector="favoriteButtonPressed:" destination="sFw-bP-GyJ" eventType="touchUpInside" id="31k-ae-mHi"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -976,6 +996,7 @@
                         <outlet property="cocktailImageView" destination="fL0-Y3-Zd3" id="vQA-KE-ebP"/>
                         <outlet property="cocktailNameLabel" destination="xXj-TV-b5X" id="fpe-mG-9iM"/>
                         <outlet property="drinkInfoTableView" destination="vxP-aW-qs2" id="7kL-YC-wBa"/>
+                        <outlet property="favoriteButton" destination="WU3-V3-454" id="N7B-El-qMa"/>
                         <outlet property="ingredientsTableView" destination="5i5-rO-E2p" id="DVv-K7-Ygp"/>
                         <outlet property="preparationLabel" destination="APU-34-HDN" id="xMq-mz-smb"/>
                     </connections>
@@ -1116,6 +1137,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="grP-Xe-2JY">
                         <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title="Home" id="rGa-j7-Wot"/>
                         <view key="titleView" contentMode="scaleToFill" id="qBu-Q7-gva">
                             <rect key="frame" x="197" y="22" width="20" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1156,6 +1178,25 @@
             </objects>
             <point key="canvasLocation" x="-297.10144927536237" y="-1807.3660714285713"/>
         </scene>
+        <!--Cocktails-->
+        <scene sceneID="1jW-Ed-SnE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9hi-a8-JwJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Cocktails" image="icons8-cocktail-50" id="oWK-9a-AOF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ub7-nu-wuX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="rootViewController" id="7LG-DU-kF9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBf-G2-Zmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1188.4057971014495" y="-916.07142857142856"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1280px-RMIT_University_Logo.svg" width="1280" height="450"/>
@@ -1175,6 +1216,6 @@
         <image name="manhattan" width="650" height="650"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WR9-NO-qUy"/>
+        <segue reference="axx-rt-Uaw"/>
     </inferredMetricsTieBreakers>
 </document>

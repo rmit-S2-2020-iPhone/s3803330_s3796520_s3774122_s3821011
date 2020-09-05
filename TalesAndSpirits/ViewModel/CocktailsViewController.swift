@@ -54,9 +54,19 @@ class CocktailsViewController: UITableViewController {
             
         }
         
-        
-        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let selectedRow = self.tableView.indexPathForSelectedRow
+            else {return}
+        
+        let newDestination = segue.destination as? RecipeSceneViewController
+        
+        if let newDestination = newDestination{
+            newDestination.displayCocktail = diaryModelView.getCocktail(byIndex: (selectedRow.row - 1))
+        }
     }
     
 }
