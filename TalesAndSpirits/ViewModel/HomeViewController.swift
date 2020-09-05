@@ -10,7 +10,12 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    private let diaryModelView = MyDiaryViewModel()
+    //private let diaryModelView = CocktailViewModel()
+    var cocktailModelView: CocktailViewModel?
+    
+    var cocktails : [Cocktail] {
+        return cocktailModelView?.getAllCocktails() ?? []
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -23,7 +28,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return diaryModelView.count + 2
+        return cocktails.count + 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -41,8 +46,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
         
-                let currentCocktail: (cocktailName: String, image: UIImage?) = diaryModelView.getCocktail(byIndex: (indexPath.item - 2))
-                cell?.imageView.image = currentCocktail.image
+                let currentCocktail = cocktails[(indexPath.item - 2)]
+                cell?.imageView.image = UIImage(named: currentCocktail.imageName)
                 cell?.nameLabel.text = currentCocktail.cocktailName
             
             //cell?.imageView.image = UIImage(named: cocktailsArray[indexPath.item - 2].imageName)
@@ -83,7 +88,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = diaryModelView.getCocktail(byIndex: (selectedItem.item - 2))
+            newDestination.displayCocktail = cocktails[(selectedItem.item - 2)]
         }
         
     }
