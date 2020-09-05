@@ -10,7 +10,22 @@ import UIKit
 
 class MyDiaryTableViewController: UITableViewController {
 
-    private let diaryModelView = MyDiaryViewModel()
+    //private let diaryModelView = CocktailViewModel()
+    var cocktailModelView: CocktailViewModel?
+    
+    var favoriteCocktails : [Cocktail] {
+        var favCocktails: [Cocktail] = []
+        var index = 0
+        guard let count = cocktailModelView?.count else { return favCocktails}
+        while index < count {
+            guard let cocktail: Cocktail = cocktailModelView?.getCocktail(byIndex: index) else{return favCocktails}
+            if cocktail.isFavorite{
+                favCocktails.append(cocktail)
+            }
+            index += 1
+        }
+        return favCocktails
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +37,15 @@ class MyDiaryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+        //tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return (diaryModelView.count + 2)
+        return (favoriteCocktails.count + 2)
     }
 
 
@@ -54,9 +74,9 @@ class MyDiaryTableViewController: UITableViewController {
                 
                 //imageView.image = UIImage(named: "liit")
                 //cocktailNameLabel.text = "Long Island Ice Tea"
-                let currentCocktail: (cocktailName: String, image: UIImage?) = diaryModelView.getCocktail(byIndex: (indexPath.row - 2))
+                let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
                 
-                imageView.image = currentCocktail.image
+                imageView.image = UIImage(named: currentCocktail.imageName)
                 cocktailNameLabel.text = currentCocktail.cocktailName
                 
             }
@@ -119,7 +139,8 @@ class MyDiaryTableViewController: UITableViewController {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = diaryModelView.getCocktail(byIndex: (selectedRow.row - 2))
+            newDestination.displayCocktail = favoriteCocktails[(selectedRow.row - 2)]
+            
         }
         
     }

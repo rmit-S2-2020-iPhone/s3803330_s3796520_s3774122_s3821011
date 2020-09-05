@@ -15,6 +15,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var cocktailNameLabel: UILabel!
     @IBOutlet weak var cocktailImageView: UIImageView!
     
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var drinkInfoTableView: UITableView!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var preparationLabel: UILabel!
@@ -27,6 +28,11 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             cocktailNameLabel.text = cocktail.cocktailName
             cocktailImageView.image = UIImage(named: cocktail.imageName)
             preparationLabel.text = cocktail.instructions
+            if cocktail.isFavorite{
+                favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
+            }else{
+                favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
+            }
         }
         
         drinkInfoTableView.delegate = self
@@ -92,6 +98,17 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
 
+    @IBAction func favoriteButtonPressed(_ sender: Any) {
+        if favoriteButton.currentBackgroundImage == UIImage(named: "Star-filled"){
+            favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
+            displayCocktail?.isFavorite = false
+            
+        }else{
+            favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
+            displayCocktail?.isFavorite = true
+            
+        }
+    }
     /*
     // MARK: - Navigation
 
