@@ -53,10 +53,10 @@ class MyDiaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let selectedRow = myDiaryTableView.indexPathForSelectedRow
             else {return}
         
-        let destination = segue.destination as? TempViewController
+        let newDestination = segue.destination as? RecipeSceneViewController
         
-        if let destination = destination {
-            destination.cocktailDetails = diaryModelView.getCocktail(byIndex: selectedRow.row)
+        if let newDestination = newDestination{
+            newDestination.displayCocktail = diaryModelView.getCocktail(byIndex: (selectedRow.row - 2))
         }
         
     }
