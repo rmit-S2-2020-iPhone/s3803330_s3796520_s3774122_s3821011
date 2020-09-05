@@ -53,12 +53,6 @@ class MyDiaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let selectedRow = myDiaryTableView.indexPathForSelectedRow
             else {return}
         
-        let destination = segue.destination as? TempViewController
-        
-        if let destination = destination {
-            destination.cocktailDetails = diaryModelView.getCocktail(byIndex: selectedRow.row)
-        }
-        
     }
     
 
