@@ -13,10 +13,32 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let cocktailList = CocktailViewModel()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        guard let tabBarController = window?.rootViewController as? UITabBarController,
+            let viewControllers = tabBarController.viewControllers else { return true}
+        
+        for viewController in viewControllers{
+            if let navigationController = viewController as? UINavigationController{
+                
+                if let homeViewController = navigationController.viewControllers.first as? HomeViewController{
+                    homeViewController.cocktailModelView = cocktailList
+                }
+                
+                if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
+                    cocktailsViewController.cocktailModelView = cocktailList
+                }
+                
+                if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
+                    myDiaryTableViewController.cocktailModelView = cocktailList
+                }
+            }
+        }
+        
         return true
     }
 

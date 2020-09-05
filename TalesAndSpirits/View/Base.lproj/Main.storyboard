@@ -489,7 +489,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="3uu-OH-gq2">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="138"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meet the developers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROw-h1-sH5">
                                                 <rect key="frame" x="123.66666666666669" y="29" width="167" height="24"/>
@@ -1201,13 +1201,13 @@
     <resources>
         <image name="1280px-RMIT_University_Logo.svg" width="1280" height="450"/>
         <image name="Ankit" width="768" height="1024"/>
-        <image name="Background" width="376" height="138"/>
+        <image name="Background" width="188" height="69"/>
         <image name="DrinkWiseURL_GTF_Limited_Label_2Lines_4c_n" width="552" height="279"/>
         <image name="Gajendra" width="2592" height="4608"/>
         <image name="Henry" width="1776" height="1184"/>
         <image name="Prodip" width="3024" height="4032"/>
         <image name="Star" width="42" height="42"/>
-        <image name="icons8-add-100" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="icons8-add-100" width="50" height="50"/>
         <image name="icons8-cocktail-50" width="25" height="25"/>
         <image name="icons8-diary-50" width="25" height="25"/>
         <image name="icons8-home-50" width="25" height="25"/>

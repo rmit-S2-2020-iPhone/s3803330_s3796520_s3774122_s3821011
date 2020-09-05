@@ -10,13 +10,15 @@ import UIKit
 
 class MyDiaryTableViewController: UITableViewController {
 
-    private let diaryModelView = MyDiaryViewModel()
+    //private let diaryModelView = CocktailViewModel()
+    var cocktailModelView: CocktailViewModel?
     
     var favoriteCocktails : [Cocktail] {
         var favCocktails: [Cocktail] = []
         var index = 0
-        while index < diaryModelView.count{
-            let cocktail: Cocktail = diaryModelView.getCocktail(byIndex: index)
+        guard let count = cocktailModelView?.count else { return favCocktails}
+        while index < count {
+            guard let cocktail: Cocktail = cocktailModelView?.getCocktail(byIndex: index) else{return favCocktails}
             if cocktail.isFavorite{
                 favCocktails.append(cocktail)
             }

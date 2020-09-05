@@ -11,7 +11,7 @@
 		0A48B67E24F2447D00BA61E4 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */; };
 		0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68124F244A400BA61E4 /* MoreViewController.swift */; };
 		0A48B68424F2B9B500BA61E4 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68324F2B9B500BA61E4 /* Cocktail.swift */; };
-		0A48B68624F2BE4500BA61E4 /* MyDiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68524F2BE4500BA61E4 /* MyDiaryViewModel.swift */; };
+		0A48B68624F2BE4500BA61E4 /* CocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68524F2BE4500BA61E4 /* CocktailViewModel.swift */; };
 		0A48B68C24F2DCF700BA61E4 /* MyDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68B24F2DCF700BA61E4 /* MyDiaryViewController.swift */; };
 		0A48B69024F38E4B00BA61E4 /* FavouriteCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68F24F38E4B00BA61E4 /* FavouriteCocktail.swift */; };
 		0A65F6DC24FFF8A600F30B07 /* RecipeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */; };
@@ -21,7 +21,6 @@
 		0AD0667624F4DDB70042465C /* CocktailJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667524F4DDB70042465C /* CocktailJson.swift */; };
 		3E6AA64525036C8D00C625AE /* DataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6AA64425036C8D00C625AE /* DataCollectionView.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
-		A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A824E69E4F0089659A /* ViewController.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
 		A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41AD24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld */; };
 		A9CA41B124E69E540089659A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41B024E69E540089659A /* Assets.xcassets */; };
@@ -52,7 +51,7 @@
 		0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
 		0A48B68124F244A400BA61E4 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		0A48B68324F2B9B500BA61E4 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
-		0A48B68524F2BE4500BA61E4 /* MyDiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryViewModel.swift; sourceTree = "<group>"; };
+		0A48B68524F2BE4500BA61E4 /* CocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailViewModel.swift; sourceTree = "<group>"; };
 		0A48B68B24F2DCF700BA61E4 /* MyDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryViewController.swift; sourceTree = "<group>"; };
 		0A48B68F24F38E4B00BA61E4 /* FavouriteCocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCocktail.swift; sourceTree = "<group>"; };
 		0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSceneViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +62,6 @@
 		3E6AA64425036C8D00C625AE /* DataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionView.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9CA41A824E69E4F0089659A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9CA41AB24E69E4F0089659A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9CA41AE24E69E4F0089659A /* TalesAndSpirits.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TalesAndSpirits.xcdatamodel; sourceTree = "<group>"; };
 		A9CA41B024E69E540089659A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,11 +103,10 @@
 		A948460424EA661E00E85AF3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A9CA41A824E69E4F0089659A /* ViewController.swift */,
 				0A48B67B24F2446B00BA61E4 /* HomeViewController.swift */,
 				0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */,
 				0A48B68124F244A400BA61E4 /* MoreViewController.swift */,
-				0A48B68524F2BE4500BA61E4 /* MyDiaryViewModel.swift */,
+				0A48B68524F2BE4500BA61E4 /* CocktailViewModel.swift */,
 				0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */,
 				0A48B68B24F2DCF700BA61E4 /* MyDiaryViewController.swift */,
 				0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */,
@@ -334,8 +331,7 @@
 				0A78C05924FEAADF009E2365 /* CocktailsJson.swift in Sources */,
 				0A48B68C24F2DCF700BA61E4 /* MyDiaryViewController.swift in Sources */,
 				0A48B68424F2B9B500BA61E4 /* Cocktail.swift in Sources */,
-				A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */,
-				0A48B68624F2BE4500BA61E4 /* MyDiaryViewModel.swift in Sources */,
+				0A48B68624F2BE4500BA61E4 /* CocktailViewModel.swift in Sources */,
 				A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */,
 				A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */,
 				0A48B67C24F2446B00BA61E4 /* HomeViewController.swift in Sources */,

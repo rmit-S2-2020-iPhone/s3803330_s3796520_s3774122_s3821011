@@ -11,8 +11,14 @@ import UIKit
 class CocktailsViewController: UITableViewController {
     
     
+    //private let diaryModelView = CocktailViewModel()
+    var cocktailModelView: CocktailViewModel?
     
-    private let diaryModelView = MyDiaryViewModel()
+    var cocktails : [Cocktail] {
+        return cocktailModelView?.getAllCocktails() ?? []
+    }
+    
+    
     
     @IBOutlet var cocktailsTableView: UITableView!
     override func viewDidLoad() {
@@ -24,7 +30,7 @@ class CocktailsViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return diaryModelView.count+1
+        return cocktails.count+1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,8 +49,8 @@ class CocktailsViewController: UITableViewController {
                 
                 //            imageView.image = UIImage(named: "liit")
                 //            cocktailNameLabel.text = "Long Island Ice Tea"
-                let currentCocktail: (cocktailName: String, image: UIImage?) = diaryModelView.getCocktail(byIndex: indexPath.row-1)
-                imageView.image = currentCocktail.image
+                let currentCocktail = cocktails[indexPath.row-1]
+                imageView.image = UIImage(named: currentCocktail.imageName)
                 cocktailNameLabel.text = currentCocktail.cocktailName
                 
             }
@@ -65,7 +71,7 @@ class CocktailsViewController: UITableViewController {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = diaryModelView.getCocktail(byIndex: (selectedRow.row - 1))
+            newDestination.displayCocktail = cocktails[(selectedRow.row - 1)]
         }
     }
     

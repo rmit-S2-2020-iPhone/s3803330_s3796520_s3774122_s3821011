@@ -10,7 +10,7 @@ import UIKit
 
 class MyDiaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private let diaryModelView = MyDiaryViewModel()
+    private let diaryModelView = CocktailViewModel()
 
     @IBOutlet weak var myDiaryTableView: UITableView!
     
