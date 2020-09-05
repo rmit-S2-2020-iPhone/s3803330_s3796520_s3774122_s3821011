@@ -110,10 +110,10 @@
 				0A48B67D24F2447D00BA61E4 /* CocktailsViewController.swift */,
 				0A48B68124F244A400BA61E4 /* MoreViewController.swift */,
 				0A48B68524F2BE4500BA61E4 /* MyDiaryViewModel.swift */,
+				0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */,
 				0A48B68B24F2DCF700BA61E4 /* MyDiaryViewController.swift */,
 				0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */,
 				0AD0667324F40D6D0042465C /* TempViewController.swift */,
-				0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

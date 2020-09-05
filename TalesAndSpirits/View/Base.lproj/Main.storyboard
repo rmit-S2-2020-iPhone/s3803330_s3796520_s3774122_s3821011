@@ -95,14 +95,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1003" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liit" translatesAutoresizingMaskIntoConstraints="NO" id="XAP-E4-exD">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liit" translatesAutoresizingMaskIntoConstraints="NO" id="XAP-E4-exD">
                                             <rect key="frame" x="16" y="8" width="85" height="85"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="85" id="QkJ-oS-LVO"/>
                                                 <constraint firstAttribute="width" secondItem="XAP-E4-exD" secondAttribute="height" multiplier="1:1" id="meo-Hs-cqd"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocktail Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UjT-av-oDJ">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocktail Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UjT-av-oDJ">
                                             <rect key="frame" x="128" y="37" width="270" height="22"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -123,6 +123,9 @@
                         </prototypes>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Cocktails" image="icons8-cocktail-50" id="oWK-9a-AOF"/>
+                    <connections>
+                        <outlet property="cocktailsTableView" destination="RRh-7A-ozg" id="RCH-bx-C3r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xn0-sQ-L13" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

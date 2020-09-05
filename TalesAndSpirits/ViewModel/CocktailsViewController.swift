@@ -8,57 +8,53 @@
 
 import UIKit
 
-class CocktailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CocktailsViewController: UITableViewController {
     
     
-    @IBOutlet weak var cocktailsTableView: UITableView!
-    @IBOutlet weak var cocktailNameLabel: UILabel!
-    @IBOutlet weak var cocktailImageView: UIImageView!
     
+    private let diaryModelView = MyDiaryViewModel()
+    
+    @IBOutlet var cocktailsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        cocktailsTableView.dataSource = self
-        cocktailsTableView.delegate = self
         
         // Do any additional setup after loading the view.
     }
+
     
-    private var cocktails: [Cocktail] = []
-    private var favCocktails: [FavouriteCocktail] = []
-    
-    func getCocktail(byIndex index: Int) -> (cocktailName: String, image: UIImage?) {
-        
-        let cocktailName = cocktails[index].cocktailName
-        let image = UIImage(named: cocktails[index].imageName)
-        
-        return (cocktailName, image)
-        
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return diaryModelView.count+1
     }
     
-    func getCocktail(byIndex index: Int) -> Cocktail {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return cocktails[index]
+        let cell: UITableViewCell
         
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CKCell", for: indexPath)
-        
-        let imageView = cell.viewWithTag(1000) as? UIImageView
-        
-        let cocktailNameLabel = cell.viewWithTag(1001) as? UILabel
-        
-        if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel {
+        if indexPath.row != 0{
+            cell = tableView.dequeueReusableCell(withIdentifier: "CocktailCell", for: indexPath)
             
-//            imageView.image = UIImage(named: "liit")
-//            cocktailNameLabel.text = "Long Island Ice Tea"
-            let currentCocktail: (cocktailName: String, image: UIImage?) = CocktailsViewController.getCocktail(byIndex: indexPath.row)
-            imageView.image = currentCocktail.image
-            cocktailNameLabel.text = currentCocktail.cocktailName
+            let imageView = cell.viewWithTag(1000) as? UIImageView
+            
+            let cocktailNameLabel = cell.viewWithTag(1001) as? UILabel
+            
+            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel {
+                
+                
+                //            imageView.image = UIImage(named: "liit")
+                //            cocktailNameLabel.text = "Long Island Ice Tea"
+                let currentCocktail: (cocktailName: String, image: UIImage?) = diaryModelView.getCocktail(byIndex: indexPath.row-1)
+                imageView.image = currentCocktail.image
+                cocktailNameLabel.text = currentCocktail.cocktailName
+                
+            }
+        }
+        else{
+        cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath)
             
         }
+        
+        
         
         return cell
     }
