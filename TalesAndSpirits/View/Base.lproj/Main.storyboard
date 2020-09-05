@@ -10,22 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--HomeViewController-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController title="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="icons8-home-50" id="FJY-fl-MLC"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1187" y="-1807"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="das-SK-Ayt">
             <objects>
@@ -37,7 +21,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="oOb-wm-c1n"/>
+                        <segue destination="Le3-9f-HLc" kind="relationship" relationship="viewControllers" id="SdR-zD-CJK"/>
                         <segue destination="eMd-4D-nt4" kind="relationship" relationship="viewControllers" id="V5h-15-rvt"/>
                         <segue destination="L8V-C6-Ld3" kind="relationship" relationship="viewControllers" id="TfH-w0-X8j"/>
                         <segue destination="i4o-EX-Ad1" kind="relationship" relationship="viewControllers" id="OxQ-Gj-j0T"/>
@@ -871,7 +855,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COCKTAIL NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xXj-TV-b5X">
-                                                <rect key="frame" x="108" y="24.333333333333258" width="198" height="33"/>
+                                                <rect key="frame" x="108" y="23.333333333333329" width="198" height="33"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1000,22 +984,197 @@
             </objects>
             <point key="canvasLocation" x="2112" y="735"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="jsH-xS-gb5">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" title="Home" id="qSJ-TW-QMj" customClass="HomeViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QWj-S1-8xM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IxV-8y-2Fu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cFz-5n-Jcw">
+                                    <size key="itemSize" width="411" height="201"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="searchCollectionView" reuseIdentifier="searchCollectionView" id="Arl-5u-Bc2" customClass="DataCollectionView" customModule="TalesAndSpirits" customModuleProvider="target">
+                                        <rect key="frame" x="1.6666666666666667" y="0.0" width="411" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="411" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <searchBar contentMode="redraw" text="" placeholder="Search Cocktail Here.." translatesAutoresizingMaskIntoConstraints="NO" id="7Qp-vZ-eOB">
+                                                    <rect key="frame" x="0.0" y="10" width="411" height="58"/>
+                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                </searchBar>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="7Qp-vZ-eOB" secondAttribute="bottom" id="BG3-Jl-uEh"/>
+                                            <constraint firstItem="7Qp-vZ-eOB" firstAttribute="top" secondItem="Arl-5u-Bc2" secondAttribute="top" constant="10" id="LbP-Hi-O4i"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Qp-vZ-eOB" secondAttribute="trailing" id="NQV-br-mt0"/>
+                                            <constraint firstItem="7Qp-vZ-eOB" firstAttribute="leading" secondItem="Arl-5u-Bc2" secondAttribute="leading" id="i7a-hE-QTQ"/>
+                                        </constraints>
+                                        <size key="customSize" width="411" height="68"/>
+                                        <connections>
+                                            <outlet property="searchBar" destination="7Qp-vZ-eOB" id="WUv-8u-iKd"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="labelCollectionView" reuseIdentifier="labelCollectionView" id="nzW-s4-TY2" customClass="DataCollectionView" customModule="TalesAndSpirits" customModuleProvider="target">
+                                        <rect key="frame" x="1.6666666666666667" y="78" width="411" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="411" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8s5-NY-QAT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="411" height="40"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Popular CockTails">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.26486052313458064" blue="0.42960654145077726" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <font key="NSFont" size="27" name="Avenir-Heavy"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <size key="shadowOffset" width="0.0" height="2"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="8s5-NY-QAT" secondAttribute="bottom" id="20r-zc-X8C"/>
+                                            <constraint firstItem="8s5-NY-QAT" firstAttribute="top" secondItem="nzW-s4-TY2" secondAttribute="top" id="A2F-UH-Tfs"/>
+                                            <constraint firstItem="8s5-NY-QAT" firstAttribute="leading" secondItem="nzW-s4-TY2" secondAttribute="leading" id="BHK-wA-Oil"/>
+                                            <constraint firstAttribute="trailing" secondItem="8s5-NY-QAT" secondAttribute="trailing" id="GF0-6F-47X"/>
+                                            <constraint firstItem="8s5-NY-QAT" firstAttribute="leading" secondItem="nzW-s4-TY2" secondAttribute="leading" id="of2-vn-yjd"/>
+                                            <constraint firstAttribute="trailing" secondItem="8s5-NY-QAT" secondAttribute="trailing" id="qAI-79-EpD"/>
+                                            <constraint firstItem="8s5-NY-QAT" firstAttribute="top" secondItem="nzW-s4-TY2" secondAttribute="top" id="uRv-mv-X2r"/>
+                                        </constraints>
+                                        <size key="customSize" width="411" height="40"/>
+                                        <connections>
+                                            <outlet property="titleText" destination="8s5-NY-QAT" id="NK7-R2-on0"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" restorationIdentifier="collectionView" reuseIdentifier="collectionView" id="vz3-Cl-tUK" customClass="DataCollectionView" customModule="TalesAndSpirits" customModuleProvider="target">
+                                        <rect key="frame" x="1" y="128" width="412" height="143"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="412" height="143"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8Z-4Y-1Os">
+                                                    <rect key="frame" x="206" y="125" width="0.0" height="0.0"/>
+                                                    <attributedString key="attributedText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1001" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KQO-VW-a21">
+                                                    <rect key="frame" x="156" y="0.0" width="100" height="92"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="9rY-mx-XUz"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="KQO-VW-a21" firstAttribute="top" secondItem="vz3-Cl-tUK" secondAttribute="top" id="ACW-nC-pqe"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="c8Z-4Y-1Os" secondAttribute="bottom" constant="10" id="Jer-t6-UjP"/>
+                                            <constraint firstItem="c8Z-4Y-1Os" firstAttribute="centerX" secondItem="vz3-Cl-tUK" secondAttribute="centerX" id="jQd-45-eqC"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="KQO-VW-a21" secondAttribute="bottom" constant="43" id="nfZ-cz-pwO"/>
+                                            <constraint firstItem="KQO-VW-a21" firstAttribute="centerX" secondItem="vz3-Cl-tUK" secondAttribute="centerX" id="v2z-jR-Pz7"/>
+                                        </constraints>
+                                        <size key="customSize" width="412" height="143"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="KQO-VW-a21" id="ZGJ-Vp-Nk5"/>
+                                            <outlet property="nameLabel" destination="c8Z-4Y-1Os" id="u2T-Wy-JXO"/>
+                                            <segue destination="sFw-bP-GyJ" kind="show" id="WR9-NO-qUy"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="qSJ-TW-QMj" id="bsl-uM-lVP"/>
+                                    <outlet property="delegate" destination="qSJ-TW-QMj" id="7c4-oW-Cru"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="IxV-8y-2Fu" firstAttribute="trailing" secondItem="LVk-Oa-3VP" secondAttribute="trailing" id="0Dx-F6-SaL"/>
+                            <constraint firstItem="IxV-8y-2Fu" firstAttribute="leading" secondItem="LVk-Oa-3VP" secondAttribute="leading" id="A3v-SL-ArD"/>
+                            <constraint firstItem="LVk-Oa-3VP" firstAttribute="bottom" secondItem="IxV-8y-2Fu" secondAttribute="bottom" id="N6m-r2-vNT"/>
+                            <constraint firstItem="IxV-8y-2Fu" firstAttribute="top" secondItem="LVk-Oa-3VP" secondAttribute="top" id="n6i-jx-CSm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LVk-Oa-3VP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="grP-Xe-2JY">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="qBu-Q7-gva">
+                            <rect key="frame" x="197" y="22" width="20" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uyo-4F-QvB">
+                                    <rect key="frame" x="-195" y="-32" width="412" height="56"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="IxV-8y-2Fu" id="hEN-Ma-OLS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="83m-mQ-3XE" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="FR5-ao-Zmi"/>
+            </objects>
+            <point key="canvasLocation" x="613.04347826086962" y="-1807.3660714285713"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="ss6-zN-3qK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Le3-9f-HLc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="icons8-home-50" id="Qdl-y0-hnJ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cit-6x-tvQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qSJ-TW-QMj" kind="relationship" relationship="rootViewController" id="llT-DM-7Bf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCJ-Yb-QrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-297.10144927536237" y="-1807.3660714285713"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1280px-RMIT_University_Logo.svg" width="1280" height="450"/>
         <image name="Ankit" width="768" height="1024"/>
         <image name="Background" width="376" height="138"/>
-        <image name="Star" width="42" height="42"/>
         <image name="DrinkWiseURL_GTF_Limited_Label_2Lines_4c_n" width="552" height="279"/>
         <image name="Gajendra" width="2592" height="4608"/>
         <image name="Henry" width="1776" height="1184"/>
         <image name="Prodip" width="3024" height="4032"/>
+        <image name="Star" width="42" height="42"/>
         <image name="icons8-add-100" width="33.333332061767578" height="33.333332061767578"/>
         <image name="icons8-cocktail-50" width="25" height="25"/>
         <image name="icons8-diary-50" width="25" height="25"/>
         <image name="icons8-home-50" width="25" height="25"/>
         <image name="liit" width="350" height="350"/>
-        <image name="logo" width="530" height="160"/>
+        <image name="logo" width="265" height="80"/>
         <image name="manhattan" width="650" height="650"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="WR9-NO-qUy"/>
+    </inferredMetricsTieBreakers>
 </document>
