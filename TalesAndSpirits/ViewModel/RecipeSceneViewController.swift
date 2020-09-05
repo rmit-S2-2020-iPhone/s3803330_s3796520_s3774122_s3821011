@@ -15,11 +15,16 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var cocktailNameLabel: UILabel!
     @IBOutlet weak var cocktailImageView: UIImageView!
     
+    @IBOutlet weak var addNoteButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var drinkInfoTableView: UITableView!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var preparationLabel: UILabel!
     
+    @IBOutlet weak var personalNoteTextView: UITextView!
+    
+    private let defaultDisabledTextViewMessage = "Add this cocktail to MyDiary to add personal note"
+    private let defaultEnabledTextViewMessage = "Add a personal note to your favorite cocktail"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +35,18 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             preparationLabel.text = cocktail.instructions
             if cocktail.isFavorite{
                 favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
+                addNoteButton.isEnabled = true
+                personalNoteTextView.isEditable = true
+                if !cocktail.personalizedNote.isEmpty{
+                    personalNoteTextView.text = cocktail.personalizedNote
+                }else{
+                    personalNoteTextView.text = defaultEnabledTextViewMessage
+                }
             }else{
                 favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
+                addNoteButton.isEnabled = false
+                personalNoteTextView.isEditable = false
+                personalNoteTextView.text = defaultDisabledTextViewMessage
             }
         }
         
@@ -43,6 +58,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
 
         // Do any additional setup after loading the view.
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCount = 0
@@ -102,12 +118,34 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         if favoriteButton.currentBackgroundImage == UIImage(named: "Star-filled"){
             favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
             displayCocktail?.isFavorite = false
+            addNoteButton.isEnabled = false
+            personalNoteTextView.isEditable = false
+            personalNoteTextView.text = defaultDisabledTextViewMessage
             
         }else{
             favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
             displayCocktail?.isFavorite = true
+            addNoteButton.isEnabled = true
+            personalNoteTextView.isEditable = true
+            var note = defaultEnabledTextViewMessage
+            if let personalNote = displayCocktail?.personalizedNote {
+                if !personalNote.isEmpty{
+                    note = personalNote
+                }
+            }
+            personalNoteTextView.text = note
             
         }
+    }
+    
+    
+    @IBAction func addNoteButtonPressed(_ sender: Any) {
+        //Check if textview contains default message, if no add it to personal note
+        
+        if personalNoteTextView.text != defaultEnabledTextViewMessage{
+            displayCocktail?.personalizedNote = personalNoteTextView.text
+        }
+        
     }
     /*
     // MARK: - Navigation
