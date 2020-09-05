@@ -20,6 +20,7 @@
 		0AD0667224F3E7ED0042465C /* MyDiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */; };
 		0AD0667424F40D6D0042465C /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667324F40D6D0042465C /* TempViewController.swift */; };
 		0AD0667624F4DDB70042465C /* CocktailJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667524F4DDB70042465C /* CocktailJson.swift */; };
+		A975CDA82503210B00ED20EE /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A975CDA72503210B00ED20EE /* AddRecipeViewController.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
 		A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A824E69E4F0089659A /* ViewController.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryTableViewController.swift; sourceTree = "<group>"; };
 		0AD0667324F40D6D0042465C /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		0AD0667524F4DDB70042465C /* CocktailJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailJson.swift; sourceTree = "<group>"; };
+		A975CDA72503210B00ED20EE /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9CA41A824E69E4F0089659A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */,
 				0AD0667324F40D6D0042465C /* TempViewController.swift */,
 				0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */,
+				A975CDA72503210B00ED20EE /* AddRecipeViewController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				0A48B68424F2B9B500BA61E4 /* Cocktail.swift in Sources */,
 				A9CA41A924E69E4F0089659A /* ViewController.swift in Sources */,
 				0A48B68624F2BE4500BA61E4 /* MyDiaryViewModel.swift in Sources */,
+				A975CDA82503210B00ED20EE /* AddRecipeViewController.swift in Sources */,
 				0AD0667424F40D6D0042465C /* TempViewController.swift in Sources */,
 				A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */,
 				A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */,

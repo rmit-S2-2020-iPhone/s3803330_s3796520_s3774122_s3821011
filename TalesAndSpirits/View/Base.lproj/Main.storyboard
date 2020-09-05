@@ -391,9 +391,8 @@
                                     <constraint firstItem="DBy-mm-zD2" firstAttribute="top" secondItem="hHZ-Ad-g4r" secondAttribute="top" id="zfx-tZ-AAT"/>
                                 </constraints>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBI-R8-6oU">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBI-R8-6oU">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="lPj-r4-hzK">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="tGi-FR-vlH">
@@ -411,6 +410,9 @@
                         <constraints>
                             <constraint firstItem="hHZ-Ad-g4r" firstAttribute="trailing" secondItem="Pea-5S-VUV" secondAttribute="trailing" id="HoL-zo-PVb"/>
                             <constraint firstItem="hHZ-Ad-g4r" firstAttribute="top" secondItem="Pea-5S-VUV" secondAttribute="top" id="Luy-D9-0Py"/>
+                            <constraint firstItem="yBI-R8-6oU" firstAttribute="trailing" secondItem="hHZ-Ad-g4r" secondAttribute="trailing" id="Tee-6N-Dhl"/>
+                            <constraint firstItem="yBI-R8-6oU" firstAttribute="bottom" secondItem="Pea-5S-VUV" secondAttribute="top" id="To0-Zg-0g7"/>
+                            <constraint firstItem="yBI-R8-6oU" firstAttribute="leading" secondItem="hHZ-Ad-g4r" secondAttribute="leading" id="WdT-LZ-CaW"/>
                             <constraint firstItem="hHZ-Ad-g4r" firstAttribute="leading" secondItem="Pea-5S-VUV" secondAttribute="leading" id="aH3-Ke-LeU"/>
                             <constraint firstItem="hHZ-Ad-g4r" firstAttribute="bottom" secondItem="Pea-5S-VUV" secondAttribute="bottom" id="liD-z3-gGy"/>
                         </constraints>
