@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  TalesAndSpirits
 //
-//  Created by PUJA on 14/8/20.
+//  Created by GAJSA on 14/8/20.
 //  Copyright © 2020 RMIT. All rights reserved.
 //
 
