@@ -9,43 +9,47 @@
 import UIKit
 
 class MyDiaryTableViewController: UITableViewController {
-
-    //private let diaryModelView = CocktailViewModel()
+    
     var cocktailViewModel: CocktailViewModel?
     
-    var favoriteCocktails : [Cocktail] {
-        var favCocktails: [Cocktail] = []
+    var favoriteCocktailsIndices: [Int] {
+        guard let cocktailViewModel = cocktailViewModel else{ return [] }
+        var indices: [Int] = []
         var index = 0
-        guard let count = cocktailViewModel?.count else { return favCocktails}
-        while index < count {
-            guard let cocktail: Cocktail = cocktailViewModel?.getCocktail(byIndex: index) else{return favCocktails}
-            if cocktail.isFavorite{
-                favCocktails.append(cocktail)
+        while index < cocktailViewModel.count {
+            if cocktailViewModel.getCocktailIsFavorite(byIndex: index){
+                indices.append(index)
             }
             index += 1
         }
-        return favCocktails
+        return indices
     }
+    
+//    var favoriteCocktails : [Cocktail] {
+//        var favCocktails: [Cocktail] = []
+//        var index = 0
+//        guard let count = cocktailViewModel?.count else { return favCocktails}
+//        while index < count {
+//            guard let cocktail: Cocktail = cocktailViewModel?.getCocktail(byIndex: index) else{return favCocktails}
+//            if cocktail.isFavorite{
+//                favCocktails.append(cocktail)
+//            }
+//            index += 1
+//        }
+//        return favCocktails
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo"))
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
-        //tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return (favoriteCocktails.count + 2)
+        return (favoriteCocktailsIndices.count + 2)
     }
 
 
@@ -70,21 +74,23 @@ class MyDiaryTableViewController: UITableViewController {
             
             let cocktailNameLabel = cell.viewWithTag(1004) as? UILabel
             
-            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel {
+            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel, let cocktailViewModel = cocktailViewModel {
+                //fetch cocktail index for favorite cocktail
+                let index = favoriteCocktailsIndices[(indexPath.row - 2)]
                 
-                //imageView.image = UIImage(named: "liit")
-                //cocktailNameLabel.text = "Long Island Ice Tea"
-                let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
-                let index = cocktailViewModel!.getCocktailIndex(newCocktail: currentCocktail)
+                imageView.image = cocktailViewModel.getCocktailImage(byIndex: index)
+                cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: index)
                 
-                let cocktailDetails: (cocktailName: String, image: UIImage?) = cocktailViewModel!.getCocktail(byIndex: index)
-                
-                imageView.image = cocktailDetails.image
-                cocktailNameLabel.text = cocktailDetails.cocktailName
+//                let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
+//                let index = cocktailViewModel!.getCocktailIndex(newCocktail: currentCocktail)
+//
+//                let cocktailDetails: (cocktailName: String, image: UIImage?) = cocktailViewModel!.getCocktail(byIndex: index)
+//
+//                imageView.image = cocktailDetails.image
+//                cocktailNameLabel.text = cocktailDetails.cocktailName
                 
             }
         }
-        // Configure the cell...
 
         return cell
     }
@@ -98,42 +104,6 @@ class MyDiaryTableViewController: UITableViewController {
         
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
         guard let selectedRow = self.tableView.indexPathForSelectedRow
@@ -143,9 +113,9 @@ class MyDiaryTableViewController: UITableViewController {
         
         if let newDestination = newDestination{
             newDestination.cocktailViewModel = cocktailViewModel
-            let index = cocktailViewModel!.getCocktailIndex(newCocktail: favoriteCocktails[(selectedRow.row - 2)])
+            let index = favoriteCocktailsIndices[(selectedRow.row - 2)]
+               // cocktailViewModel!.getCocktailIndex(newCocktail: favoriteCocktails[(selectedRow.row - 2)])
             newDestination.index = index
-            //newDestination.displayCocktail = favoriteCocktails[(selectedRow.row - 2)]
             
         }
         

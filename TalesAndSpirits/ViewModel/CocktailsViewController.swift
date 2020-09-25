@@ -10,33 +10,21 @@ import UIKit
 
 class CocktailsViewController: UITableViewController, RefreshData {
     
-    
-    
-    
-    //private let diaryModelView = CocktailViewModel()
     var cocktailViewModel: CocktailViewModel?
-    
-//    var cocktails : [Cocktail] {
-//        return cocktailViewModel?.getAllCocktails() ?? []
-//    }
-    
     
     
     @IBOutlet var cocktailsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         cocktailViewModel?.delegate = self
-        
-        // Do any additional setup after loading the view.
+
     }
     
     func updateUIWithRestData() {
-        //cocktails = cocktailViewModel?.getAllCocktails()
         self.tableView.reloadData()
     }
 
     
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cocktailViewModel!.count+1
     }
@@ -52,15 +40,9 @@ class CocktailsViewController: UITableViewController, RefreshData {
             
             let cocktailNameLabel = cell.viewWithTag(1001) as? UILabel
             
-            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel {
-                
-                
-                //            imageView.image = UIImage(named: "liit")
-                //            cocktailNameLabel.text = "Long Island Ice Tea"
-                let currentCocktail: (cocktailName: String, image: UIImage?) = cocktailViewModel!.getCocktail(byIndex: indexPath.row-1)
-                    //cocktails[indexPath.row-1]
-                imageView.image = currentCocktail.image
-                cocktailNameLabel.text = currentCocktail.cocktailName
+            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel, let cocktailViewModel = cocktailViewModel {
+                imageView.image = cocktailViewModel.getCocktailImage(byIndex: indexPath.row - 1)
+                cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: indexPath.row - 1)
                 
             }
         }
@@ -82,8 +64,6 @@ class CocktailsViewController: UITableViewController, RefreshData {
         if let newDestination = newDestination{
             newDestination.cocktailViewModel = cocktailViewModel
             newDestination.index = selectedRow.row-1
-            //newDestination.displayCocktail = cocktailViewModel!.getCocktail(byIndex: selectedRow.row-1)
-                //cocktails[(selectedRow.row - 1)]
         }
     }
     

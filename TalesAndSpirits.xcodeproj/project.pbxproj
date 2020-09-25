@@ -13,6 +13,7 @@
 		0A48B68424F2B9B500BA61E4 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68324F2B9B500BA61E4 /* Cocktail.swift */; };
 		0A48B68624F2BE4500BA61E4 /* CocktailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68524F2BE4500BA61E4 /* CocktailViewModel.swift */; };
 		0A48B69024F38E4B00BA61E4 /* FavouriteCocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A48B68F24F38E4B00BA61E4 /* FavouriteCocktail.swift */; };
+		0A617604251DE6A6009E17CF /* REST_Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A617603251DE6A6009E17CF /* REST_Request.swift */; };
 		0A65F6DC24FFF8A600F30B07 /* RecipeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */; };
 		0A78C05724FE9D5D009E2365 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78C05624FE9D5D009E2365 /* NetworkData.swift */; };
 		0A78C05924FEAADF009E2365 /* CocktailsJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78C05824FEAADF009E2365 /* CocktailsJson.swift */; };
@@ -53,6 +54,7 @@
 		0A48B68324F2B9B500BA61E4 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
 		0A48B68524F2BE4500BA61E4 /* CocktailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailViewModel.swift; sourceTree = "<group>"; };
 		0A48B68F24F38E4B00BA61E4 /* FavouriteCocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCocktail.swift; sourceTree = "<group>"; };
+		0A617603251DE6A6009E17CF /* REST_Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REST_Request.swift; sourceTree = "<group>"; };
 		0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSceneViewController.swift; sourceTree = "<group>"; };
 		0A78C05624FE9D5D009E2365 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		0A78C05824FEAADF009E2365 /* CocktailsJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsJson.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				0AD0667524F4DDB70042465C /* CocktailJson.swift */,
 				0A78C05624FE9D5D009E2365 /* NetworkData.swift */,
 				0A78C05824FEAADF009E2365 /* CocktailsJson.swift */,
+				0A617603251DE6A6009E17CF /* REST_Request.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */,
 				0ACD93E22504090600C57F64 /* AddNotePopOverViewController.swift in Sources */,
 				0A48B69024F38E4B00BA61E4 /* FavouriteCocktail.swift in Sources */,
+				0A617604251DE6A6009E17CF /* REST_Request.swift in Sources */,
 				0AD0667624F4DDB70042465C /* CocktailJson.swift in Sources */,
 				0AD0667224F3E7ED0042465C /* MyDiaryTableViewController.swift in Sources */,
 				3E6AA64525036C8D00C625AE /* DataCollectionView.swift in Sources */,
