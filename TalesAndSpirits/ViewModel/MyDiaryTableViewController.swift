@@ -75,9 +75,12 @@ class MyDiaryTableViewController: UITableViewController {
                 //imageView.image = UIImage(named: "liit")
                 //cocktailNameLabel.text = "Long Island Ice Tea"
                 let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
+                let index = cocktailModelView!.getCocktailIndex(newCocktail: currentCocktail)
                 
-                imageView.image = UIImage(named: currentCocktail.imageName)
-                cocktailNameLabel.text = currentCocktail.cocktailName
+                let cocktailDetails: (cocktailName: String, image: UIImage?) = cocktailModelView!.getCocktail(byIndex: index)
+                
+                imageView.image = cocktailDetails.image
+                cocktailNameLabel.text = cocktailDetails.cocktailName
                 
             }
         }

@@ -8,29 +8,37 @@
 
 import UIKit
 
-class CocktailsViewController: UITableViewController {
+class CocktailsViewController: UITableViewController, RefreshData {
+    
+    
     
     
     //private let diaryModelView = CocktailViewModel()
-    var cocktailModelView: CocktailViewModel?
+    var cocktailViewModel: CocktailViewModel?
     
-    var cocktails : [Cocktail] {
-        return cocktailModelView?.getAllCocktails() ?? []
-    }
+//    var cocktails : [Cocktail] {
+//        return cocktailViewModel?.getAllCocktails() ?? []
+//    }
     
     
     
     @IBOutlet var cocktailsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        cocktailViewModel?.delegate = self
         
         // Do any additional setup after loading the view.
+    }
+    
+    func updateUIWithRestData() {
+        //cocktails = cocktailViewModel?.getAllCocktails()
+        self.tableView.reloadData()
     }
 
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cocktails.count+1
+        return cocktailViewModel!.count+1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,8 +57,9 @@ class CocktailsViewController: UITableViewController {
                 
                 //            imageView.image = UIImage(named: "liit")
                 //            cocktailNameLabel.text = "Long Island Ice Tea"
-                let currentCocktail = cocktails[indexPath.row-1]
-                imageView.image = UIImage(named: currentCocktail.imageName)
+                let currentCocktail: (cocktailName: String, image: UIImage?) = cocktailViewModel!.getCocktail(byIndex: indexPath.row-1)
+                    //cocktails[indexPath.row-1]
+                imageView.image = currentCocktail.image
                 cocktailNameLabel.text = currentCocktail.cocktailName
                 
             }
@@ -71,7 +80,8 @@ class CocktailsViewController: UITableViewController {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = cocktails[(selectedRow.row - 1)]
+            newDestination.displayCocktail = cocktailViewModel!.getCocktail(byIndex: selectedRow.row-1)
+                //cocktails[(selectedRow.row - 1)]
         }
     }
     

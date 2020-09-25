@@ -28,7 +28,7 @@ class FavouriteCocktail: Cocktail {
     init(cocktailName: String, imageName: String, isUserDefined: Bool, personalizedNote: String) {
         self._isUserDefined = isUserDefined
         self._personalizedNote = personalizedNote
-        super.init(cocktailName: cocktailName, imageName: imageName)
+        super.init(cocktailId: "",cocktailName: cocktailName, imageName: imageName)
     }
 }
 
