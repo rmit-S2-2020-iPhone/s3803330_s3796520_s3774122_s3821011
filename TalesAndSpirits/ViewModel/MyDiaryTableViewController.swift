@@ -11,14 +11,14 @@ import UIKit
 class MyDiaryTableViewController: UITableViewController {
 
     //private let diaryModelView = CocktailViewModel()
-    var cocktailModelView: CocktailViewModel?
+    var cocktailViewModel: CocktailViewModel?
     
     var favoriteCocktails : [Cocktail] {
         var favCocktails: [Cocktail] = []
         var index = 0
-        guard let count = cocktailModelView?.count else { return favCocktails}
+        guard let count = cocktailViewModel?.count else { return favCocktails}
         while index < count {
-            guard let cocktail: Cocktail = cocktailModelView?.getCocktail(byIndex: index) else{return favCocktails}
+            guard let cocktail: Cocktail = cocktailViewModel?.getCocktail(byIndex: index) else{return favCocktails}
             if cocktail.isFavorite{
                 favCocktails.append(cocktail)
             }
@@ -75,9 +75,9 @@ class MyDiaryTableViewController: UITableViewController {
                 //imageView.image = UIImage(named: "liit")
                 //cocktailNameLabel.text = "Long Island Ice Tea"
                 let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
-                let index = cocktailModelView!.getCocktailIndex(newCocktail: currentCocktail)
+                let index = cocktailViewModel!.getCocktailIndex(newCocktail: currentCocktail)
                 
-                let cocktailDetails: (cocktailName: String, image: UIImage?) = cocktailModelView!.getCocktail(byIndex: index)
+                let cocktailDetails: (cocktailName: String, image: UIImage?) = cocktailViewModel!.getCocktail(byIndex: index)
                 
                 imageView.image = cocktailDetails.image
                 cocktailNameLabel.text = cocktailDetails.cocktailName
@@ -142,7 +142,10 @@ class MyDiaryTableViewController: UITableViewController {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = favoriteCocktails[(selectedRow.row - 2)]
+            newDestination.cocktailViewModel = cocktailViewModel
+            let index = cocktailViewModel!.getCocktailIndex(newCocktail: favoriteCocktails[(selectedRow.row - 2)])
+            newDestination.index = index
+            //newDestination.displayCocktail = favoriteCocktails[(selectedRow.row - 2)]
             
         }
         

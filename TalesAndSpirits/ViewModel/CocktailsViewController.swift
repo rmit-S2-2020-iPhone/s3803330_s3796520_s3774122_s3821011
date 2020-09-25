@@ -80,7 +80,9 @@ class CocktailsViewController: UITableViewController, RefreshData {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = cocktailViewModel!.getCocktail(byIndex: selectedRow.row-1)
+            newDestination.cocktailViewModel = cocktailViewModel
+            newDestination.index = selectedRow.row-1
+            //newDestination.displayCocktail = cocktailViewModel!.getCocktail(byIndex: selectedRow.row-1)
                 //cocktails[(selectedRow.row - 1)]
         }
     }

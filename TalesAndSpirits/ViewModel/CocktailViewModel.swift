@@ -74,6 +74,10 @@ struct CocktailViewModel {
         
     }
     
+    func fetchCocktailById(index: Int){
+        model.fetchCocktailById(index: index)
+    }
+    
     private func getCocktailImage(index: Int) -> UIImage?{
         let url = model.cocktails[index].imageName
         guard let imageURL = URL(string: url) else{ return nil}

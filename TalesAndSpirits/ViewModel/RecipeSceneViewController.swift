@@ -8,9 +8,16 @@
 
 import UIKit
 
-class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshData {
     
-    var displayCocktail: Cocktail?
+    //var displayCocktail: Cocktail?
+    var cocktailViewModel: CocktailViewModel?
+    var index: Int?
+    
+    var displayCocktail : Cocktail? {
+        guard let index = index, let cocktailViewModel = cocktailViewModel  else{ return nil }
+        return cocktailViewModel.getCocktail(byIndex: index)
+    }
 
     @IBOutlet weak var cocktailNameLabel: UILabel!
     @IBOutlet weak var cocktailImageView: UIImageView!
@@ -28,7 +35,21 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         personalNoteTextView.isEditable = false
+        cocktailViewModel?.delegate = self
+        
+        populateView()
+        
+        drinkInfoTableView.delegate = self
+        drinkInfoTableView.dataSource = self
+        
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+
+        // Do any additional setup after loading the view.
+    }
+    
+    private func populateView(){
+        personalNoteTextView.isEditable = false
         if let cocktail = displayCocktail {
             cocktailNameLabel.text = cocktail.cocktailName
             cocktailImageView.image = UIImage(named: cocktail.imageName)
@@ -47,15 +68,14 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
                 personalNoteTextView.text = defaultDisabledTextViewMessage
             }
         }
-        
-        drinkInfoTableView.delegate = self
-        drinkInfoTableView.dataSource = self
-        
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-
-        // Do any additional setup after loading the view.
     }
+    
+    func updateUIWithRestData() {
+        populateView()
+        self.drinkInfoTableView.reloadData()
+        self.ingredientsTableView.reloadData()
+    }
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,7 +105,11 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
                     infoLabel.text = cocktail.category
                     infoLabel2.text = "Category"
                 }else if indexPath.row == 1{
-                    infoLabel.text = cocktail.iBA
+                    if cocktail.iBA.isEmpty{
+                        infoLabel.text = "none"
+                    }else{
+                        infoLabel.text = cocktail.iBA
+                    }
                     infoLabel2.text = "iBA"
                 }else if indexPath.row == 2{
                     infoLabel.text = cocktail.glassType

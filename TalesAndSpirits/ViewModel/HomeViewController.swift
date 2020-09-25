@@ -94,7 +94,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = cocktailViewModel!.getCocktail(byIndex: (selectedItem.item - 2))
+            //newDestination.displayCocktail = cocktailViewModel!.getCocktail(byIndex: (selectedItem.item - 2))
+            cocktailViewModel?.fetchCocktailById(index: selectedItem.item - 2)
+            newDestination.cocktailViewModel = cocktailViewModel
+            newDestination.index = selectedItem.item - 2
                 //cocktails[(selectedItem.item - 2)]
         }
         

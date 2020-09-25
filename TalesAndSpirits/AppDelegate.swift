@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
-                    myDiaryTableViewController.cocktailModelView = cocktailList
+                    myDiaryTableViewController.cocktailViewModel = cocktailList
                 }
             }
         }
