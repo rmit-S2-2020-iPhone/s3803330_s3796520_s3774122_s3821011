@@ -10,6 +10,7 @@ import Foundation
 
 class Cocktail {
     
+    private var _cocktailId: String
     private var _cocktailName: String
     private var _imageName: String
     private var _ingredients: [(name: String, quantity: String)]
@@ -20,6 +21,11 @@ class Cocktail {
     private var _isUserDefined: Bool
     private var _personalizedNote: String
     private var _isFavorite: Bool
+    
+    var cocktailId: String{
+        get { return _cocktailId}
+        set(newId){ _cocktailId = newId}
+    }
     
     var cocktailName: String {
         get { return _cocktailName }
@@ -91,7 +97,8 @@ class Cocktail {
         }
     }
     
-    init(cocktailName: String, imageName: String) {
+    init(cocktailId: String, cocktailName: String, imageName: String) {
+        self._cocktailId = cocktailId
         self._cocktailName = cocktailName
         self._imageName = imageName
         self._ingredients = []

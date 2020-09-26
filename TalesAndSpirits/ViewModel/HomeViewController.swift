@@ -8,14 +8,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, RefreshData{
     
-    //private let diaryModelView = CocktailViewModel()
-    var cocktailModelView: CocktailViewModel?
+    var cocktailViewModel: CocktailViewModel?
     
-    var cocktails : [Cocktail] {
-        return cocktailModelView?.getAllCocktails() ?? []
-    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -24,11 +20,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //logoImageView.image = UIImage(named: "LOGO")
+        cocktailViewModel?.delegate = self
+    }
+    
+    func updateUIWithRestData() {
+        self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cocktails.count + 2
+        return cocktailViewModel!.count + 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -45,13 +45,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
-        
-                let currentCocktail = cocktails[(indexPath.item - 2)]
-                cell?.imageView.image = UIImage(named: currentCocktail.imageName)
-                cell?.nameLabel.text = currentCocktail.cocktailName
+            if let cell = cell, let cocktailViewModel = cocktailViewModel{
+                cell.imageView.image = cocktailViewModel.getCocktailImage(byIndex: (indexPath.item - 2))
+                cell.nameLabel.text = cocktailViewModel.getCocktailName(byIndex: (indexPath.item - 2))
+            }
             
-            //cell?.imageView.image = UIImage(named: cocktailsArray[indexPath.item - 2].imageName)
-            //cell?.nameLabel.text = cocktailsArray[indexPath.item - 2].cocktailName
             return cell!
         }
     }
@@ -72,14 +70,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return 0
     }
     
-    /*func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let position = indexPath.row
-        if(position == 0 || position == 1){return}
-        let view = storyboard?.instantiateViewController(withIdentifier:"RecipeSceneViewController") as? RecipeSceneViewController
-        view?.displayCocktail = diaryModelView.getCocktail(byIndex: indexPath.row - 2)
-        self.navigationController?.pushViewController(view!, animated: true)
-    }*/
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let selectedItem = self.collectionView.indexPathsForSelectedItems?.first else {return}
@@ -88,7 +78,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.displayCocktail = cocktails[(selectedItem.item - 2)]
+            cocktailViewModel?.fetchCocktailById(index: selectedItem.item - 2)
+            newDestination.cocktailViewModel = cocktailViewModel
+            newDestination.index = selectedItem.item - 2
         }
         
     }

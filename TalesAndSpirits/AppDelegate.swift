@@ -26,15 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let navigationController = viewController as? UINavigationController{
                 
                 if let homeViewController = navigationController.viewControllers.first as? HomeViewController{
-                    homeViewController.cocktailModelView = cocktailList
+                    homeViewController.cocktailViewModel = cocktailList
                 }
                 
                 if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
-                    cocktailsViewController.cocktailModelView = cocktailList
+                    cocktailsViewController.cocktailViewModel = cocktailList
                 }
                 
                 if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
-                    myDiaryTableViewController.cocktailModelView = cocktailList
+                    myDiaryTableViewController.cocktailViewModel = cocktailList
                 }
             }
         }
