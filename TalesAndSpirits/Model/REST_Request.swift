@@ -21,7 +21,7 @@ class REST_Request{
     private let baseUrl:String = "https://www.thecocktaildb.com/api/json/v1/1/"
     private let listCocktails:String = "filter.php?c=Cocktail"
     private let lookupCocktailById: String = "lookup.php?i="
-    private let search:String = "search.php?f="
+    private let search:String = "search.php?s="
     
     var cocktails:[Cocktail]{
         return _cocktails
@@ -46,7 +46,7 @@ class REST_Request{
         let id = _cocktails[index].cocktailId
         
         let url = baseUrl + lookupCocktailById + id
-        
+        print("url: \(url)")
         if let url = URL(string: url){
             let request = URLRequest(url: url)
             getCocktailById(request, index: index)

@@ -62,6 +62,7 @@ class CocktailsViewController: UITableViewController, RefreshData {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
+            cocktailViewModel?.fetchCocktailById(index: selectedRow.row-1)
             newDestination.cocktailViewModel = cocktailViewModel
             newDestination.index = selectedRow.row-1
         }
