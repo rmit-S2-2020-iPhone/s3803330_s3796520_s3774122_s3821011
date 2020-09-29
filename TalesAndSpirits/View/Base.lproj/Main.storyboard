@@ -502,6 +502,37 @@
             </objects>
             <point key="canvasLocation" x="-59.420289855072468" y="93.75"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="teL-43-ITz">
+            <objects>
+                <navigationController id="3LT-Ng-KvI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qnU-4P-2so">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sFw-bP-GyJ" kind="relationship" relationship="rootViewController" id="3h3-NL-2na"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AjY-v4-qfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-59" y="1002"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="m8Z-2o-jg4">
+            <objects>
+                <splitViewController id="dYi-8i-u2Z" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="aX0-WT-cnE"/>
+                    <navigationItem key="navigationItem" id="4Hu-2V-JmT"/>
+                    <connections>
+                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="masterViewController" id="q0C-kD-tNR"/>
+                        <segue destination="3LT-Ng-KvI" kind="relationship" relationship="detailViewController" id="att-K5-3Q8"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8kf-f6-rPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1188" y="1002"/>
+        </scene>
         <!--More View Controller-->
         <scene sceneID="ocS-59-UbS">
             <objects>
@@ -540,7 +571,7 @@
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prodip" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-R0-pBo">
-                                                <rect key="frame" x="228" y="122" width="132" height="132"/>
+                                                <rect key="frame" x="228.66666666666663" y="122" width="132" height="132"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="132" id="h9e-aZ-eB9"/>
                                                     <constraint firstAttribute="width" constant="132" id="mSs-hz-G47"/>
@@ -702,7 +733,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Thp-Kr-wb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1188.4057971014495" y="932.8125"/>
+            <point key="canvasLocation" x="-2329" y="1036"/>
         </scene>
         <!--My Diary-->
         <scene sceneID="x4G-4V-d1d">
@@ -732,7 +763,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Tk-JO-XA3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1729"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="1685"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypE-I3-KPz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1750"/>
@@ -748,7 +779,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drink Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4z-69-72y">
-                                                <rect key="frame" x="167.66666666666666" y="412.66666666666669" width="79" height="25"/>
+                                                <rect key="frame" x="167.66666666666666" y="412.66666666666663" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -898,7 +929,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COCKTAIL NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xXj-TV-b5X">
-                                                <rect key="frame" x="108" y="23.333333333333329" width="198" height="33"/>
+                                                <rect key="frame" x="108" y="23.333333333333343" width="198" height="33"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1023,6 +1054,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fYU-03-Lec"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Zom-1z-eIp"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="1900"/>
@@ -1251,7 +1283,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="rootViewController" id="7LG-DU-kF9"/>
+                        <segue destination="dYi-8i-u2Z" kind="relationship" relationship="rootViewController" id="DSq-aS-j2y"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBf-G2-Zmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1317,7 +1349,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ueu-rO-bgA">
-                                <rect key="frame" x="88" y="333" width="230" height="2"/>
+                                <rect key="frame" x="88" y="377" width="230" height="2"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="TLb-rD-YEt"/>
@@ -1366,6 +1398,6 @@
         <image name="manhattan" width="650" height="650"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pXe-eh-X8Z"/>
+        <segue reference="3h3-NL-2na"/>
     </inferredMetricsTieBreakers>
 </document>
