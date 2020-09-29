@@ -9,7 +9,7 @@
 import Foundation
 
 protocol RefreshData {
-    func updateUIWithRestData()
+    func updateUIWithRestData(_ index: Int?)
 }
 
 class REST_Request{
@@ -22,6 +22,7 @@ class REST_Request{
     private let listCocktails:String = "filter.php?c=Cocktail"
     private let lookupCocktailById: String = "lookup.php?i="
     private let search:String = "search.php?s="
+    private let randomize:String = "random.php"
     
     var cocktails:[Cocktail]{
         return _cocktails
@@ -46,10 +47,18 @@ class REST_Request{
         let id = _cocktails[index].cocktailId
         
         let url = baseUrl + lookupCocktailById + id
-        print("url: \(url)")
         if let url = URL(string: url){
             let request = URLRequest(url: url)
             getCocktailById(request, index: index)
+        }
+        
+    }
+    
+    func fetchRandomCocktail(){
+        let url = baseUrl + randomize
+        if let url = URL(string: url){
+            let request = URLRequest(url: url)
+            getRandomCocktail(request)
         }
         
     }
@@ -69,7 +78,7 @@ class REST_Request{
                 }
                 
                 DispatchQueue.main.sync {
-                    self.delegate?.updateUIWithRestData()
+                    self.delegate?.updateUIWithRestData(nil)
                 }
             }
         })
@@ -85,20 +94,65 @@ class REST_Request{
                 let fetchDetails: CocktailsJson = try! JSONDecoder().decode(CocktailsJson.self, from: data!)
                 if fetchDetails.drinks.count > 0{
                     let cocktailDetails = fetchDetails.drinks[0]
-                    print(cocktailDetails)
                     self.fetchDetailsFromJson(cocktailJson: cocktailDetails, index: index)
                 }
                 
                 DispatchQueue.main.sync {
-                    self.delegate?.updateUIWithRestData()
+                    self.delegate?.updateUIWithRestData(nil)
                 }
             }
         })
         task.resume()
     }
     
+    private func getRandomCocktail(_ request: URLRequest){
+        let task = session.dataTask(with: request, completionHandler: {
+            data, response, fetchError in
+            if let error = fetchError{
+                print(error)
+            }else{
+                var index = self._cocktails.count //setting default index as last of the array
+                let fetchDetails: CocktailsJson = try! JSONDecoder().decode(CocktailsJson.self, from: data!)
+                if fetchDetails.drinks.count > 0{
+                    let cocktailDetails = fetchDetails.drinks[0]
+                    //checking if cocktail already exists
+                    let getCocktailIndex = self.checkIfCocktailExists(drinkId: cocktailDetails.idDrink)
+                    if( getCocktailIndex != -1){
+                        index = getCocktailIndex
+                    }
+                    self.fetchDetailsFromJson(cocktailJson: cocktailDetails, index: index)
+                }
+                
+                DispatchQueue.main.sync {
+                    self.delegate?.updateUIWithRestData(index)
+                }
+            }
+        })
+        task.resume()
+    }
+    
+    /**
+     * This function checks the _cocktails list to find if a object exists with id = drinkid
+     * if found, return index of cocktail object
+     * else return -1
+     */
+    private func checkIfCocktailExists( drinkId: String) -> Int{
+        for (index, cocktail) in _cocktails.enumerated(){
+            if cocktail.cocktailId == drinkId{
+                return index
+            }
+        }
+        return -1
+    }
+    
     private func fetchDetailsFromJson(cocktailJson: CocktailJson, index: Int) {
         
+        //If index equal count of cocktails, adding new cocktail
+        if index == _cocktails.count{
+            let newCocktail = Cocktail(cocktailId: cocktailJson.idDrink, cocktailName: cocktailJson.strDrink, imageName: cocktailJson.strDrinkThumb)
+            self._cocktails.append(newCocktail)
+            
+        }
         //let newCocktail = Cocktail(cocktailId: "",cocktailName: cocktailJson.strDrink, imageName: cocktailJson.strDrinkThumb)
         let cocktail = self._cocktails[index]
         

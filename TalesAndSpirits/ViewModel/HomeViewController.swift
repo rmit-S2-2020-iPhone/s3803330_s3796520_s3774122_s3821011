@@ -23,15 +23,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cocktailViewModel?.delegate = self
     }
     
-    func updateUIWithRestData() {
+    func updateUIWithRestData(_ index: Int?) {
         self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cocktailViewModel!.count + 2
+        return cocktailViewModel!.count + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("row: \(indexPath.row) \t item: \(indexPath.item)")
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCollectionView", for: indexPath)as? DataCollectionView
             cell?.searchBar.isUserInteractionEnabled = true
@@ -42,12 +43,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell?.titleText.isUserInteractionEnabled = false
             return cell!
             
+        }else if indexPath.row == 2{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath) as? DataCollectionView
+            
+            if let cell = cell, let cocktailViewModel = cocktailViewModel{
+                cell.imageView.image = cocktailViewModel.getRandomizeImage()
+                cell.nameLabel.text = cocktailViewModel.getRandomizeText()
+            }
+            return cell!
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
             if let cell = cell, let cocktailViewModel = cocktailViewModel{
-                cell.imageView.image = cocktailViewModel.getCocktailImage(byIndex: (indexPath.item - 2))
-                cell.nameLabel.text = cocktailViewModel.getCocktailName(byIndex: (indexPath.item - 2))
+                cell.imageView.image = cocktailViewModel.getCocktailImage(byIndex: (indexPath.item - 3))
+                cell.nameLabel.text = cocktailViewModel.getCocktailName(byIndex: (indexPath.item - 3))
             }
             
             return cell!
@@ -78,9 +87,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            cocktailViewModel?.fetchCocktailById(index: selectedItem.item - 2)
             newDestination.cocktailViewModel = cocktailViewModel
-            newDestination.index = selectedItem.item - 2
+            
+            if selectedItem.row == 2{
+                cocktailViewModel?.fetchRandomCocktail()
+                
+            }else{
+                cocktailViewModel?.fetchCocktailById(index: selectedItem.item - 3)
+                newDestination.index = selectedItem.item - 3
+            }
         }
         
     }

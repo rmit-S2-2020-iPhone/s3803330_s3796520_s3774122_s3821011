@@ -16,6 +16,9 @@ struct CocktailViewModel {
     //private var favCocktails: [FavouriteCocktail] = []
     private var model = REST_Request.shared
     
+    private let randomizeImageName: String = "random-dice"
+    private let randomizeText: String = "Surprise Me"
+    
     var delegate: RefreshData?{
         get{ return model.delegate}
         set(value){
@@ -42,8 +45,20 @@ struct CocktailViewModel {
         model.fetchCocktails()
     }
     
+    func getRandomizeImage() -> UIImage?{
+        return UIImage(named: randomizeImageName)
+    }
+    
+    func getRandomizeText() -> String{
+        return randomizeText
+    }
+    
     func fetchCocktailById(index: Int){
         model.fetchCocktailById(index: index)
+    }
+    
+    func fetchRandomCocktail(){
+        model.fetchRandomCocktail()
     }
     
     func getCocktailName(byIndex index: Int) -> String{
@@ -53,6 +68,7 @@ struct CocktailViewModel {
     func getCocktailImage(byIndex index: Int) -> UIImage?{
         let url = model.cocktails[index].imageName
         guard let imageURL = URL(string: url) else{ return nil}
+        print(imageURL)
         let data = try? Data(contentsOf: imageURL)
         var image: UIImage? = nil
         if let imageData = data{

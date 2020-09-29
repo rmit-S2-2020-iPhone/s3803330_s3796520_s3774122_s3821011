@@ -20,7 +20,7 @@ class CocktailsViewController: UITableViewController, RefreshData {
 
     }
     
-    func updateUIWithRestData() {
+    func updateUIWithRestData(_ index: Int?) {
         self.tableView.reloadData()
     }
 

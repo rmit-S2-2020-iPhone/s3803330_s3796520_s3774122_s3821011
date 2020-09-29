@@ -71,7 +71,10 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func updateUIWithRestData() {
+    func updateUIWithRestData(_ index: Int?) {
+        if let index = index{
+            self.index = index
+        }
         populateView()
         self.drinkInfoTableView.reloadData()
         self.ingredientsTableView.reloadData()
