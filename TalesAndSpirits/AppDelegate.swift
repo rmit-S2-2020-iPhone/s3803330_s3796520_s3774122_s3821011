@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
     let cocktailList = CocktailViewModel()
@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
                     myDiaryTableViewController.cocktailModelView = cocktailList
                 }
+                
             }
         }
         
