@@ -10,17 +10,16 @@ import UIKit
 
 class CocktailsViewController: UITableViewController {
     
+    var collapseDetailViewController: Bool = true
     
-    //private let diaryModelView = CocktailViewModel()
     var cocktailModelView: CocktailViewModel?
     
     var cocktails : [Cocktail] {
         return cocktailModelView?.getAllCocktails() ?? []
     }
     
-    
-    
     @IBOutlet var cocktailsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +33,7 @@ class CocktailsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //self.collapseDetailViewController = false
         
         let cell: UITableViewCell
         
@@ -75,4 +75,14 @@ class CocktailsViewController: UITableViewController {
         }
     }
     
-}
+    
+//    func tableView(tableVie: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        collapseDetailViewController = false
+//    }
+    
+//    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController RecipeSceneViewController: UIViewController, ontoPrimaryViewController CocktailsViewController: UIViewController) -> Bool {
+//
+//        return true
+
+    }
+    

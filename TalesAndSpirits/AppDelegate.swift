@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var splitViewDelegate = SplitViewController()
     let cocktailList = CocktailViewModel()
 
 
@@ -37,6 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     myDiaryTableViewController.cocktailModelView = cocktailList
                 }
             }
+            
+            if let splitViewController = self.window?.rootViewController as? UISplitViewController,
+                let navigationController = splitViewController.viewControllers.last as? UINavigationController
+            {
+                splitViewController.delegate = splitViewDelegate
+                
+                navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+                navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
+            }
+            
+            
         }
         
         return true
