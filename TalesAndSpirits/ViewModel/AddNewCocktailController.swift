@@ -1,5 +1,5 @@
 //
-//  AddNewCocktail.swift
+//  AddNewCocktailController.swift
 //  TalesAndSpirits
 //
 //  Created by GAJSA on 2/10/20.
@@ -10,18 +10,14 @@ import UIKit
 import AVKit
 import MobileCoreServices
 
-class ViewController: UIViewController
-{
+class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     
     @IBOutlet weak var imageView: UIImageView!
-  
-
-    @IBOutlet weak var takePictureButton: UIButton!
-
     
-    /* AVKit - This will be instantiated in code and added as a subview
-     Also available from your object explorer to add to the storyboard.
-     */
+    
+    @IBOutlet weak var takePictureButton: UIButton!
+    
     var avPlayerViewController: AVPlayerViewController!
     
     var image: UIImage?
@@ -37,8 +33,12 @@ class ViewController: UIViewController
         // hide the take picture button.
         if !UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerControllerSourceType.camera) {
-            takePictureButton.isHidden = true
+            takePictureButton.isEnabled = false
         }
+        
+        label.text = "\(AddNewCocktailController.cellCount)"
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     // When returning to the app, update the display with the
@@ -85,14 +85,11 @@ class ViewController: UIViewController
         }
     }
     
-    // Use the image picker controller for taking a picture
+    
     @IBAction func shootPictureOrVideo(_ sender: UIButton) {
         pickMediaFromSource(UIImagePickerControllerSourceType.camera)
     }
     
-    
-    // Use the Image Picker Controller for selecting an image from
-    // the users library.
     @IBAction func selectExistingPictureOrVideo(_ sender: UIButton) {
         pickMediaFromSource(UIImagePickerControllerSourceType.photoLibrary)
     }
@@ -135,10 +132,43 @@ class ViewController: UIViewController
         }
     }
     
+    /*
+     Ingredient table implementation
+     
+     
+ */
+     static var cellCount: Int = 1
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    @IBOutlet weak var label: UILabel!
+    
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        AddNewCocktailController.cellCount += 1
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: AddNewCocktailController.cellCount-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return AddNewCocktailController.cellCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath)
+        return cell;
+    }
+    
+    
     
 }
 
-extension ViewController: UIImagePickerControllerDelegate
+extension AddNewCocktailController: UIImagePickerControllerDelegate
 {
     // Delegate method to process once the media has been selected
     // by the user.
@@ -197,5 +227,4 @@ extension ViewController: UIImagePickerControllerDelegate
 }
 
 
-extension ViewController:UINavigationControllerDelegate{}
-
+extension AddNewCocktailController:UINavigationControllerDelegate{}
