@@ -54,6 +54,18 @@ class CocktailsViewController: UITableViewController, RefreshData {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("lookinh")
+        let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeSceneViewController") as! RecipeSceneViewController
+        print("passed")
+        cocktailViewModel?.fetchCocktailById(index: indexPath.row - 1)
+        detailViewController.cocktailViewModel = cocktailViewModel
+        detailViewController.index = indexPath.row - 1
+        
+        splitViewController?.showDetailViewController(detailViewController, sender: self)
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let selectedRow = self.tableView.indexPathForSelectedRow
