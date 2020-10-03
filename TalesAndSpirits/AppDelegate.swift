@@ -29,12 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     homeViewController.cocktailViewModel = cocktailList
                 }
                 
-                if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
-                    cocktailsViewController.cocktailViewModel = cocktailList
-                }
+//                if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
+ //                   cocktailsViewController.cocktailViewModel = cocktailList
+   //             }
                 
                 if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
                     myDiaryTableViewController.cocktailViewModel = cocktailList
+                }
+            }
+            
+            if let splitViewController = viewController as? UISplitViewController{
+                print("in split")
+                if let navigationController = splitViewController.viewControllers.first as? UINavigationController{
+                    print("in nav")
+                    if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
+                        print("in view")
+                        cocktailsViewController.cocktailViewModel = cocktailList
+                    }
                 }
             }
         }

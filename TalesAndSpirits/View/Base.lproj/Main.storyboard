@@ -22,7 +22,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Le3-9f-HLc" kind="relationship" relationship="viewControllers" id="SdR-zD-CJK"/>
-                        <segue destination="9hi-a8-JwJ" kind="relationship" relationship="viewControllers" id="V5h-15-rvt"/>
+                        <segue destination="1lR-Uf-LAZ" kind="relationship" relationship="viewControllers" id="Ing-fy-rRt"/>
                         <segue destination="L8V-C6-Ld3" kind="relationship" relationship="viewControllers" id="TfH-w0-X8j"/>
                         <segue destination="i4o-EX-Ad1" kind="relationship" relationship="viewControllers" id="OxQ-Gj-j0T"/>
                     </connections>
@@ -117,9 +117,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                                <connections>
-                                    <segue destination="sFw-bP-GyJ" kind="show" id="axx-rt-Uaw"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -540,7 +537,7 @@
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prodip" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-R0-pBo">
-                                                <rect key="frame" x="228" y="122" width="132" height="132"/>
+                                                <rect key="frame" x="228.66666666666663" y="122" width="132" height="132"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="132" id="h9e-aZ-eB9"/>
                                                     <constraint firstAttribute="width" constant="132" id="mSs-hz-G47"/>
@@ -704,6 +701,20 @@
             </objects>
             <point key="canvasLocation" x="-1188.4057971014495" y="932.8125"/>
         </scene>
+        <!--Cocktails-->
+        <scene sceneID="FUq-mE-EFr">
+            <objects>
+                <splitViewController id="1lR-Uf-LAZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Cocktails" selectedImage="icons8-cocktail-50" id="StL-Wh-13V"/>
+                    <connections>
+                        <segue destination="9hi-a8-JwJ" kind="relationship" relationship="masterViewController" id="k57-sq-aRV"/>
+                        <segue destination="sFw-bP-GyJ" kind="relationship" relationship="detailViewController" id="fwR-m9-TZA"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cvm-SV-CwL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2329" y="-916"/>
+        </scene>
         <!--My Diary-->
         <scene sceneID="x4G-4V-d1d">
             <objects>
@@ -726,13 +737,13 @@
         <!--Recipe Scene View Controller-->
         <scene sceneID="i4e-ug-Wj8">
             <objects>
-                <viewController id="sFw-bP-GyJ" customClass="RecipeSceneViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeSceneViewController" id="sFw-bP-GyJ" customClass="RecipeSceneViewController" customModule="TalesAndSpirits" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIs-OC-FYc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Tk-JO-XA3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1729"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="1685"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypE-I3-KPz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1750"/>
@@ -748,7 +759,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drink Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4z-69-72y">
-                                                <rect key="frame" x="167.66666666666666" y="412.66666666666669" width="79" height="25"/>
+                                                <rect key="frame" x="167.66666666666666" y="412.66666666666663" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -898,7 +909,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COCKTAIL NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xXj-TV-b5X">
-                                                <rect key="frame" x="108" y="23.333333333333329" width="198" height="33"/>
+                                                <rect key="frame" x="108" y="23.333333333333343" width="198" height="33"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1251,7 +1262,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="rootViewController" id="7LG-DU-kF9"/>
+                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="rootViewController" id="rya-5e-djj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBf-G2-Zmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1317,7 +1328,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ueu-rO-bgA">
-                                <rect key="frame" x="88" y="333" width="230" height="2"/>
+                                <rect key="frame" x="88" y="377" width="230" height="2"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="TLb-rD-YEt"/>
