@@ -64,7 +64,7 @@ class CocktailsViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //print("hello")
         guard let selectedRow = self.tableView.indexPathForSelectedRow
             else {return}
         
@@ -72,6 +72,32 @@ class CocktailsViewController: UITableViewController {
         
         if let newDestination = newDestination{
             newDestination.displayCocktail = cocktails[(selectedRow.row - 1)]
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("hello")
+//        if let splitViewController = self.splitViewController {
+//            let controllers = splitViewController.viewControllers
+//            if let detailViewController = controllers[controllers.count - 1] as? RecipeSceneViewController {
+//                print(detailViewController)
+//            }
+//            for (index, controller) in controllers.enumerated() {
+//                print("\(index) : \(controller)")
+//                let control = controller as? UINavigationController
+//                if let c = control?.topViewController as? RecipeSceneViewController {
+//                    print("hi")
+//                }
+//                for (i,c) in control!.viewControllers.enumerated() {
+//                    print("a\(i) : \(c)")
+//            }
+//        }
+//    }
+        
+        let controller = cocktails[indexPath.row - 1]
+        if let detailView = controller as? RecipeSceneViewController,
+            let detailNavigationController = detailView.navigationController {
+            splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
         }
     }
     

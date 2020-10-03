@@ -185,7 +185,10 @@ extension RecipeSceneViewController: AddNotePopOverDelegate{
         }
     }
     
-    
-    
-    
+}
+
+extension RecipeScreenViewController: CocktailDelegate {
+    func cocktailSelected(_ newCocktail: RecipeSceneViewController) {
+        RecipeSceneViewController = newCocktail
+    }
 }

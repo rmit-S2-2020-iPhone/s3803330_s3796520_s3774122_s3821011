@@ -1,15 +1,6 @@
-//
-//  SplitViewController.swift
-//  TalesAndSpirits
-//
-//  Created by Henry Chin on 1/10/20.
-//  Copyright © 2020 RMIT. All rights reserved.
-//
-
-import Foundation
 import UIKit
 
-class SplitViewController: NSObject, UISplitViewControllerDelegate {
+class SplitViewDelegate: NSObject, UISplitViewControllerDelegate {
     func splitViewController(_ svc: UISplitViewController,
                              willShow vc: UIViewController,
                              invalidating barButtonItem: UIBarButtonItem)
@@ -26,7 +17,7 @@ class SplitViewController: NSObject, UISplitViewControllerDelegate {
     {
         guard let navigationController = primaryViewController as? UINavigationController,
             let controller = navigationController.topViewController as? CocktailsViewController
-        else {
+            else {
                 return true
         }
         

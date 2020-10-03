@@ -13,7 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var splitViewDelegate = SplitViewController()
+    //var splitViewController: UISplitViewController? = nil
     let cocktailList = CocktailViewModel()
 
 
@@ -25,32 +25,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         for viewController in viewControllers{
             if let navigationController = viewController as? UINavigationController{
-                
+                print(navigationController)
+
                 if let homeViewController = navigationController.viewControllers.first as? HomeViewController{
                     homeViewController.cocktailModelView = cocktailList
                 }
-                
-                if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
-                    cocktailsViewController.cocktailModelView = cocktailList
+
+                if let cocktailsSplitViewController = navigationController.viewControllers.first as? UISplitViewController{
+                    if let cocktailViewController = cocktailsSplitViewController.viewControllers.first as? CocktailsViewController {
+                        cocktailViewController.cocktailModelView = cocktailList
+                        print(cocktailViewController)
+                    }
+                    //print(cocktailsViewController)
+                    //cocktailsViewController.cocktailModelView = cocktailList
                 }
-                
+
                 if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
                     myDiaryTableViewController.cocktailModelView = cocktailList
                 }
+
             }
             
-            if let splitViewController = self.window?.rootViewController as? UISplitViewController,
-                let navigationController = splitViewController.viewControllers.last as? UINavigationController
-            {
-                splitViewController.delegate = splitViewDelegate
-                
-                navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-                navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
+            if let splitViewController = viewController as? UISplitViewController{
+                print(splitViewController)
+                if let navigationController = splitViewController.viewControllers.first as? UINavigationController {
+                    print(navigationController)
+                    if let cocktailViewController = navigationController.viewControllers.first as? CocktailsViewController {
+                        cocktailViewController.cocktailModelView = cocktailList
+                    }
+                }
             }
-            
-            
         }
-        
+
         return true
     }
 

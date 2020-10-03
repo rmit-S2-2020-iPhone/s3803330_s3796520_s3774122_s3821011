@@ -25,7 +25,7 @@
                         <segue destination="9hi-a8-JwJ" kind="relationship" relationship="viewControllers" id="V5h-15-rvt"/>
                         <segue destination="L8V-C6-Ld3" kind="relationship" relationship="viewControllers" id="TfH-w0-X8j"/>
                         <segue destination="i4o-EX-Ad1" kind="relationship" relationship="viewControllers" id="OxQ-Gj-j0T"/>
-                        <segue destination="dYi-8i-u2Z" kind="relationship" relationship="viewControllers" id="Prh-xf-aXq"/>
+                        <segue destination="dfZ-bb-LaF" kind="relationship" relationship="viewControllers" id="Kk7-QG-UKq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Swv-h2-Ahs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -118,9 +118,6 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                                <connections>
-                                    <segue destination="sFw-bP-GyJ" kind="show" id="axx-rt-Uaw"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -503,21 +500,6 @@
             </objects>
             <point key="canvasLocation" x="-59.420289855072468" y="93.75"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="m8Z-2o-jg4">
-            <objects>
-                <splitViewController id="dYi-8i-u2Z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="aX0-WT-cnE"/>
-                    <navigationItem key="navigationItem" id="4Hu-2V-JmT"/>
-                    <connections>
-                        <segue destination="sFw-bP-GyJ" kind="relationship" relationship="detailViewController" id="7RH-7O-wOO"/>
-                        <segue destination="9hi-a8-JwJ" kind="relationship" relationship="masterViewController" id="yJg-IA-0xx"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8kf-f6-rPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1188" y="1002"/>
-        </scene>
         <!--More View Controller-->
         <scene sceneID="ocS-59-UbS">
             <objects>
@@ -720,6 +702,21 @@
             </objects>
             <point key="canvasLocation" x="-2329" y="1036"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="lR2-ym-Rje">
+            <objects>
+                <splitViewController id="dfZ-bb-LaF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="PXC-zy-esh"/>
+                    <navigationItem key="navigationItem" id="t0q-nV-OkN"/>
+                    <connections>
+                        <segue destination="sFw-bP-GyJ" kind="relationship" relationship="detailViewController" id="Qil-2S-Zx3"/>
+                        <segue destination="9hi-a8-JwJ" kind="relationship" relationship="masterViewController" id="e8u-0S-PYy"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ewo-Sw-9xc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1213" y="1228"/>
+        </scene>
         <!--My Diary-->
         <scene sceneID="x4G-4V-d1d">
             <objects>
@@ -748,7 +745,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Tk-JO-XA3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1729"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="1685"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypE-I3-KPz">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1750"/>
@@ -764,7 +761,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drink Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4z-69-72y">
-                                                <rect key="frame" x="167.66666666666666" y="412.66666666666669" width="79" height="25"/>
+                                                <rect key="frame" x="167.66666666666666" y="412.66666666666663" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -914,7 +911,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COCKTAIL NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xXj-TV-b5X">
-                                                <rect key="frame" x="108" y="23.333333333333329" width="198" height="33"/>
+                                                <rect key="frame" x="108" y="23.333333333333343" width="198" height="33"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1259,19 +1256,19 @@
         <!--Cocktails-->
         <scene sceneID="1jW-Ed-SnE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BBf-G2-Zmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9hi-a8-JwJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Cocktails" image="icons8-cocktail-50" id="oWK-9a-AOF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ub7-nu-wuX">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="rootViewController" id="hbW-Ze-tQx"/>
+                        <segue destination="eMd-4D-nt4" kind="relationship" relationship="rootViewController" id="BCT-s4-k6P"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBf-G2-Zmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1188.4057971014495" y="-916.07142857142856"/>
         </scene>
@@ -1334,7 +1331,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ueu-rO-bgA">
-                                <rect key="frame" x="88" y="333" width="230" height="2"/>
+                                <rect key="frame" x="88" y="377" width="230" height="2"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="TLb-rD-YEt"/>
@@ -1383,7 +1380,7 @@
         <image name="manhattan" width="650" height="650"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V5h-15-rvt"/>
-        <segue reference="axx-rt-Uaw"/>
+        <segue reference="e8u-0S-PYy"/>
+        <segue reference="Qil-2S-Zx3"/>
     </inferredMetricsTieBreakers>
 </document>
