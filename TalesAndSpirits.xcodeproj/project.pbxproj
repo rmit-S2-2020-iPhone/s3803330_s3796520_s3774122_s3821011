@@ -21,6 +21,8 @@
 		0AD0667224F3E7ED0042465C /* MyDiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */; };
 		0AD0667624F4DDB70042465C /* CocktailJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667524F4DDB70042465C /* CocktailJson.swift */; };
 		3E6AA64525036C8D00C625AE /* DataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6AA64425036C8D00C625AE /* DataCollectionView.swift */; };
+		A9A5B69F252C371E00A851DB /* AddNoteUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5B69E252C371E00A851DB /* AddNoteUITest.swift */; };
+		A9A5B6A1252C3DE700A851DB /* TabBarUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5B6A0252C3DE600A851DB /* TabBarUITest.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
 		A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41AD24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld */; };
@@ -62,6 +64,8 @@
 		0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryTableViewController.swift; sourceTree = "<group>"; };
 		0AD0667524F4DDB70042465C /* CocktailJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailJson.swift; sourceTree = "<group>"; };
 		3E6AA64425036C8D00C625AE /* DataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionView.swift; sourceTree = "<group>"; };
+		A9A5B69E252C371E00A851DB /* AddNoteUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteUITest.swift; sourceTree = "<group>"; };
+		A9A5B6A0252C3DE600A851DB /* TabBarUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarUITest.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9CA41AB24E69E4F0089659A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 			children = (
 				A9CA41C924E69E540089659A /* TalesAndSpiritsUITests.swift */,
 				A9CA41CB24E69E540089659A /* Info.plist */,
+				A9A5B69E252C371E00A851DB /* AddNoteUITest.swift */,
+				A9A5B6A0252C3DE600A851DB /* TabBarUITest.swift */,
 			);
 			path = TalesAndSpiritsUITests;
 			sourceTree = "<group>";
@@ -354,7 +360,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A5B6A1252C3DE700A851DB /* TabBarUITest.swift in Sources */,
 				A9CA41CA24E69E540089659A /* TalesAndSpiritsUITests.swift in Sources */,
+				A9A5B69F252C371E00A851DB /* AddNoteUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +604,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rmit.TalesAndSpiritsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TalesAndSpirits;
 			};
@@ -615,7 +623,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rmit.TalesAndSpiritsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TalesAndSpirits;
 			};

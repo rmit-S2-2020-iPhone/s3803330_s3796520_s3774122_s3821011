@@ -1,14 +1,14 @@
 //
-//  TalesAndSpiritsUITests.swift
+//  AddFavouriteUITest.swift
 //  TalesAndSpiritsUITests
 //
-//  Created by GAJSA on 14/8/20.
+//  Created by GAJSA on 6/10/20.
 //  Copyright © 2020 RMIT. All rights reserved.
 //
 
 import XCTest
 
-class TalesAndSpiritsUITests: XCTestCase {
+class AddNoteUITest: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -26,22 +26,15 @@ class TalesAndSpiritsUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func addFavouriteTest() {
-        
-        
-        
-    }
-
-    func testExample() {
+    func addNoteUITest() {
         
         let app = XCUIApplication()
         app.collectionViews.cells.otherElements.containing(.staticText, identifier:"747 Drink").element.tap()
-        app.scrollViews.otherElements.buttons["Star"].tap()
+        
+        let scrollViewsQuery = app.scrollViews
+        scrollViewsQuery.otherElements.buttons["Star"].tap()
         app.tabBars.buttons["My Diary"].tap()
         app.tables/*@START_MENU_TOKEN@*/.staticTexts["747 Drink"]/*[[".cells.staticTexts[\"747 Drink\"]",".staticTexts[\"747 Drink\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        scrollViewsQuery.otherElements.containing(.image, identifier:"Background").element.swipeUp()
     }
-
 }

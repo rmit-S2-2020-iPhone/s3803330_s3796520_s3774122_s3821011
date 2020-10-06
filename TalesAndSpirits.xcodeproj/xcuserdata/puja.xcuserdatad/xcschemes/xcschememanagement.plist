@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>TalesAndSpiritsUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A9CA41A224E69E4F0089659A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9CA41B924E69E540089659A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9CA41C424E69E540089659A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
