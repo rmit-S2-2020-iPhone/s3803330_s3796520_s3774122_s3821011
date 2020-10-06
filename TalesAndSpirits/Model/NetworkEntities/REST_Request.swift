@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RefreshData {
     func updateUIWithRestData(_ index: Int?)
@@ -76,9 +77,15 @@ class REST_Request{
                     let newCocktail = Cocktail(cocktailId: cocktail.idDrink, cocktailName: cocktail.strDrink, imageName: cocktail.strDrinkThumb)
                     self._cocktails.append(newCocktail)
                 }
-                
+                //Notify Controller Cocktail Data is retrieved
                 DispatchQueue.main.sync {
                     self.delegate?.updateUIWithRestData(nil)
+                }
+                
+                for cocktail in self.cocktails{
+                    if cocktail.image == nil{
+                        self.getCocktailImage(cocktail: cocktail)
+                    }
                 }
             }
         })
@@ -103,6 +110,17 @@ class REST_Request{
             }
         })
         task.resume()
+    }
+    
+    private func getCocktailImage(cocktail : Cocktail){
+        let url = cocktail.imageName
+        guard let imageURL = URL(string: url) else{ return }
+        let data = try? Data(contentsOf: imageURL)
+        var image: UIImage? = nil
+        if let imageData = data{
+            image = UIImage(data: imageData)
+        }
+        cocktail.image = image
     }
     
     private func getRandomCocktail(_ request: URLRequest){

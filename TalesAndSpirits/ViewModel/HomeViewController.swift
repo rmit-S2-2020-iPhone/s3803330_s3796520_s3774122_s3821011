@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, RefreshData{
     
-    var cocktailViewModel: CocktailViewModel?
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cocktailViewModel?.delegate = self
+        cocktailViewModel.delegate = self
     }
     
     func updateUIWithRestData(_ index: Int?) {
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cocktailViewModel!.count + 3
+        return cocktailViewModel.count + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }else if indexPath.row == 2{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath) as? DataCollectionView
             
-            if let cell = cell, let cocktailViewModel = cocktailViewModel{
+            if let cell = cell{
                 cell.imageView.image = cocktailViewModel.getRandomizeImage()
                 cell.nameLabel.text = cocktailViewModel.getRandomizeText()
             }
@@ -54,7 +54,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
-            if let cell = cell, let cocktailViewModel = cocktailViewModel{
+            if let cell = cell{
                 cell.imageView.image = cocktailViewModel.getCocktailImage(byIndex: (indexPath.item - 3))
                 cell.nameLabel.text = cocktailViewModel.getCocktailName(byIndex: (indexPath.item - 3))
             }
@@ -90,10 +90,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             newDestination.cocktailViewModel = cocktailViewModel
             
             if selectedItem.row == 2{
-                cocktailViewModel?.fetchRandomCocktail()
+                cocktailViewModel.fetchRandomCocktail()
                 
             }else{
-                cocktailViewModel?.fetchCocktailById(index: selectedItem.item - 3)
+                cocktailViewModel.fetchCocktailById(index: selectedItem.item - 3)
                 newDestination.index = selectedItem.item - 3
             }
         }

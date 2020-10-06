@@ -150,6 +150,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
             if let cocktailViewModel = cocktailViewModel, let index = index{
                 cocktailViewModel.setCocktailAsFavorite(byIndex: index, value: true)
+                cocktailViewModel.setCocktailAsFavorite(index: index)
                 addNoteButton.isEnabled = true
                 var note = defaultEnabledTextViewMessage
                 let personalNote = cocktailViewModel.getCocktailPersonalizedNote(byIndex: index)
@@ -204,6 +205,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         if let cocktailViewModel = cocktailViewModel, let index = index{
             cocktailViewModel.setCocktailAsFavorite(byIndex: index, value: false)
             cocktailViewModel.setCocktailPersonalNote(byIndex: index, note: "")
+            cocktailViewModel.removeCocktailFromFavorite(index: index)
         }
         addNoteButton.isEnabled = false
         personalNoteTextView.text = defaultDisabledTextViewMessage

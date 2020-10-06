@@ -15,6 +15,7 @@ struct CocktailViewModel {
     //private var cocktails: [Cocktail] = []
     //private var favCocktails: [FavouriteCocktail] = []
     private var model = REST_Request.shared
+    private var favoriteCocktailModel = CocktailDBManager.shared
     
     private let randomizeImageName: String = "random-dice"
     private let randomizeText: String = "Surprise Me"
@@ -28,6 +29,26 @@ struct CocktailViewModel {
     
     var count: Int{
         return model.cocktails.count
+    }
+    
+    var favoriteCocktailCount: Int{
+        return favoriteCocktailModel.cocktails.count
+    }
+    
+    func setCocktailAsFavorite(index: Int){
+        favoriteCocktailModel.addCocktail(model.cocktails[index])
+    }
+    
+    func removeCocktailFromFavorite(index: Int){
+        favoriteCocktailModel.deleteCocktail(index: 3)
+    }
+    
+    func getFavoriteCocktailImage(byIndex index: Int) -> UIImage?{
+        return UIImage(data: favoriteCocktailModel.cocktails[index].image! as Data)
+    }
+    
+    func getFavoriteCocktailName(byIndex index: Int) -> String{
+        return favoriteCocktailModel.cocktails[index].name!
     }
     
     func getCocktailIndex(newCocktail: Cocktail) -> Int{
@@ -44,6 +65,7 @@ struct CocktailViewModel {
     init() {
         model.fetchCocktails()
     }
+    
     
     func getRandomizeImage() -> UIImage?{
         return UIImage(named: randomizeImageName)
@@ -66,13 +88,17 @@ struct CocktailViewModel {
     }
     
     func getCocktailImage(byIndex index: Int) -> UIImage?{
-        let url = model.cocktails[index].imageName
-        guard let imageURL = URL(string: url) else{ return nil}
-        print(imageURL)
-        let data = try? Data(contentsOf: imageURL)
-        var image: UIImage? = nil
-        if let imageData = data{
-            image = UIImage(data: imageData)
+        //Check if model contains image, else fetch image from network
+        guard let image = model.cocktails[index].image else {
+            let url = model.cocktails[index].imageName
+            guard let imageURL = URL(string: url) else{ return nil}
+            let data = try? Data(contentsOf: imageURL)
+            var image: UIImage? = nil
+            if let imageData = data{
+                image = UIImage(data: imageData)
+            }
+            model.cocktails[index].image = image
+            return image
         }
         return image
     }

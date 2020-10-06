@@ -10,13 +10,13 @@ import UIKit
 
 class CocktailsViewController: UITableViewController, RefreshData {
     
-    var cocktailViewModel: CocktailViewModel?
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
     
     
     @IBOutlet var cocktailsTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        cocktailViewModel?.delegate = self
+        cocktailViewModel.delegate = self
 
     }
     
@@ -26,7 +26,7 @@ class CocktailsViewController: UITableViewController, RefreshData {
 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cocktailViewModel!.count+1
+        return cocktailViewModel.count+1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,7 +40,7 @@ class CocktailsViewController: UITableViewController, RefreshData {
             
             let cocktailNameLabel = cell.viewWithTag(1001) as? UILabel
             
-            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel, let cocktailViewModel = cocktailViewModel {
+            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel{
                 imageView.image = cocktailViewModel.getCocktailImage(byIndex: indexPath.row - 1)
                 cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: indexPath.row - 1)
                 
@@ -62,7 +62,7 @@ class CocktailsViewController: UITableViewController, RefreshData {
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            cocktailViewModel?.fetchCocktailById(index: selectedRow.row-1)
+            cocktailViewModel.fetchCocktailById(index: selectedRow.row-1)
             newDestination.cocktailViewModel = cocktailViewModel
             newDestination.index = selectedRow.row-1
         }

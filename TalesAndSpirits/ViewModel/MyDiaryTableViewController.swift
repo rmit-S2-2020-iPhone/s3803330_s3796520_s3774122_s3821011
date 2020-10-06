@@ -10,20 +10,21 @@ import UIKit
 
 class MyDiaryTableViewController: UITableViewController {
     
-    var cocktailViewModel: CocktailViewModel?
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
     
-    var favoriteCocktailsIndices: [Int] {
-        guard let cocktailViewModel = cocktailViewModel else{ return [] }
-        var indices: [Int] = []
-        var index = 0
-        while index < cocktailViewModel.count {
-            if cocktailViewModel.getCocktailIsFavorite(byIndex: index){
-                indices.append(index)
-            }
-            index += 1
-        }
-        return indices
-    }
+//    var favoriteCocktailsIndices: [Int] {
+//        guard let cocktailViewModel = cocktailViewModel else{ return [] }
+//        var indices: [Int] = []
+//        var index = 0
+//        while index < cocktailViewModel.count {
+//            if cocktailViewModel.getCocktailIsFavorite(byIndex: index){
+//                indices.append(index)
+//            }
+//            index += 1
+//        }
+//        return indices
+//    }
+    
     
 //    var favoriteCocktails : [Cocktail] {
 //        var favCocktails: [Cocktail] = []
@@ -49,7 +50,7 @@ class MyDiaryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (favoriteCocktailsIndices.count + 2)
+        return (cocktailViewModel.favoriteCocktailCount + 2)
     }
 
 
@@ -74,12 +75,16 @@ class MyDiaryTableViewController: UITableViewController {
             
             let cocktailNameLabel = cell.viewWithTag(1004) as? UILabel
             
-            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel, let cocktailViewModel = cocktailViewModel {
+            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel{
                 //fetch cocktail index for favorite cocktail
-                let index = favoriteCocktailsIndices[(indexPath.row - 2)]
+//                let index = favoriteCocktailsIndices[(indexPath.row - 2)]
+//
+//                imageView.image = cocktailViewModel.getCocktailImage(byIndex: index)
+//                cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: index)
+                cocktailNameLabel.text = cocktailViewModel.getFavoriteCocktailName(byIndex: indexPath.row - 2)
+                imageView.image = cocktailViewModel.getFavoriteCocktailImage(byIndex: indexPath.row - 2)
                 
-                imageView.image = cocktailViewModel.getCocktailImage(byIndex: index)
-                cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: index)
+                
                 
 //                let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
 //                let index = cocktailViewModel!.getCocktailIndex(newCocktail: currentCocktail)
@@ -113,9 +118,8 @@ class MyDiaryTableViewController: UITableViewController {
         
         if let newDestination = newDestination{
             newDestination.cocktailViewModel = cocktailViewModel
-            let index = favoriteCocktailsIndices[(selectedRow.row - 2)]
-               // cocktailViewModel!.getCocktailIndex(newCocktail: favoriteCocktails[(selectedRow.row - 2)])
-            newDestination.index = index
+            //let index = favoriteCocktailsIndices[(selectedRow.row - 2)]
+            //newDestination.index = index
             
         }
         
