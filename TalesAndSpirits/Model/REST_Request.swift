@@ -18,7 +18,7 @@ class REST_Request{
     var delegate: RefreshData?
     
     private let session = URLSession.shared
-    private let baseUrl:String = "https://www.thecocktaildb.com/api/json/v1/1/"
+    let baseUrl:String = "https://www.thecocktaildb.com/api/json/v1/1/"
     private let listCocktails:String = "filter.php?c=Cocktail"
     private let lookupCocktailById: String = "lookup.php?i="
     private let search:String = "search.php?s="
@@ -27,7 +27,7 @@ class REST_Request{
         return _cocktails
     }
     
-    private init(){
+    init(){
         _cocktails = []
     }
     
