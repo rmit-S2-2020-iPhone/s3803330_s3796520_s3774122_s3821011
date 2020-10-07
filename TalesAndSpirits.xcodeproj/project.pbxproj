@@ -30,6 +30,8 @@
 		A9CA41B424E69E540089659A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41B224E69E540089659A /* LaunchScreen.storyboard */; };
 		A9CA41BF24E69E540089659A /* TalesAndSpiritsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41BE24E69E540089659A /* TalesAndSpiritsTests.swift */; };
 		A9CA41CA24E69E540089659A /* TalesAndSpiritsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41C924E69E540089659A /* TalesAndSpiritsUITests.swift */; };
+		A9D34DB2252D4C730040AC8D /* RemoveFavouriteUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D34DB1252D4C730040AC8D /* RemoveFavouriteUITest.swift */; };
+		A9D34DB4252D50780040AC8D /* DeveloperInfoUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D34DB3252D50780040AC8D /* DeveloperInfoUITest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		A9CA41C524E69E540089659A /* TalesAndSpiritsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TalesAndSpiritsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41C924E69E540089659A /* TalesAndSpiritsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalesAndSpiritsUITests.swift; sourceTree = "<group>"; };
 		A9CA41CB24E69E540089659A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9D34DB1252D4C730040AC8D /* RemoveFavouriteUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavouriteUITest.swift; sourceTree = "<group>"; };
+		A9D34DB3252D50780040AC8D /* DeveloperInfoUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperInfoUITest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,8 @@
 				A9CA41CB24E69E540089659A /* Info.plist */,
 				A9A5B69E252C371E00A851DB /* AddNoteUITest.swift */,
 				A9A5B6A0252C3DE600A851DB /* TabBarUITest.swift */,
+				A9D34DB1252D4C730040AC8D /* RemoveFavouriteUITest.swift */,
+				A9D34DB3252D50780040AC8D /* DeveloperInfoUITest.swift */,
 			);
 			path = TalesAndSpiritsUITests;
 			sourceTree = "<group>";
@@ -363,6 +369,8 @@
 				A9A5B6A1252C3DE700A851DB /* TabBarUITest.swift in Sources */,
 				A9CA41CA24E69E540089659A /* TalesAndSpiritsUITests.swift in Sources */,
 				A9A5B69F252C371E00A851DB /* AddNoteUITest.swift in Sources */,
+				A9D34DB2252D4C730040AC8D /* RemoveFavouriteUITest.swift in Sources */,
+				A9D34DB4252D50780040AC8D /* DeveloperInfoUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rmit.TalesAndSpiritsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TalesAndSpirits.app/TalesAndSpirits";
 			};
@@ -585,7 +593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rmit.TalesAndSpiritsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TalesAndSpirits.app/TalesAndSpirits";
 			};
