@@ -36,9 +36,21 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
             takePictureButton.isEnabled = false
         }
         
-        label.text = "\(AddNewCocktailController.cellCount)"
+       // cellView.te = "\(AddNewCocktailController.cellCount)"
         tableView.delegate = self
         tableView.dataSource = self
+        self.RecipeText.layer.borderWidth = 1
+        self.NoteTextView.layer.borderWidth = 1
+        self.RecipeText.layer.borderColor = UIColor.lightGray.cgColor
+        self.NoteTextView.layer.borderColor = UIColor.lightGray.cgColor
+        RecipeText.text = "Enter recipe here"
+        RecipeText.textColor = UIColor.lightGray
+        NoteTextView.text = "Enter notes here"
+        NoteTextView.textColor = UIColor.lightGray
+        RecipeText.layer.cornerRadius = 5
+        RecipeText.clipsToBounds = true
+        NoteTextView.layer.cornerRadius = 5
+        NoteTextView.clipsToBounds = true
     }
     
     // When returning to the app, update the display with the
@@ -132,22 +144,21 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    
+    
+    
     /*
      Ingredient table implementation
      
      
- */
-     static var cellCount: Int = 1
-    
+     */
+    static var cellCount: Int = 1
     
     @IBOutlet weak var tableView: UITableView!
     
+   
     
-    @IBOutlet weak var label: UILabel!
-    
-    
-    
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction func addButtonPressed(_ sender: Any) {
         AddNewCocktailController.cellCount += 1
         tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: AddNewCocktailController.cellCount-1, section: 0)], with: .automatic)
@@ -164,9 +175,23 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
         return cell;
     }
     
+    //Adding default text
+    //UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 150, 200)];
+//    let recipeTextField = addRecipe
+//    .placeholderText = @"Enter your text here";
+    //[self.view addSubview textField];
+   // var placeholder: String? { get set }
+
+    
+    
+    @IBOutlet weak var RecipeText: UITextView!
+    
+    
+    @IBOutlet weak var NoteTextView: UITextView!
     
     
 }
+
 
 extension AddNewCocktailController: UIImagePickerControllerDelegate
 {
