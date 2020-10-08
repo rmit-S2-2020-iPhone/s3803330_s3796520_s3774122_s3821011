@@ -107,6 +107,45 @@ class CocktailDBManager{
         
     }
     
+    func convertCocktailEntityToCocktail(byIndex index: Int) -> Cocktail{
+        let cocktailEntity = cocktails[index]
+        let cocktail = Cocktail(cocktailId: cocktailEntity.id!, cocktailName: cocktailEntity.name!, imageName: "")
+        
+        cocktail.isUserDefined = cocktailEntity.isUserDefined
+        
+        if let category = cocktailEntity.category{
+            cocktail.category =  category
+        }
+        if let glassType = cocktailEntity.glassType{
+            cocktail.glassType =  glassType
+        }
+        if let iBA = cocktailEntity.iba{
+            cocktail.iBA =  iBA
+            
+        }
+        if let image = cocktailEntity.image{
+            cocktail.image = UIImage(data: image as Data)
+        }
+        if let instructions = cocktailEntity.instructions{
+            cocktail.instructions =  instructions
+            
+        }
+        if let personalizedNote = cocktailEntity.personalizedNote{
+            cocktail.personalizedNote =  personalizedNote
+            
+        }
+        
+        if let ingredients = cocktailEntity.ingredients{
+            for ingredient in ingredients{
+                if let ingredient = ingredient as? Ingredient{
+                    cocktail.ingredients.append((name: ingredient.name!, quantity: ingredient.quantity!))
+                }
+            }
+        }
+        
+        return cocktail
+    }
+    
     private init(){
         managedContext = appDelegate.persistentContainer.viewContext
         cocktails = []
