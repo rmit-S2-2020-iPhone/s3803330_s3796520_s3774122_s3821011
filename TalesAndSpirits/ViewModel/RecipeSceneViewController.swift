@@ -10,14 +10,8 @@ import UIKit
 
 class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshData {
     
-    //var displayCocktail: Cocktail?
     var cocktailViewModel: CocktailViewModel?
     var index: Int?
-    
-    //    var displayCocktail : Cocktail? {
-    //        guard let index = index, let cocktailViewModel = cocktailViewModel  else{ return nil }
-    //        return cocktailViewModel.getCocktail(byIndex: index)
-    //    }
     
     @IBOutlet weak var cocktailNameLabel: UILabel!
     @IBOutlet weak var cocktailImageView: UIImageView!
@@ -191,8 +185,6 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action  in self.removeFavorite()
         }))
-        
-        //alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         

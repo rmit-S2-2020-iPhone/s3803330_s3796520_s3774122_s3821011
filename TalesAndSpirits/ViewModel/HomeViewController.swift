@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, RefreshData{
     
-    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel.shared
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,12 +27,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cocktailViewModel.count + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("row: \(indexPath.row) \t item: \(indexPath.item)")
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCollectionView", for: indexPath)as? DataCollectionView
             cell?.searchBar.isUserInteractionEnabled = true

@@ -12,10 +12,10 @@ import UIKit
 struct CocktailViewModel {
     
     //Reference to model
-    //private var cocktails: [Cocktail] = []
-    //private var favCocktails: [FavouriteCocktail] = []
     private var model = REST_Request.shared
     private var favoriteCocktailModel = CocktailDBManager.shared
+    
+    static let shared = CocktailViewModel()
     
     private let randomizeImageName: String = "random-dice"
     private let randomizeText: String = "Surprise Me"
@@ -62,10 +62,10 @@ struct CocktailViewModel {
         return -1
     }
     
-    init() {
-        model.fetchCocktails()
+    private init() {
+        //model.fetchCocktails()
+        copySavedCocktailsFromDBToModel()
     }
-    
     
     func getRandomizeImage() -> UIImage?{
         return UIImage(named: randomizeImageName)
@@ -141,6 +141,30 @@ struct CocktailViewModel {
     
     func setCocktailPersonalNote(byIndex index: Int, note: String){
         model.cocktails[index].personalizedNote = note
+    }
+    
+    private func copySavedCocktailsFromDBToModel(){
+        for (index,cocktailEntity) in favoriteCocktailModel.cocktails.enumerated(){
+            //Check if the cocktail is created by user
+            //If No add it to rest of the cocktails
+            //This done so that already existing cocktails are not fetched from the network
+            if !cocktailEntity.isUserDefined{
+                let cocktail = favoriteCocktailModel.convertCocktailEntityToCocktail(byIndex: index)
+                
+                //check if cocktail is already fetched from network
+                //if yes override it
+                //else add it to the list
+                let cocktailIndex = model.checkIfCocktailExists(drinkId: cocktail.cocktailId)
+                if cocktailIndex == -1{
+                    model.cocktails.append(cocktail)
+                }else{
+                    model.cocktails[cocktailIndex] = cocktail
+                }
+                
+                
+            }
+        }
+        
     }
     
 }

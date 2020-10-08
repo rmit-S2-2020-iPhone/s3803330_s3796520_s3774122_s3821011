@@ -10,7 +10,7 @@ import UIKit
 
 class CocktailsViewController: UITableViewController, RefreshData {
     
-    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel.shared
     
     
     @IBOutlet var cocktailsTableView: UITableView!

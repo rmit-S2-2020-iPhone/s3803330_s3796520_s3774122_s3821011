@@ -22,7 +22,6 @@ class CocktailDBManager{
     func addCocktail( _ cocktail: Cocktail){
         
         let nsCocktail = createNSCocktail(cocktail)
-        //print(nsCocktail.image!)
         cocktails.append(nsCocktail)
         
         do {
@@ -51,9 +50,6 @@ class CocktailDBManager{
     
     private func loadCocktails(){
         do{
-            //let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CocktailEntity")
-            
-            //let result = try managedContext.fetch(fetchRequest)
             let result = try managedContext.fetch(CocktailEntity.fetchRequest())
             cocktails = result as! [CocktailEntity]
             print("loadData")
@@ -112,6 +108,7 @@ class CocktailDBManager{
         let cocktail = Cocktail(cocktailId: cocktailEntity.id!, cocktailName: cocktailEntity.name!, imageName: "")
         
         cocktail.isUserDefined = cocktailEntity.isUserDefined
+        cocktail.isFavorite = true
         
         if let category = cocktailEntity.category{
             cocktail.category =  category

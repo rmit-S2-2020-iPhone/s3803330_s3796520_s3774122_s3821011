@@ -10,7 +10,7 @@ import UIKit
 
 class MyDiaryTableViewController: UITableViewController {
     
-    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel.shared
     
 //    var favoriteCocktailsIndices: [Int] {
 //        guard let cocktailViewModel = cocktailViewModel else{ return [] }

@@ -18,24 +18,28 @@ class REST_Request{
     private var _cocktails:[Cocktail]
     var delegate: RefreshData?
     
+    static let shared = REST_Request()
+    
     private let session = URLSession.shared
-    private let baseUrl:String = "https://www.thecocktaildb.com/api/json/v1/1/"
+    private let baseUrl:String = "https://www.thecocktaildb.com/api/json/v2/9973533/"
     private let listCocktails:String = "filter.php?c=Cocktail"
     private let lookupCocktailById: String = "lookup.php?i="
     private let search:String = "search.php?s="
     private let randomize:String = "random.php"
     
     var cocktails:[Cocktail]{
-        return _cocktails
+        get { return _cocktails}
+        set(newCocktails){
+            _cocktails = newCocktails
+        }
     }
     
     private init(){
         _cocktails = []
+        fetchCocktails()
     }
     
-    static let shared = REST_Request()
-    
-    func fetchCocktails(){
+    private func fetchCocktails(){
         let url = baseUrl + listCocktails
         
         if let url = URL(string: url){
@@ -72,10 +76,14 @@ class REST_Request{
             }else{
                 let fetchDetails: CocktailsJson = try! JSONDecoder().decode(CocktailsJson.self, from: data!)
                 let allCocktails = fetchDetails.drinks
-                
+                print(allCocktails.count)
                 for cocktail in allCocktails{
-                    let newCocktail = Cocktail(cocktailId: cocktail.idDrink, cocktailName: cocktail.strDrink, imageName: cocktail.strDrinkThumb)
-                    self._cocktails.append(newCocktail)
+                    //Check if cocktail already exists
+                    //If no add it to the list
+                    if(self.checkIfCocktailExists(drinkId: cocktail.idDrink) == -1){
+                        let newCocktail = Cocktail(cocktailId: cocktail.idDrink, cocktailName: cocktail.strDrink, imageName: cocktail.strDrinkThumb)
+                        self._cocktails.append(newCocktail)
+                    }
                 }
                 //Notify Controller Cocktail Data is retrieved
                 DispatchQueue.main.sync {
@@ -154,7 +162,7 @@ class REST_Request{
      * if found, return index of cocktail object
      * else return -1
      */
-    private func checkIfCocktailExists( drinkId: String) -> Int{
+    public func checkIfCocktailExists( drinkId: String) -> Int{
         for (index, cocktail) in _cocktails.enumerated(){
             if cocktail.cocktailId == drinkId{
                 return index

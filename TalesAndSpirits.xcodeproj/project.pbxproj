@@ -18,6 +18,7 @@
 		0A65F6DC24FFF8A600F30B07 /* RecipeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */; };
 		0A78C05724FE9D5D009E2365 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78C05624FE9D5D009E2365 /* NetworkData.swift */; };
 		0A78C05924FEAADF009E2365 /* CocktailsJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78C05824FEAADF009E2365 /* CocktailsJson.swift */; };
+		0A7B7EA6252F3A5D00B5C2B9 /* RecipeSceneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B7EA5252F3A5D00B5C2B9 /* RecipeSceneViewModel.swift */; };
 		0A84B45B252B65A9000A46B3 /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84B457252B65A9000A46B3 /* Ingredient+CoreDataClass.swift */; };
 		0A84B45C252B65A9000A46B3 /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84B458252B65A9000A46B3 /* Ingredient+CoreDataProperties.swift */; };
 		0A84B45D252B65A9000A46B3 /* CocktailEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A84B459252B65A9000A46B3 /* CocktailEntity+CoreDataClass.swift */; };
@@ -64,6 +65,7 @@
 		0A65F6DB24FFF8A600F30B07 /* RecipeSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSceneViewController.swift; sourceTree = "<group>"; };
 		0A78C05624FE9D5D009E2365 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		0A78C05824FEAADF009E2365 /* CocktailsJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsJson.swift; sourceTree = "<group>"; };
+		0A7B7EA5252F3A5D00B5C2B9 /* RecipeSceneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSceneViewModel.swift; sourceTree = "<group>"; };
 		0A84B457252B65A9000A46B3 /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A84B458252B65A9000A46B3 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0A84B459252B65A9000A46B3 /* CocktailEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CocktailEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */,
 				3E6AA64425036C8D00C625AE /* DataCollectionView.swift */,
 				0ACD93E12504090600C57F64 /* AddNotePopOverViewController.swift */,
+				0A7B7EA5252F3A5D00B5C2B9 /* RecipeSceneViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				0AD0667224F3E7ED0042465C /* MyDiaryTableViewController.swift in Sources */,
 				3E6AA64525036C8D00C625AE /* DataCollectionView.swift in Sources */,
 				0A78C05724FE9D5D009E2365 /* NetworkData.swift in Sources */,
+				0A7B7EA6252F3A5D00B5C2B9 /* RecipeSceneViewModel.swift in Sources */,
 				0A48B67E24F2447D00BA61E4 /* CocktailsViewController.swift in Sources */,
 				0A65F6DC24FFF8A600F30B07 /* RecipeSceneViewController.swift in Sources */,
 				0A84B45D252B65A9000A46B3 /* CocktailEntity+CoreDataClass.swift in Sources */,
