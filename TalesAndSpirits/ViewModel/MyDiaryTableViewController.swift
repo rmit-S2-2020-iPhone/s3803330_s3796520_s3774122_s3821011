@@ -89,6 +89,7 @@ class MyDiaryTableViewController: UITableViewController {
 //                imageView.image = cocktailDetails.image
 //                cocktailNameLabel.text = cocktailDetails.cocktailName
                 
+                
             }
         }
 

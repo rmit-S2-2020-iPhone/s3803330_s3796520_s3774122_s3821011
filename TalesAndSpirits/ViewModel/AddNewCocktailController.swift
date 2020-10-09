@@ -189,6 +189,12 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var NoteTextView: UITextView!
     
+    @IBAction func SaveNewCocktail(_ sender: Any) {
+        
+        
+    }
+    
+    
     
 }
 
