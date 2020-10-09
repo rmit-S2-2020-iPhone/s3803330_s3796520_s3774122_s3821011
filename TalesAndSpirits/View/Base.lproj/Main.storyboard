@@ -192,11 +192,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qEJ-Js-3DE">
+                                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="cocktailNameTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qEJ-Js-3DE">
                                                 <rect key="frame" x="186" y="412" width="188" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="CocktailNameTextField:" destination="Oaf-PU-QG8" eventType="editingDidEnd" id="43M-Ib-xEM"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yw-Zo-ETz">
                                                 <rect key="frame" x="31" y="462" width="70" height="24"/>
@@ -209,6 +212,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="CategoryTextFiled:" destination="Oaf-PU-QG8" eventType="editingDidEnd" id="feN-WG-woz"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iBA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeQ-Fa-YYh">
                                                 <rect key="frame" x="31" y="507" width="27" height="24"/>
@@ -221,6 +227,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="IBATextField:" destination="Oaf-PU-QG8" eventType="editingDidEnd" id="X7f-6N-PWF"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Glass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsv-fh-RQi">
                                                 <rect key="frame" x="31" y="552" width="41" height="24"/>
@@ -233,6 +242,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="GlassTextField:" destination="Oaf-PU-QG8" eventType="editingDidEnd" id="PJW-Yx-5ym"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drink Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z29-Z6-fyp">
                                                 <rect key="frame" x="174" y="337" width="79" height="23"/>
@@ -323,7 +335,7 @@
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Add any personal notes here for your kinda twist in cocktail" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NhG-3h-ocg">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Add Note here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NhG-3h-ocg">
                                                 <rect key="frame" x="55" y="1103" width="308" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -347,13 +359,13 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="329" height="42"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MjA-sE-DT5">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MjA-sE-DT5">
                                                                     <rect key="frame" x="0.0" y="5" width="170" height="30"/>
                                                                     <nil key="textColor"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                 </textField>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7i-bE-9p1">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X7i-bE-9p1">
                                                                     <rect key="frame" x="232" y="5" width="97" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="97" id="G4u-DA-t4U"/>

@@ -13,6 +13,12 @@ import MobileCoreServices
 class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    
+    /*
+     //Image picker Implementation
+ 
+ */
+    
     @IBOutlet weak var imageView: UIImageView!
     
     
@@ -188,6 +194,25 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBOutlet weak var NoteTextView: UITextView!
+    
+    
+    //var recipeTextContent: String?
+    recipeTextContent = RecipeText.text
+   
+   
+    
+    @IBAction func CocktailNameTextField(_ sender: Any) {
+    }
+    
+    @IBAction func CategoryTextFiled(_ sender: Any) {
+    }
+    
+    
+    @IBAction func IBATextField(_ sender: Any) {
+    }
+    
+    @IBAction func GlassTextField(_ sender: Any) {
+    }
     
     @IBAction func SaveNewCocktail(_ sender: Any) {
         
