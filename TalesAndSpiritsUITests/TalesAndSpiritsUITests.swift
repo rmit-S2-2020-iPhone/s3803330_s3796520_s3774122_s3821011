@@ -2,7 +2,7 @@
 //  TalesAndSpiritsUITests.swift
 //  TalesAndSpiritsUITests
 //
-//  Created by PUJA on 14/8/20.
+//  Created by GAJSA on 14/8/20.
 //  Copyright © 2020 RMIT. All rights reserved.
 //
 
@@ -29,6 +29,10 @@ class TalesAndSpiritsUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func addFavourite() {
+        
     }
 
 }

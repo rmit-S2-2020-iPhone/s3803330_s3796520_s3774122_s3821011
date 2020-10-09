@@ -51,6 +51,7 @@ class MyDiaryTableViewController: UITableViewController {
                 cocktailNameLabel.text = viewModel.getCocktailName(byIndex: indexPath.row - 2)
                 imageView.image = viewModel.getCocktailImage(byIndex: indexPath.row - 2)
                 
+                
             }
         }
 
