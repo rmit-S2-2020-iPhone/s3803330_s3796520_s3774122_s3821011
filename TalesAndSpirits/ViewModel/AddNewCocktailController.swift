@@ -197,7 +197,7 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     
     
     //var recipeTextContent: String?
-    recipeTextContent = RecipeText.text
+    //recipeTextContent = RecipeText.text
    
    
     
