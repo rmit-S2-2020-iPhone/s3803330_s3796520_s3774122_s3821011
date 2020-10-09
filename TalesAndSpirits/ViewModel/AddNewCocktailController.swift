@@ -10,6 +10,10 @@ import UIKit
 import AVKit
 import MobileCoreServices
 
+protocol UserDefinedCocktail{
+    func addCocktail(_ cocktailDetails: [String: String], image: UIImage?)
+}
+
 class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
@@ -19,12 +23,14 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
  
  */
     
-    @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var takePictureButton: UIButton!
     
     var avPlayerViewController: AVPlayerViewController!
+    
+    var delegate: UserDefinedCocktail?
     
     var image: UIImage?
     var movieURL: URL?
@@ -57,6 +63,7 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
         RecipeText.clipsToBounds = true
         NoteTextView.layer.cornerRadius = 5
         NoteTextView.clipsToBounds = true
+        imageView.image = UIImage(named: "no_image_available")
     }
     
     // When returning to the app, update the display with the
@@ -215,8 +222,24 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func GlassTextField(_ sender: Any) {
     }
     
+    @IBOutlet weak var cocktailNameTextField: UITextField!
+    
+    
+    @IBOutlet weak var cocktailImageView: UIImageView!
+    
     @IBAction func SaveNewCocktail(_ sender: Any) {
+
         
+        print("saved button clicked")
+        //Validation here
+        //Fetch all the data input
+        var cocktailDetails: [String: String] = [:]
+        
+        if let name = cocktailNameTextField.text{
+            cocktailDetails["name"] = name
+            print(imageView.image)
+            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }
         
     }
     

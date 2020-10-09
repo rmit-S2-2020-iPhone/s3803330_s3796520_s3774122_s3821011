@@ -31,4 +31,19 @@ class MyDiaryViewModel: CocktailViewModel{
     override func getCocktail(byIndex index: Int) -> Cocktail{
         return favoriteCocktailModel.convertCocktailEntityToCocktail(byIndex: index)
     }
+    
+    func addUserDefinedCocktail(_ cocktailDetails: [String: String], image: UIImage?){
+        
+        if let name = cocktailDetails["name"]{
+        let newCocktail = Cocktail(cocktailId: Cocktail.nextUserDefinedId, cocktailName: name, imageName: "")
+            
+            newCocktail.isUserDefined = true
+            newCocktail.isFavorite = true
+            //Fill rest values for cocktail
+            newCocktail.image = image
+            
+            favoriteCocktailModel.addCocktail(newCocktail)
+            
+        }
+    }
 }
