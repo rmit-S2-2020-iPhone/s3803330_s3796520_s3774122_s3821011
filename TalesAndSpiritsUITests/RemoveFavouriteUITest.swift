@@ -2,7 +2,7 @@
 //  RemoveFavouriteUITest.swift
 //  TalesAndSpiritsUITests
 //
-//  Created by PUJA on 7/10/20.
+//  Created by GAJSA on 7/10/20.
 //  Copyright © 2020 RMIT. All rights reserved.
 //
 
