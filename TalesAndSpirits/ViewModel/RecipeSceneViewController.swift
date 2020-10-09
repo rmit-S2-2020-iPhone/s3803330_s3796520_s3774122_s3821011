@@ -8,10 +8,18 @@
 
 import UIKit
 
-class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshData {
+protocol FavouriteCocktailDelegate {
+    func addCocktailAsFavorite(_ drinkId: String)
+    func removeCocktailAsFavorite(_ drinkId: String)
+}
+
+class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshRecipeScene {
     
-    var cocktailViewModel: CocktailViewModel?
-    var index: Int?
+    
+    //var cocktailViewModel: CocktailViewModel?
+    var viewModel: RecipeSceneViewModel?
+    var delegate: FavouriteCocktailDelegate?
+    //var index: Int?
     
     @IBOutlet weak var cocktailNameLabel: UILabel!
     @IBOutlet weak var cocktailImageView: UIImageView!
@@ -29,7 +37,9 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cocktailViewModel?.delegate = self
+        //cocktailViewModel?.delegate = self
+        viewModel?.delegate = self
+        
         
         populateView()
         
@@ -44,31 +54,33 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func populateView(){
         personalNoteTextView.isEditable = false
-        if let cocktailViewModel = cocktailViewModel, let index = index {
-            cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: index)
-            cocktailImageView.image = cocktailViewModel.getCocktailImage(byIndex: index)
-            preparationLabel.text = cocktailViewModel.getCocktailInstructions(byIndex: index)
-            if cocktailViewModel.getCocktailIsFavorite(byIndex: index){
-                favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
-                addNoteButton.isEnabled = true
-                let personalNote = cocktailViewModel.getCocktailPersonalizedNote(byIndex: index)
-                if !personalNote.isEmpty{
+        if let viewModel = viewModel{
+            cocktailNameLabel.text = viewModel.getCocktailName()
+            cocktailImageView.image = viewModel.getCocktailImage()
+            preparationLabel.text = viewModel.getCocktailInstructions()
+            if let isFavorite = viewModel.getCocktailIsFavorite(){
+                if(isFavorite){
+                    favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
+                    addNoteButton.isEnabled = true
+                    
+                    var personalNote = defaultEnabledTextViewMessage
+                    if let note = viewModel.getCocktailPersonalizedNote(){
+                        if !note.isEmpty{
+                            personalNote = note
+                        }
+                    }
                     personalNoteTextView.text = personalNote
+                    
                 }else{
-                    personalNoteTextView.text = defaultEnabledTextViewMessage
+                    favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
+                    addNoteButton.isEnabled = false
+                    personalNoteTextView.text = defaultDisabledTextViewMessage
                 }
-            }else{
-                favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
-                addNoteButton.isEnabled = false
-                personalNoteTextView.text = defaultDisabledTextViewMessage
             }
         }
     }
     
-    func updateUIWithRestData(_ index: Int?) {
-        if let index = index{
-            self.index = index
-        }
+    func updateUI() {
         populateView()
         self.drinkInfoTableView.reloadData()
         self.ingredientsTableView.reloadData()
@@ -81,8 +93,8 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         if tableView == self.drinkInfoTableView{
             rowCount = 3
         }else if tableView == self.ingredientsTableView {
-            if let cocktailViewModel = cocktailViewModel, let index = index {
-                rowCount = cocktailViewModel.getCocktailIngredients(byIndex: index).count
+            if let viewModel = viewModel, let ingredients = viewModel.getCocktailIngredients() {
+                rowCount = ingredients.count
             }
         }
         
@@ -98,20 +110,21 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             let infoLabel = cell.viewWithTag(1000) as? UILabel
             let infoLabel2 = cell.viewWithTag(1010) as? UILabel
             
-            if let infoLabel = infoLabel, let infoLabel2 = infoLabel2, let cocktailViewModel = cocktailViewModel, let index = index {
+            if let infoLabel = infoLabel, let infoLabel2 = infoLabel2, let viewModel = viewModel {
                 if indexPath.row == 0{
-                    infoLabel.text = cocktailViewModel.getCocktailCategory(byIndex: index)
+                    infoLabel.text = viewModel.getCocktailCategory()
                     infoLabel2.text = "Category"
                 }else if indexPath.row == 1{
-                    let iBA = cocktailViewModel.getCocktailiBA(byIndex: index)
-                    if iBA.isEmpty{
-                        infoLabel.text = "none"
-                    }else{
-                        infoLabel.text = iBA
+                    var iBA = "none"
+                    if let cocktailiBA = viewModel.getCocktailiBA(){
+                        if !cocktailiBA.isEmpty{
+                            iBA = cocktailiBA
+                        }
                     }
+                    infoLabel.text = iBA
                     infoLabel2.text = "iBA"
                 }else if indexPath.row == 2{
-                    infoLabel.text = cocktailViewModel.getCocktailGlassType(byIndex: index)
+                    infoLabel.text = viewModel.getCocktailGlassType()
                     infoLabel2.text = "Glass"
                 }
             }
@@ -122,8 +135,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             let infoLabel = cell.viewWithTag(1001) as? UILabel
             let infoLabel2 = cell.viewWithTag(1020) as? UILabel
             
-            if let infoLabel = infoLabel, let infoLabel2 = infoLabel2, let cocktailViewModel = cocktailViewModel, let index = index {
-                let ingredients: [(name: String, quantity: String)] = cocktailViewModel.getCocktailIngredients(byIndex: index)
+            if let infoLabel = infoLabel, let infoLabel2 = infoLabel2, let viewModel = viewModel, let ingredients = viewModel.getCocktailIngredients() {
                 let currentIngredient: (name: String, quantity: String) = ingredients[indexPath.row]
                 infoLabel.text = currentIngredient.name
                 infoLabel2.text = currentIngredient.quantity
@@ -142,16 +154,22 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             
         }else{
             favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
-            if let cocktailViewModel = cocktailViewModel, let index = index{
-                cocktailViewModel.setCocktailAsFavorite(byIndex: index, value: true)
-                cocktailViewModel.setCocktailAsFavorite(index: index)
+            if let viewModel = viewModel{
+                //viewModel.setCocktailAsFavorite(value: true)
+                
+                // TODO: Add cocktail to database
+                if let drinkId = viewModel.getCocktailId(){
+                    delegate?.addCocktailAsFavorite(drinkId)
+                }
+                
+                //cocktailViewModel.setCocktailAsFavorite(index: index)
                 addNoteButton.isEnabled = true
-                var note = defaultEnabledTextViewMessage
-                let personalNote = cocktailViewModel.getCocktailPersonalizedNote(byIndex: index)
-                    if !personalNote.isEmpty{
-                        note = personalNote
-                    }
-                personalNoteTextView.text = note
+//                var note = defaultEnabledTextViewMessage
+//                let personalNote = cocktailViewModel.getCocktailPersonalizedNote(byIndex: index)
+//                if !personalNote.isEmpty{
+//                    note = personalNote
+//                }
+                personalNoteTextView.text = defaultEnabledTextViewMessage
             }
             
         }
@@ -162,8 +180,8 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         //Check if textview contains default message, if no add it to personal note
         
         if personalNoteTextView.text != defaultEnabledTextViewMessage{
-            if let cocktailViewModel = cocktailViewModel, let index = index{
-                cocktailViewModel.setCocktailPersonalNote(byIndex: index, note: personalNoteTextView.text)
+            if let viewModel = viewModel{
+                viewModel.setCocktailPersonalNote(note: personalNoteTextView.text)
             }
         }
         
@@ -194,10 +212,14 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     
     func removeFavorite(){
         favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
-        if let cocktailViewModel = cocktailViewModel, let index = index{
-            cocktailViewModel.setCocktailAsFavorite(byIndex: index, value: false)
-            cocktailViewModel.setCocktailPersonalNote(byIndex: index, note: "")
-            cocktailViewModel.removeCocktailFromFavorite(index: index)
+        if let viewModel = viewModel{
+            //viewModel.setCocktailAsFavorite(value: false)
+            viewModel.setCocktailPersonalNote(note: "")
+            // TODO: Delete cocktail from database
+            if let drinkId = viewModel.getCocktailId(){
+                delegate?.removeCocktailAsFavorite(drinkId)
+            }
+            //cocktailViewModel.removeCocktailFromFavorite(index: index)
         }
         addNoteButton.isEnabled = false
         personalNoteTextView.text = defaultDisabledTextViewMessage
@@ -210,8 +232,8 @@ extension RecipeSceneViewController: AddNotePopOverDelegate{
     func updateNote(_ text: String) {
         personalNoteTextView.text = text
         if text != defaultEnabledTextViewMessage{
-            if let cocktailViewModel = cocktailViewModel, let index = index{
-                cocktailViewModel.setCocktailPersonalNote(byIndex: index, note: text)
+            if let viewModel = viewModel{
+                viewModel.setCocktailPersonalNote(note: text)
             }
         }
     }

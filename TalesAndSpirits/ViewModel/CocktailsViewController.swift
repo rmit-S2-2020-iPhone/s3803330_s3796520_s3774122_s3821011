@@ -10,7 +10,7 @@ import UIKit
 
 class CocktailsViewController: UITableViewController, RefreshData {
     
-    var cocktailViewModel: CocktailViewModel = CocktailViewModel.shared
+    var cocktailViewModel: CocktailViewModel = CocktailViewModel()
     
     
     @IBOutlet var cocktailsTableView: UITableView!
@@ -20,7 +20,7 @@ class CocktailsViewController: UITableViewController, RefreshData {
 
     }
     
-    func updateUIWithRestData(_ index: Int?) {
+    func updateUIWithRestData() {
         self.tableView.reloadData()
     }
 
@@ -63,9 +63,23 @@ class CocktailsViewController: UITableViewController, RefreshData {
         
         if let newDestination = newDestination{
             cocktailViewModel.fetchCocktailById(index: selectedRow.row-1)
-            newDestination.cocktailViewModel = cocktailViewModel
-            newDestination.index = selectedRow.row-1
+            newDestination.delegate = self
+            newDestination.viewModel = RecipeSceneViewModel(cocktail: cocktailViewModel.getCocktail(byIndex: selectedRow.row-1))
+            //newDestination.index = selectedRow.row-1
         }
     }
     
 }
+
+extension CocktailsViewController: FavouriteCocktailDelegate{
+    func addCocktailAsFavorite(_ drinkId: String) {
+        cocktailViewModel.setCocktailAsFavorite(drinkId: drinkId)
+    }
+    
+    func removeCocktailAsFavorite(_ drinkId: String) {
+        cocktailViewModel.removeCocktailFromFavorite(drinkId: drinkId)
+    }
+    
+    
+}
+

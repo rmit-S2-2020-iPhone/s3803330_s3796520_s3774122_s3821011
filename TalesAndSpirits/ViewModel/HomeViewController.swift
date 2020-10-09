@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, RefreshData{
     
-    var cocktailViewModel: CocktailViewModel = CocktailViewModel.shared
+    var viewModel: HomeViewModel = HomeViewModel()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,10 +20,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cocktailViewModel.delegate = self
+        viewModel.delegate = self
     }
     
-    func updateUIWithRestData(_ index: Int?) {
+    func updateUIWithRestData() {
         self.collectionView.reloadData()
     }
     
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cocktailViewModel.count + 3
+        return viewModel.count + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,16 +51,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath) as? DataCollectionView
             
             if let cell = cell{
-                cell.imageView.image = cocktailViewModel.getRandomizeImage()
-                cell.nameLabel.text = cocktailViewModel.getRandomizeText()
+                cell.imageView.image = viewModel.getRandomizeImage()
+                cell.nameLabel.text = viewModel.getRandomizeText()
             }
             return cell!
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
             if let cell = cell{
-                cell.imageView.image = cocktailViewModel.getCocktailImage(byIndex: (indexPath.item - 3))
-                cell.nameLabel.text = cocktailViewModel.getCocktailName(byIndex: (indexPath.item - 3))
+                cell.imageView.image = viewModel.getCocktailImage(byIndex: (indexPath.item - 3))
+                cell.nameLabel.text = viewModel.getCocktailName(byIndex: (indexPath.item - 3))
             }
             
             return cell!
@@ -91,16 +91,32 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            newDestination.cocktailViewModel = cocktailViewModel
-            
+            //newDestination.viewModel = RecipeSceneViewModel(cocktailViewModel.getCocktail(byIndex: <#T##Int#>))
+            newDestination.delegate = self
             if selectedItem.row == 2{
-                cocktailViewModel.fetchRandomCocktail()
+                viewModel.fetchRandomCocktail()
+                newDestination.viewModel = RecipeSceneViewModel(cocktail: nil)
                 
             }else{
-                cocktailViewModel.fetchCocktailById(index: selectedItem.item - 3)
-                newDestination.index = selectedItem.item - 3
+                viewModel.fetchCocktailById(index: selectedItem.item - 3)
+                newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: selectedItem.item - 3))
+                //newDestination.viewModel?.delegate = newDestination
+                //print("Home: \(newDestination.viewModel!)")
+                //newDestination.index = selectedItem.item - 3
             }
         }
         
     }
+}
+
+extension HomeViewController: FavouriteCocktailDelegate{
+    func addCocktailAsFavorite(_ drinkId: String) {
+        viewModel.setCocktailAsFavorite(drinkId: drinkId)
+    }
+    
+    func removeCocktailAsFavorite(_ drinkId: String) {
+        viewModel.removeCocktailFromFavorite(drinkId: drinkId)
+    }
+    
+    
 }

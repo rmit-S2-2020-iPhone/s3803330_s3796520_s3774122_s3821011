@@ -10,13 +10,20 @@ import Foundation
 import UIKit
 
 protocol RefreshData {
-    func updateUIWithRestData(_ index: Int?)
+    func updateUIWithRestData()
+}
+
+protocol RefreshRecipeSceneModel {
+    func updateModel(_ cocktail: Cocktail)
 }
 
 class REST_Request{
     
     private var _cocktails:[Cocktail]
+    private var _popularCocktails: [Cocktail]
     var delegate: RefreshData?
+    
+    var detailedViewDelegate: RefreshRecipeSceneModel?
     
     static let shared = REST_Request()
     
@@ -24,7 +31,7 @@ class REST_Request{
     private let baseUrl:String = "https://www.thecocktaildb.com/api/json/v2/9973533/"
     private let listCocktails:String = "filter.php?c=Cocktail"
     private let lookupCocktailById: String = "lookup.php?i="
-    private let search:String = "search.php?s="
+    private let popularCoctails: String = "popular.php"
     private let randomize:String = "random.php"
     
     var cocktails:[Cocktail]{
@@ -34,9 +41,18 @@ class REST_Request{
         }
     }
     
+    var popularCocktails:[Cocktail]{
+        get { return _popularCocktails}
+        set(newCocktails){
+            _popularCocktails = newCocktails
+        }
+    }
+    
     private init(){
         _cocktails = []
-        fetchCocktails()
+        _popularCocktails = []
+        fetchPopularCocktails()
+        //fetchCocktails()
     }
     
     private func fetchCocktails(){
@@ -68,6 +84,14 @@ class REST_Request{
         
     }
     
+    private func fetchPopularCocktails(){
+        let url = baseUrl + popularCoctails
+        if let url = URL(string: url){
+            let request = URLRequest(url: url)
+            getPopularCocktail(request)
+        }
+    }
+    
     private func getCocktailList(_ request: URLRequest){
         let task = session.dataTask(with: request, completionHandler: {
             data, response, fetchError in
@@ -87,9 +111,9 @@ class REST_Request{
                 }
                 //Notify Controller Cocktail Data is retrieved
                 DispatchQueue.main.sync {
-                    self.delegate?.updateUIWithRestData(nil)
+                    self.delegate?.updateUIWithRestData()
                 }
-                
+                print(self.cocktails.count)
                 for cocktail in self.cocktails{
                     if cocktail.image == nil{
                         self.getCocktailImage(cocktail: cocktail)
@@ -110,10 +134,10 @@ class REST_Request{
                 if fetchDetails.drinks.count > 0{
                     let cocktailDetails = fetchDetails.drinks[0]
                     self.fetchDetailsFromJson(cocktailJson: cocktailDetails, index: index)
+                    print(cocktailDetails.strDrink)
                 }
-                
                 DispatchQueue.main.sync {
-                    self.delegate?.updateUIWithRestData(nil)
+                    self.detailedViewDelegate?.updateModel(self.cocktails[index])
                 }
             }
         })
@@ -150,7 +174,40 @@ class REST_Request{
                 }
                 
                 DispatchQueue.main.sync {
-                    self.delegate?.updateUIWithRestData(index)
+                    self.detailedViewDelegate?.updateModel(self.cocktails[index])
+                }
+            }
+        })
+        task.resume()
+    }
+    
+    private func getPopularCocktail(_ request: URLRequest){
+        let task = session.dataTask(with: request, completionHandler: {
+            data, response, fetchError in
+            if let error = fetchError{
+                print(error)
+            }else{
+                let fetchDetails: CocktailsJson = try! JSONDecoder().decode(CocktailsJson.self, from: data!)
+                let allCocktails = fetchDetails.drinks
+                print(allCocktails.count)
+                for cocktail in allCocktails{
+                    let index = self.checkIfCocktailExists(drinkId: cocktail.idDrink)
+                    //Check if cocktail already exists
+                    //If no add it to both popular and allCocktails list
+                    if(index == -1){
+                        let newCocktail = Cocktail(cocktailId: cocktail.idDrink, cocktailName: cocktail.strDrink, imageName: cocktail.strDrinkThumb)
+                        self._cocktails.append(newCocktail)
+                        self._popularCocktails.append(newCocktail)
+                    }
+                    //If the cocktail exists in allCocktails list, add it to the popular cocktail list
+                    else{
+                        self._popularCocktails.append(self._cocktails[index])
+                    }
+                }
+                //Notify Controller Cocktail Data is retrieved
+                DispatchQueue.main.sync {
+                    self.delegate?.updateUIWithRestData()
+                    self.fetchCocktails()
                 }
             }
         })

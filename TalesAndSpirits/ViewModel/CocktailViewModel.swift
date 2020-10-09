@@ -9,141 +9,86 @@
 import Foundation
 import UIKit
 
-struct CocktailViewModel {
+class CocktailViewModel {
     
     //Reference to model
-    private var model = REST_Request.shared
-    private var favoriteCocktailModel = CocktailDBManager.shared
-    
-    static let shared = CocktailViewModel()
-    
-    private let randomizeImageName: String = "random-dice"
-    private let randomizeText: String = "Surprise Me"
+    private var _model = REST_Request.shared
+    private var _favoriteCocktailModel = CocktailDBManager.shared
     
     var delegate: RefreshData?{
-        get{ return model.delegate}
+        get{ return _model.delegate}
         set(value){
-            model.delegate = value
+            _model.delegate = value
         }
     }
     
     var count: Int{
-        return model.cocktails.count
+        return _model.cocktails.count
     }
     
-    var favoriteCocktailCount: Int{
-        return favoriteCocktailModel.cocktails.count
+    var model: REST_Request{
+        return _model
     }
     
-    func setCocktailAsFavorite(index: Int){
-        favoriteCocktailModel.addCocktail(model.cocktails[index])
+    var favoriteCocktailModel: CocktailDBManager{
+        return _favoriteCocktailModel
     }
     
-    func removeCocktailFromFavorite(index: Int){
-        favoriteCocktailModel.deleteCocktail(index: 3)
-    }
-    
-    func getFavoriteCocktailImage(byIndex index: Int) -> UIImage?{
-        return UIImage(data: favoriteCocktailModel.cocktails[index].image! as Data)
-    }
-    
-    func getFavoriteCocktailName(byIndex index: Int) -> String{
-        return favoriteCocktailModel.cocktails[index].name!
-    }
-    
-    func getCocktailIndex(newCocktail: Cocktail) -> Int{
-        var index = 0
-        while index < model.cocktails.count {
-            if newCocktail === model.cocktails[index]{
-                return index
-            }
-            index += 1
-        }
-        return -1
-    }
-    
-    private init() {
-        //model.fetchCocktails()
-        copySavedCocktailsFromDBToModel()
-    }
-    
-    func getRandomizeImage() -> UIImage?{
-        return UIImage(named: randomizeImageName)
-    }
-    
-    func getRandomizeText() -> String{
-        return randomizeText
-    }
-    
+    //Check if Cocktail details are already fetched
+    //If No, fetch details from API
     func fetchCocktailById(index: Int){
-        model.fetchCocktailById(index: index)
-    }
-    
-    func fetchRandomCocktail(){
-        model.fetchRandomCocktail()
+        if(_model.cocktails[index].category.isEmpty){
+            _model.fetchCocktailById(index: index)
+        }
     }
     
     func getCocktailName(byIndex index: Int) -> String{
-        return model.cocktails[index].cocktailName
+        return _model.cocktails[index].cocktailName
     }
     
     func getCocktailImage(byIndex index: Int) -> UIImage?{
         //Check if model contains image, else fetch image from network
-        guard let image = model.cocktails[index].image else {
-            let url = model.cocktails[index].imageName
+        guard let image = _model.cocktails[index].image else {
+            let url = _model.cocktails[index].imageName
             guard let imageURL = URL(string: url) else{ return nil}
             let data = try? Data(contentsOf: imageURL)
             var image: UIImage? = nil
             if let imageData = data{
                 image = UIImage(data: imageData)
             }
-            model.cocktails[index].image = image
+            _model.cocktails[index].image = image
             return image
         }
         return image
     }
     
-    func getCocktailCategory(byIndex index: Int) -> String{
-        return model.cocktails[index].category
+    func setCocktailAsFavorite(drinkId: String){
+        let index = fetchIndexByDrinkId(drinkId)
+        if index != -1{
+            _model.cocktails[index].isFavorite = true
+            favoriteCocktailModel.addCocktail(model.cocktails[index])
+        }
     }
     
-    func getCocktailiBA(byIndex index: Int) -> String{
-        return model.cocktails[index].iBA
+    func removeCocktailFromFavorite(drinkId: String){
+        let index = fetchIndexByDrinkId(drinkId)
+        if index != -1{
+            _model.cocktails[index].isFavorite = false
+        }
+        favoriteCocktailModel.deleteCocktail(drinkId)
     }
     
-    func getCocktailInstructions(byIndex index: Int) -> String{
-        return model.cocktails[index].instructions
+    func getCocktail(byIndex index: Int) -> Cocktail{
+        return _model.cocktails[index]
     }
     
-    func getCocktailGlassType(byIndex index: Int) -> String{
-        return model.cocktails[index].glassType
+    
+    func fetchIndexByDrinkId(_ drinkId: String) -> Int{
+        return _model.checkIfCocktailExists(drinkId: drinkId)
     }
     
-    func getCocktailPersonalizedNote(byIndex index: Int) -> String{
-        return model.cocktails[index].personalizedNote
-    }
-    
-    func getCocktailIngredients(byIndex index: Int) -> [(name: String, quantity: String)]{
-        return model.cocktails[index].ingredients
-    }
-    
-    func getCocktailIsFavorite(byIndex index: Int) ->Bool{
-        return model.cocktails[index].isFavorite
-    }
-    
-    func getCocktailIsUserDefined(byIndex index: Int) ->Bool{
-        return model.cocktails[index].isUserDefined
-    }
-    
-    func setCocktailAsFavorite(byIndex index: Int, value: Bool){
-        model.cocktails[index].isFavorite = value
-    }
-    
-    func setCocktailPersonalNote(byIndex index: Int, note: String){
-        model.cocktails[index].personalizedNote = note
-    }
-    
-    private func copySavedCocktailsFromDBToModel(){
+    func copySavedCocktailsFromDBToModel(){
+        print("copying data")
         for (index,cocktailEntity) in favoriteCocktailModel.cocktails.enumerated(){
             //Check if the cocktail is created by user
             //If No add it to rest of the cocktails
@@ -154,14 +99,12 @@ struct CocktailViewModel {
                 //check if cocktail is already fetched from network
                 //if yes override it
                 //else add it to the list
-                let cocktailIndex = model.checkIfCocktailExists(drinkId: cocktail.cocktailId)
+                let cocktailIndex = _model.checkIfCocktailExists(drinkId: cocktail.cocktailId)
                 if cocktailIndex == -1{
-                    model.cocktails.append(cocktail)
+                    _model.cocktails.append(cocktail)
                 }else{
-                    model.cocktails[cocktailIndex] = cocktail
+                    _model.cocktails[cocktailIndex] = cocktail
                 }
-                
-                
             }
         }
         

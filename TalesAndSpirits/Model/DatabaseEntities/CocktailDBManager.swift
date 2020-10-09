@@ -33,19 +33,32 @@ class CocktailDBManager{
         
     }
     
-    func deleteCocktail(index: Int){
+    func deleteCocktail(_ drinkId: String){
         
-        let cocktailToRemove = cocktails.remove(at: index)
-        //Delete data from context
-        managedContext.delete(cocktailToRemove)
+        let index = fetchIndexByDrinkId(drinkId)
         
-        // save the context to remove the data
-        do{
-            try managedContext.save()
-        }catch let error as NSError{
-            print("Unable to remove data from core data:  \(error), \(error.userInfo)")
+        if index != -1 {
+            let cocktailToRemove = cocktails.remove(at: index)
+            //Delete data from context
+            managedContext.delete(cocktailToRemove)
+            
+            // save the context to remove the data
+            do{
+                try managedContext.save()
+            }catch let error as NSError{
+                print("Unable to remove data from core data:  \(error), \(error.userInfo)")
+            }
         }
         
+    }
+    
+    private func fetchIndexByDrinkId(_ drinkId: String) -> Int{
+        for (index, cocktail) in cocktails.enumerated(){
+            if cocktail.id == drinkId{
+                return index
+            }
+        }
+        return -1
     }
     
     private func loadCocktails(){
