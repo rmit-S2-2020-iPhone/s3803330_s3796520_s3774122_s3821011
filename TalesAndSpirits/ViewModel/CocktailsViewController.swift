@@ -58,9 +58,9 @@ class CocktailsViewController: UITableViewController, RefreshData {
         print("lookinh")
         let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeSceneViewController") as! RecipeSceneViewController
         print("passed")
-        cocktailViewModel?.fetchCocktailById(index: indexPath.row - 1)
-        detailViewController.cocktailViewModel = cocktailViewModel
-        detailViewController.index = indexPath.row - 1
+        cocktailViewModel.fetchCocktailById(index: indexPath.row - 1)
+        detailViewController.viewModel = RecipeSceneViewModel(cocktail: cocktailViewModel.getCocktail(byIndex: indexPath.row - 1))
+        detailViewController.delegate = self
         
         splitViewController?.showDetailViewController(detailViewController, sender: self)
         
