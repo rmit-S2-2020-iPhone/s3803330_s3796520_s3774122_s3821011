@@ -22,6 +22,7 @@
 		0AD0667624F4DDB70042465C /* CocktailJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD0667524F4DDB70042465C /* CocktailJson.swift */; };
 		3E6AA64525036C8D00C625AE /* DataCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6AA64425036C8D00C625AE /* DataCollectionView.swift */; };
 		A9A5B69F252C371E00A851DB /* AddNoteUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5B69E252C371E00A851DB /* AddNoteUITest.swift */; };
+		A9A5B69D25273B3C00A851DB /* AddNewCocktailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5B69C25273B3C00A851DB /* AddNewCocktailController.swift */; };
 		A9CA41A724E69E4F0089659A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41A624E69E4F0089659A /* AppDelegate.swift */; };
 		A9CA41AC24E69E4F0089659A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9CA41AA24E69E4F0089659A /* Main.storyboard */; };
 		A9CA41AF24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9CA41AD24E69E4F0089659A /* TalesAndSpirits.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		0AD0667524F4DDB70042465C /* CocktailJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailJson.swift; sourceTree = "<group>"; };
 		3E6AA64425036C8D00C625AE /* DataCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCollectionView.swift; sourceTree = "<group>"; };
 		A9A5B69E252C371E00A851DB /* AddNoteUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteUITest.swift; sourceTree = "<group>"; };
+		A9A5B69C25273B3C00A851DB /* AddNewCocktailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCocktailController.swift; sourceTree = "<group>"; };
 		A9CA41A324E69E4F0089659A /* TalesAndSpirits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalesAndSpirits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9CA41A624E69E4F0089659A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9CA41AB24E69E4F0089659A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				0AD0667124F3E7ED0042465C /* MyDiaryTableViewController.swift */,
 				3E6AA64425036C8D00C625AE /* DataCollectionView.swift */,
 				0ACD93E12504090600C57F64 /* AddNotePopOverViewController.swift */,
+				A9A5B69C25273B3C00A851DB /* AddNewCocktailController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A5B69D25273B3C00A851DB /* AddNewCocktailController.swift in Sources */,
 				0A48B68224F244A400BA61E4 /* MoreViewController.swift in Sources */,
 				0ACD93E22504090600C57F64 /* AddNotePopOverViewController.swift in Sources */,
 				0A48B69024F38E4B00BA61E4 /* FavouriteCocktail.swift in Sources */,
