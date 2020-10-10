@@ -82,23 +82,10 @@ class TalesAndSpiritsTests: XCTestCase {
         }
     }
     
-    func testBaseURL() {
-        //REST_Request.fetchCocktails(url)
+    func testURL() {
+        REST_Request.shared.fetchCocktails()
+        //XCTAssert(REST_Request.shared)
         
-        //let url = "https://www.thecocktaildb.com/api/json/v1/1/"
-        //let test = REST_Request.init()
-        //var test1 = restRequest.cocktails
-        //test1.append(manhattan)
-        //test.fetchCocktails()
-        //test.fetchCocktailById(index: 3)
-        
-        //var apitest = restRequest.fetchCocktails()
-        //restRequest.cocktails.append(manhattan)
-        //let foo = apitest.parse(json)
-        //let responseCode = expectation(description: "Status code: 200")
-        //restRequest.cocktails
-        //XCTAssertEqual(apitest.self, url)
-        //XCTAssertEqual(HTTPURLResponse.statuscode, responseCode)
     }
     
     func testCocktailID() {
