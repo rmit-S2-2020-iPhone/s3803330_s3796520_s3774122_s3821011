@@ -61,9 +61,9 @@ class CocktailsViewController: UITableViewController, RefreshData {
         cocktailViewModel.fetchCocktailById(index: indexPath.row - 1)
         detailViewController.viewModel = RecipeSceneViewModel(cocktail: cocktailViewModel.getCocktail(byIndex: indexPath.row - 1))
         detailViewController.delegate = self
-        
+
         splitViewController?.showDetailViewController(detailViewController, sender: self)
-        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
