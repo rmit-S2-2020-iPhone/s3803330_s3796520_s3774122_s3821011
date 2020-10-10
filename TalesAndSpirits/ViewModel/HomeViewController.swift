@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if(position == 0){return CGSize(width: bounds.width, height: 50)}
         else if(position == 1){return CGSize(width: bounds.width, height: 80)}
         else{
-            return CGSize(width: 205, height: 230)}
+            return CGSize(width: 201, height: 230)}
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

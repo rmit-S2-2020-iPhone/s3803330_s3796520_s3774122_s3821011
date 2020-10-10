@@ -42,10 +42,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="77" id="8aI-hI-Ppj">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="77" id="8aI-hI-Ppj">
                                 <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1000" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8aI-hI-Ppj" id="GCK-BA-H1v">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8aI-hI-Ppj" id="GCK-BA-H1v">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="76.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -874,7 +874,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="411" height="64"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="23"/>
                                                     <color key="textColor" red="0.0" green="0.26486052310000002" blue="0.42960654149999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="2"/>
                                                 </label>
                                             </subviews>
@@ -1014,7 +1014,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9hi-a8-JwJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ub7-nu-wuX">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1563,6 +1563,6 @@
         <image name="no_image_available" width="400" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pXe-eh-X8Z"/>
+        <segue reference="WR9-NO-qUy"/>
     </inferredMetricsTieBreakers>
 </document>
