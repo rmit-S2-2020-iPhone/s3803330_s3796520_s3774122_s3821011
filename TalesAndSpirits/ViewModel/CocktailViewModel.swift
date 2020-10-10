@@ -74,8 +74,17 @@ class CocktailViewModel {
         let index = fetchIndexByDrinkId(drinkId)
         if index != -1{
             _model.cocktails[index].isFavorite = false
+            _model.cocktails[index].personalizedNote = ""
         }
         favoriteCocktailModel.deleteCocktail(drinkId)
+    }
+    
+    func updatePersonalNote(drinkId: String, note: String){
+        let index = fetchIndexByDrinkId(drinkId)
+        if index != -1{
+            _model.cocktails[index].personalizedNote = note
+        }
+        favoriteCocktailModel.updateCocktailWithNote(drinkId, note)
     }
     
     func getCocktail(byIndex index: Int) -> Cocktail{
