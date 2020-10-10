@@ -71,9 +71,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let bounds = collectionView.bounds
         let position = indexPath.row
         if(position == 0){return CGSize(width: bounds.width, height: 50)}
-        else if(position == 1){return CGSize(width: bounds.width, height: 60)}
+        else if(position == 1){return CGSize(width: bounds.width, height: 80)}
         else{
-            return CGSize(width: bounds.width/2, height: 160)}
+            return CGSize(width: 201, height: 230)}
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -110,6 +110,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 }
 
 extension HomeViewController: FavouriteCocktailDelegate{
+    
     func addCocktailAsFavorite(_ drinkId: String) {
         viewModel.setCocktailAsFavorite(drinkId: drinkId)
     }
@@ -118,5 +119,8 @@ extension HomeViewController: FavouriteCocktailDelegate{
         viewModel.removeCocktailFromFavorite(drinkId: drinkId)
     }
     
+    func updatePersonalNote(_ drinkId: String, _ note: String) {
+        viewModel.updatePersonalNote(drinkId: drinkId, note: note)
+    }
     
 }

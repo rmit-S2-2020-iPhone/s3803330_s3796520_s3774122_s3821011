@@ -48,7 +48,7 @@ class REST_Request{
         }
     }
     
-    private init(){
+    init(){
         _cocktails = []
         _popularCocktails = []
         fetchPopularCocktails()
