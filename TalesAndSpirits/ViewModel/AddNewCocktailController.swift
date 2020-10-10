@@ -17,7 +17,6 @@ protocol UserDefinedCocktail{
 class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    
     /*
      //Image picker Implementation
  
@@ -26,8 +25,8 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var takePictureButton: UIButton!
     
+    @IBOutlet weak var takePictureButton: UIButton!
     var avPlayerViewController: AVPlayerViewController!
     
     var delegate: UserDefinedCocktail?
@@ -111,9 +110,11 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    @IBAction func shootPictureOrVideo(_ sender: UIButton) {
+    @IBAction func shootPicture(_ sender: Any) {
         pickMediaFromSource(UIImagePickerControllerSourceType.camera)
+        
     }
+   
     
     @IBAction func selectExistingPictureOrVideo(_ sender: UIButton) {
         pickMediaFromSource(UIImagePickerControllerSourceType.photoLibrary)
@@ -199,34 +200,16 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var RecipeText: UITextView!
     
-    
     @IBOutlet weak var NoteTextView: UITextView!
-    
-    
-    //var recipeTextContent: String?
-    //recipeTextContent = RecipeText.text
-   
-    
-   
-    
-    @IBAction func CocktailNameTextField(_ sender: Any) {
-    }
-    
-    @IBAction func CategoryTextFiled(_ sender: Any) {
-    }
-    
-    
-    @IBAction func IBATextField(_ sender: Any) {
-    }
-    
-    @IBAction func GlassTextField(_ sender: Any) {
-    }
     
     @IBOutlet weak var cocktailNameTextField: UITextField!
     
+    @IBOutlet weak var categoryTextField: UITextField!
     
-    @IBOutlet weak var cocktailImageView: UIImageView!
+    @IBOutlet weak var iBATextField: UITextField!
     
+    @IBOutlet weak var glassTextField: UITextField!
+   
     @IBAction func SaveNewCocktail(_ sender: Any) {
 
         
@@ -237,9 +220,37 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
         
         if let name = cocktailNameTextField.text{
             cocktailDetails["name"] = name
+            
+            
             print(imageView.image)
             delegate?.addCocktail(cocktailDetails, image: imageView.image)
         }
+        
+        if let category = categoryTextField.text{
+            cocktailDetails["category"] = category
+            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }
+        
+        if let iBA = iBATextField.text{
+            cocktailDetails["iBA"] = iBA
+            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }
+        
+        if let glass = glassTextField.text{
+            cocktailDetails["glass"] = glass
+            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }
+        
+        if let recipe = RecipeText.text{
+            cocktailDetails["recipe"] = recipe
+            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }
+        
+        if let note = NoteTextView.text{
+            cocktailDetails["note"] = note
+            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }
+        
         
     }
     
