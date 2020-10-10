@@ -10,34 +10,7 @@ import UIKit
 
 class MyDiaryTableViewController: UITableViewController {
     
-    var cocktailViewModel: CocktailViewModel?
-    
-    var favoriteCocktailsIndices: [Int] {
-        guard let cocktailViewModel = cocktailViewModel else{ return [] }
-        var indices: [Int] = []
-        var index = 0
-        while index < cocktailViewModel.count {
-            if cocktailViewModel.getCocktailIsFavorite(byIndex: index){
-                indices.append(index)
-            }
-            index += 1
-        }
-        return indices
-    }
-    
-//    var favoriteCocktails : [Cocktail] {
-//        var favCocktails: [Cocktail] = []
-//        var index = 0
-//        guard let count = cocktailViewModel?.count else { return favCocktails}
-//        while index < count {
-//            guard let cocktail: Cocktail = cocktailViewModel?.getCocktail(byIndex: index) else{return favCocktails}
-//            if cocktail.isFavorite{
-//                favCocktails.append(cocktail)
-//            }
-//            index += 1
-//        }
-//        return favCocktails
-//    }
+    var viewModel: MyDiaryViewModel = MyDiaryViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +22,7 @@ class MyDiaryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (favoriteCocktailsIndices.count + 2)
+        return (viewModel.count + 2)
     }
 
 
@@ -74,20 +47,10 @@ class MyDiaryTableViewController: UITableViewController {
             
             let cocktailNameLabel = cell.viewWithTag(1004) as? UILabel
             
-            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel, let cocktailViewModel = cocktailViewModel {
-                //fetch cocktail index for favorite cocktail
-                let index = favoriteCocktailsIndices[(indexPath.row - 2)]
+            if let imageView = imageView, let cocktailNameLabel = cocktailNameLabel{
+                cocktailNameLabel.text = viewModel.getCocktailName(byIndex: indexPath.row - 2)
+                imageView.image = viewModel.getCocktailImage(byIndex: indexPath.row - 2)
                 
-                imageView.image = cocktailViewModel.getCocktailImage(byIndex: index)
-                cocktailNameLabel.text = cocktailViewModel.getCocktailName(byIndex: index)
-                
-//                let currentCocktail = favoriteCocktails[(indexPath.row - 2)]
-//                let index = cocktailViewModel!.getCocktailIndex(newCocktail: currentCocktail)
-//
-//                let cocktailDetails: (cocktailName: String, image: UIImage?) = cocktailViewModel!.getCocktail(byIndex: index)
-//
-//                imageView.image = cocktailDetails.image
-//                cocktailNameLabel.text = cocktailDetails.cocktailName
                 
             }
         }
@@ -104,21 +67,53 @@ class MyDiaryTableViewController: UITableViewController {
         
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        guard let selectedRow = self.tableView.indexPathForSelectedRow
-            else {return}
+    @IBAction func addCocktailButtonPressed(_ sender: Any) {
         
-        let newDestination = segue.destination as? RecipeSceneViewController
         
-        if let newDestination = newDestination{
-            newDestination.cocktailViewModel = cocktailViewModel
-            let index = favoriteCocktailsIndices[(selectedRow.row - 2)]
-               // cocktailViewModel!.getCocktailIndex(newCocktail: favoriteCocktails[(selectedRow.row - 2)])
-            newDestination.index = index
-            
-        }
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       
+        if let newDestination = segue.destination as? AddNewCocktailController{
+            print("add cocktail segue")
+            newDestination.delegate = self
+        }
+        print("prepare Segue: \(segue.destination)")
+        
+        guard let selectedRow = self.tableView.indexPathForSelectedRow
+            else {return}
 
+        
+        if let newDestination = segue.destination as? RecipeSceneViewController{
+            print("recipe")
+            newDestination.delegate = self
+            newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: (selectedRow.row - 2)))
+        }
+        
+        
+    }
 }
+
+extension MyDiaryTableViewController: FavouriteCocktailDelegate{
+    func addCocktailAsFavorite(_ drinkId: String) {
+        viewModel.setCocktailAsFavorite(drinkId: drinkId)
+    }
+    
+    func removeCocktailAsFavorite(_ drinkId: String) {
+        viewModel.removeCocktailFromFavorite(drinkId: drinkId)
+    }
+    
+    func updatePersonalNote(_ drinkId: String, _ note: String) {
+        viewModel.updatePersonalNote(drinkId: drinkId, note: note)
+    }
+        
+}
+
+extension MyDiaryTableViewController: UserDefinedCocktail{
+    func addCocktail(_ cocktailDetails: [String : String], image: UIImage?) {
+        viewModel.addUserDefinedCocktail(cocktailDetails, image: image)
+    }
+    
+    
+}
+

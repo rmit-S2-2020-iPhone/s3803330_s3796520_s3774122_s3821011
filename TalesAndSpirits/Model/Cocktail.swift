@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 class Cocktail {
     
+    private static var customCocktailId = 0
     private var _cocktailId: String
     private var _cocktailName: String
     private var _imageName: String
+    private var _image: UIImage?
     private var _ingredients: [(name: String, quantity: String)]
     private var _category: String
     private var _iBA: String
@@ -21,6 +24,12 @@ class Cocktail {
     private var _isUserDefined: Bool
     private var _personalizedNote: String
     private var _isFavorite: Bool
+    
+    class var nextUserDefinedId: String{
+        customCocktailId += 1
+        let newID = "U" + String(customCocktailId)
+        return newID
+    }
     
     var cocktailId: String{
         get { return _cocktailId}
@@ -38,6 +47,13 @@ class Cocktail {
         get { return _imageName }
         set(newImageName) {
             _imageName = newImageName
+        }
+    }
+    
+    var image: UIImage? {
+        get {return _image}
+        set(newImage) {
+            _image = newImage
         }
     }
     
@@ -106,9 +122,10 @@ class Cocktail {
         self._iBA = ""
         self._glassType = ""
         self._instructions = ""
-        _isUserDefined = false
-        _personalizedNote = ""
-        _isFavorite = false
+        self._isUserDefined = false
+        self._personalizedNote = ""
+        self._isFavorite = false
+        self._image = nil
     }
     
 }

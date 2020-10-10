@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, RefreshData{
     
-    var cocktailViewModel: CocktailViewModel?
+    var viewModel: HomeViewModel = HomeViewModel()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,15 +20,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cocktailViewModel?.delegate = self
+        viewModel.delegate = self
     }
     
     func updateUIWithRestData() {
         self.collectionView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cocktailViewModel!.count + 2
+        return viewModel.count + 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -42,12 +47,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell?.titleText.isUserInteractionEnabled = false
             return cell!
             
+        }else if indexPath.row == 2{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath) as? DataCollectionView
+            
+            if let cell = cell{
+                cell.imageView.image = viewModel.getRandomizeImage()
+                cell.nameLabel.text = viewModel.getRandomizeText()
+            }
+            return cell!
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
-            if let cell = cell, let cocktailViewModel = cocktailViewModel{
-                cell.imageView.image = cocktailViewModel.getCocktailImage(byIndex: (indexPath.item - 2))
-                cell.nameLabel.text = cocktailViewModel.getCocktailName(byIndex: (indexPath.item - 2))
+            if let cell = cell{
+                cell.imageView.image = viewModel.getCocktailImage(byIndex: (indexPath.item - 3))
+                cell.nameLabel.text = viewModel.getCocktailName(byIndex: (indexPath.item - 3))
             }
             
             return cell!
@@ -58,9 +71,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let bounds = collectionView.bounds
         let position = indexPath.row
         if(position == 0){return CGSize(width: bounds.width, height: 50)}
-        else if(position == 1){return CGSize(width: bounds.width, height: 60)}
+        else if(position == 1){return CGSize(width: bounds.width, height: 80)}
         else{
-            return CGSize(width: bounds.width/2, height: 160)}
+            return CGSize(width: 201, height: 230)}
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -78,10 +91,36 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            cocktailViewModel?.fetchCocktailById(index: selectedItem.item - 2)
-            newDestination.cocktailViewModel = cocktailViewModel
-            newDestination.index = selectedItem.item - 2
+            //newDestination.viewModel = RecipeSceneViewModel(cocktailViewModel.getCocktail(byIndex: <#T##Int#>))
+            newDestination.delegate = self
+            if selectedItem.row == 2{
+                viewModel.fetchRandomCocktail()
+                newDestination.viewModel = RecipeSceneViewModel(cocktail: nil)
+                
+            }else{
+                viewModel.fetchCocktailById(index: selectedItem.item - 3)
+                newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: selectedItem.item - 3))
+                //newDestination.viewModel?.delegate = newDestination
+                //print("Home: \(newDestination.viewModel!)")
+                //newDestination.index = selectedItem.item - 3
+            }
         }
         
     }
+}
+
+extension HomeViewController: FavouriteCocktailDelegate{
+    
+    func addCocktailAsFavorite(_ drinkId: String) {
+        viewModel.setCocktailAsFavorite(drinkId: drinkId)
+    }
+    
+    func removeCocktailAsFavorite(_ drinkId: String) {
+        viewModel.removeCocktailFromFavorite(drinkId: drinkId)
+    }
+    
+    func updatePersonalNote(_ drinkId: String, _ note: String) {
+        viewModel.updatePersonalNote(drinkId: drinkId, note: note)
+    }
+    
 }

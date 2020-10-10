@@ -13,43 +13,33 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let cocktailList = CocktailViewModel()
+//    let cocktailList = CocktailViewModel()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
-        
-        guard let tabBarController = window?.rootViewController as? UITabBarController,
-            let viewControllers = tabBarController.viewControllers else { return true}
-        
-        for viewController in viewControllers{
-            if let navigationController = viewController as? UINavigationController{
-                
-                if let homeViewController = navigationController.viewControllers.first as? HomeViewController{
-                    homeViewController.cocktailViewModel = cocktailList
-                }
-                
+//        print("here1")
+//        guard let tabBarController = window?.rootViewController as? UITabBarController,
+//            let viewControllers = tabBarController.viewControllers else { return true}
+//
+//        for viewController in viewControllers{
+//            if let navigationController = viewController as? UINavigationController{
+//
+//                if let homeViewController = navigationController.viewControllers.first as? HomeViewController{
+//                    homeViewController.cocktailViewModel = cocktailList
+//                }
+//
 //                if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
- //                   cocktailsViewController.cocktailViewModel = cocktailList
-   //             }
-                
-                if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
-                    myDiaryTableViewController.cocktailViewModel = cocktailList
-                }
-            }
-            
-            if let splitViewController = viewController as? UISplitViewController{
-                print("in split")
-                if let navigationController = splitViewController.viewControllers.first as? UINavigationController{
-                    print("in nav")
-                    if let cocktailsViewController = navigationController.viewControllers.first as? CocktailsViewController{
-                        print("in view")
-                        cocktailsViewController.cocktailViewModel = cocktailList
-                    }
-                }
-            }
-        }
-        
+//                    cocktailsViewController.cocktailViewModel = cocktailList
+//                }
+//
+//                if let myDiaryTableViewController = navigationController.viewControllers.first as? MyDiaryTableViewController{
+//                    myDiaryTableViewController.cocktailViewModel = cocktailList
+//                }
+//            }
+//        }
+//        print("here2")
         return true
     }
 
@@ -86,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
+        print("here3")
         let container = NSPersistentContainer(name: "TalesAndSpirits")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -103,12 +94,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        print("here4")
         return container
     }()
 
     // MARK: - Core Data Saving support
 
     func saveContext () {
+        print("here5")
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -120,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+        print("here6")
     }
 
 }
