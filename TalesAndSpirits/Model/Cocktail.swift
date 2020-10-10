@@ -11,7 +11,7 @@ import UIKit
 
 class Cocktail {
     
-    private static var customCocktailId = 0
+    private var customCocktailId = UUID()
     private var _cocktailId: String
     private var _cocktailName: String
     private var _imageName: String
@@ -25,11 +25,11 @@ class Cocktail {
     private var _personalizedNote: String
     private var _isFavorite: Bool
     
-    class var nextUserDefinedId: String{
-        customCocktailId += 1
-        let newID = "U" + String(customCocktailId)
-        return newID
-    }
+//    class var nextUserDefinedId: String{
+//        customCocktailId += 1
+//        let newID = "U" + String(customCocktailId)
+//        return newID
+//    }
     
     var cocktailId: String{
         get { return _cocktailId}
@@ -114,7 +114,11 @@ class Cocktail {
     }
     
     init(cocktailId: String, cocktailName: String, imageName: String) {
-        self._cocktailId = cocktailId
+        if cocktailId.isEmpty{
+            self._cocktailId = customCocktailId.uuidString
+        }else{
+            self._cocktailId = cocktailId
+        }
         self._cocktailName = cocktailName
         self._imageName = imageName
         self._ingredients = []

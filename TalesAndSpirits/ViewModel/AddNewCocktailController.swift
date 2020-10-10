@@ -14,19 +14,35 @@ protocol UserDefinedCocktail{
     func addCocktail(_ cocktailDetails: [String: String], image: UIImage?)
 }
 
-class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddNewCocktailController: UIViewController,UITextViewDelegate{
+    
+
+    @IBOutlet weak var RecipeText: UITextView!
+    @IBOutlet weak var NoteTextView: UITextView!
+    
+    @IBOutlet weak var cocktailNameTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var iBATextField: UITextField!
+    @IBOutlet weak var glassTextField: UITextField!
     
     
-    /*
-     //Image picker Implementation
- 
- */
+    @IBOutlet weak var ingredient1TextField: UITextField!
+    @IBOutlet weak var ingredient2TextField: UITextField!
+    @IBOutlet weak var ingredient3TextField: UITextField!
+    @IBOutlet weak var ingredient4TextField: UITextField!
+    @IBOutlet weak var ingredient5TextField: UITextField!
     
+    
+    @IBOutlet weak var quantity1TextField: UITextField!
+    @IBOutlet weak var quantity2TextField: UITextField!
+    @IBOutlet weak var quantity3TextField: UITextField!
+    @IBOutlet weak var quantity4TextField: UITextField!
+    @IBOutlet weak var quantity5TextField: UITextField!
     
     @IBOutlet weak var imageView: UIImageView!
     
-    
     @IBOutlet weak var takePictureButton: UIButton!
+    
     var avPlayerViewController: AVPlayerViewController!
     
     var delegate: UserDefinedCocktail?
@@ -34,6 +50,9 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     var image: UIImage?
     var movieURL: URL?
     var lastChosenMediaType: String?
+    
+    private let defaultRecipeTextViewMessage: String = "Enter recipe here"
+    private let defaultNoteTextViewMessage: String = "Enter notes here"
     
     // Does not get called when returning after selecting the
     // media to display.
@@ -47,16 +66,17 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
             takePictureButton.isEnabled = false
         }
         
+        RecipeText.delegate = self
+        NoteTextView.delegate = self
+        
        // cellView.te = "\(AddNewCocktailController.cellCount)"
-        tableView.delegate = self
-        tableView.dataSource = self
         self.RecipeText.layer.borderWidth = 1
         self.NoteTextView.layer.borderWidth = 1
         self.RecipeText.layer.borderColor = UIColor.lightGray.cgColor
         self.NoteTextView.layer.borderColor = UIColor.lightGray.cgColor
-        RecipeText.text = "Enter recipe here"
+        RecipeText.text = defaultRecipeTextViewMessage
         RecipeText.textColor = UIColor.lightGray
-        NoteTextView.text = "Enter notes here"
+        NoteTextView.text = defaultNoteTextViewMessage
         NoteTextView.textColor = UIColor.lightGray
         RecipeText.layer.cornerRadius = 5
         RecipeText.clipsToBounds = true
@@ -159,57 +179,12 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    
-    
-    /*
-     Ingredient table implementation
-     
-     
-     */
-    static var cellCount: Int = 1
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-   
-    
-    @IBAction func addButtonPressed(_ sender: Any) {
-        AddNewCocktailController.cellCount += 1
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: AddNewCocktailController.cellCount-1, section: 0)], with: .automatic)
-        tableView.endUpdates()
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AddNewCocktailController.cellCount
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath)
-        return cell;
-    }
-    
-    //Adding default text
-    //UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 150, 200)];
-//    let recipeTextField = addRecipe
-//    .placeholderText = @"Enter your text here";
-    //[self.view addSubview textField];
-   // var placeholder: String? { get set }
 
     
     
-    @IBOutlet weak var RecipeText: UITextView!
+
     
-    @IBOutlet weak var NoteTextView: UITextView!
     
-    @IBOutlet weak var cocktailNameTextField: UITextField!
-    
-    @IBOutlet weak var categoryTextField: UITextField!
-    
-    @IBOutlet weak var iBATextField: UITextField!
-    
-    @IBOutlet weak var glassTextField: UITextField!
-   
     @IBAction func SaveNewCocktail(_ sender: Any) {
 
         
@@ -218,41 +193,148 @@ class AddNewCocktailController: UIViewController, UITableViewDelegate, UITableVi
         //Fetch all the data input
         var cocktailDetails: [String: String] = [:]
         
-        if let name = cocktailNameTextField.text{
-            cocktailDetails["name"] = name
-            
-            
-            print(imageView.image)
-            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        var missingUserInput: Bool = false
+        var totalIngredientsEntered: Int = 0
+        var fieldsMissingInput: String = ""
+        
+        if let name = cocktailNameTextField.text, !name.isEmpty{
+                cocktailDetails["name"] = name
+        }else{
+            showMissingEntryAlert("Name field cannot be empty. Please enter name of cocktail")
+            return
         }
         
-        if let category = categoryTextField.text{
+        guard imageView.image != nil else{
+            showMissingEntryAlert("Image cannot be empty. Please Upload Image of cocktail")
+            return
+        }
+        
+        if let category = categoryTextField.text, !category.isEmpty{
             cocktailDetails["category"] = category
-            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }else{
+            missingUserInput = true
+            fieldsMissingInput.append("Category\n")
         }
         
-        if let iBA = iBATextField.text{
+        if let iBA = iBATextField.text, !iBA.isEmpty{
             cocktailDetails["iBA"] = iBA
-            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }else{
+            missingUserInput = true
+            fieldsMissingInput.append("iBA\n")
         }
         
-        if let glass = glassTextField.text{
+        if let glass = glassTextField.text, !glass.isEmpty{
             cocktailDetails["glass"] = glass
-            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }else{
+            missingUserInput = true
+            fieldsMissingInput.append("Glass\n")
         }
         
-        if let recipe = RecipeText.text{
+        if let recipe = RecipeText.text, !recipe.isEmpty && recipe != defaultRecipeTextViewMessage{
+            print("recipe: \(recipe)")
             cocktailDetails["recipe"] = recipe
-            delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        }else{
+            missingUserInput = true
+            fieldsMissingInput.append("Recipe\n")
         }
         
-        if let note = NoteTextView.text{
+        if let note = NoteTextView.text, !note.isEmpty && note != defaultNoteTextViewMessage{
             cocktailDetails["note"] = note
-            delegate?.addCocktail(cocktailDetails, image: imageView.image)
         }
         
+        if let ingredient = ingredient1TextField.text, let quantity = quantity1TextField.text, !ingredient.isEmpty && !quantity.isEmpty{
+            cocktailDetails["ingredient1"] = ingredient
+            cocktailDetails["quantity1"] = quantity
+            totalIngredientsEntered += 1
+        }else{
+            showMissingEntryAlert("Cocktail should have atleast 1 ingredient and its quantity. Please Enter ingredient name and quantity")
+            return
+        }
+        
+        if let ingredient = ingredient2TextField.text, let quantity = quantity2TextField.text, !ingredient.isEmpty && !quantity.isEmpty{
+            cocktailDetails["ingredient2"] = ingredient
+            cocktailDetails["quantity2"] = quantity
+            totalIngredientsEntered += 1
+        }
+        
+        if let ingredient = ingredient3TextField.text, let quantity = quantity3TextField.text, !ingredient.isEmpty && !quantity.isEmpty{
+            cocktailDetails["ingredient3"] = ingredient
+            cocktailDetails["quantity3"] = quantity
+            totalIngredientsEntered += 1
+        }
+        
+        if let ingredient = ingredient4TextField.text, let quantity = quantity4TextField.text, !ingredient.isEmpty && !quantity.isEmpty{
+            cocktailDetails["ingredient4"] = ingredient
+            cocktailDetails["quantity4"] = quantity
+            totalIngredientsEntered += 1
+        }
+        
+        if let ingredient = ingredient5TextField.text, let quantity = quantity5TextField.text, !ingredient.isEmpty && !quantity.isEmpty{
+            cocktailDetails["ingredient5"] = ingredient
+            cocktailDetails["quantity5"] = quantity
+            totalIngredientsEntered += 1
+        }
+        
+        showConfirmationAlert(missingUserInput, fieldsMissingInput ,cocktailDetails, imageView.image)
         
     }
+    
+    func showConfirmationAlert(_ missingUserInput: Bool,_ fieldsMissingInput: String ,_ cocktailDetails: [String: String],_ image: UIImage?){
+        
+        var message: String = ""
+        
+        if missingUserInput{
+            message.append("The following fields are empty\n")
+            message.append(fieldsMissingInput)
+            message.append("Any field left empty cannot be edited later!\n")
+        }
+        message.append("Do you wish to continue saving this cocktail?")
+        
+        let alert = UIAlertController(title: "Save Cocktail to MyDiary", message: message, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action  in self.saveDataAndExit(cocktailDetails, image)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .destructive, handler: nil))
+        
+        present(alert, animated: true)
+    }
+    
+    func saveDataAndExit(_ cocktailDetails: [String: String],_ image: UIImage?){
+        delegate?.addCocktail(cocktailDetails, image: imageView.image)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showMissingEntryAlert(_ message: String){
+        let alert = UIAlertController(title: "Invalid/Missing Entry", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+        
+        present(alert, animated: true)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == RecipeText && RecipeText.text == defaultRecipeTextViewMessage{
+            RecipeText.text = ""
+            RecipeText.textColor = .black
+        }
+        if textView == NoteTextView && NoteTextView.text == defaultNoteTextViewMessage{
+            NoteTextView.text = ""
+            NoteTextView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == RecipeText && RecipeText.text.isEmpty{
+            RecipeText.text = defaultRecipeTextViewMessage
+            RecipeText.textColor = .lightGray
+        }
+        if textView == NoteTextView && NoteTextView.text.isEmpty{
+            NoteTextView.text = defaultNoteTextViewMessage
+            NoteTextView.textColor = .lightGray
+        }
+    }
+    
     
     
     
