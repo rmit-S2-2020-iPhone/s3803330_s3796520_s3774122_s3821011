@@ -22,7 +22,6 @@ class TalesAndSpiritsTests: XCTestCase {
     var homeViewModel: HomeViewModel!
     var myDiary: MyDiaryViewModel!
     var cocktailView: CocktailsViewController!
-    var popup: AddNotePopOverViewController!
     var recipeScene: RecipeSceneViewModel!
 
     override func setUp() {
@@ -34,8 +33,6 @@ class TalesAndSpiritsTests: XCTestCase {
 
         sessionUnderTest = URLSession(configuration: .default)
         restRequest?.cocktails.append(manhattan)
-        
-        popup?.existingNote?.append("asd")
         
         
     }
