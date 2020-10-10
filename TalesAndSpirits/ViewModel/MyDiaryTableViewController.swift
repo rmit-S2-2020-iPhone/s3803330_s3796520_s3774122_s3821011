@@ -103,7 +103,10 @@ extension MyDiaryTableViewController: FavouriteCocktailDelegate{
         viewModel.removeCocktailFromFavorite(drinkId: drinkId)
     }
     
-    
+    func updatePersonalNote(_ drinkId: String, _ note: String) {
+        viewModel.updatePersonalNote(drinkId: drinkId, note: note)
+    }
+        
 }
 
 extension MyDiaryTableViewController: UserDefinedCocktail{
