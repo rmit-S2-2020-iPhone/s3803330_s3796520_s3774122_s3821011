@@ -40,10 +40,15 @@ class MyDiaryViewModel: CocktailViewModel{
             newCocktail.isUserDefined = true
             newCocktail.isFavorite = true
             //Fill rest values for cocktail
-            newCocktail.image = image
+//            newCocktail.category = category
+//            newCocktail.iBA = iBA
+//            newCocktail.glassType = glass
+//            newCocktail.
+//            newCocktail.image = image
             
             favoriteCocktailModel.addCocktail(newCocktail)
-            
         }
+        
+        
     }
 }
