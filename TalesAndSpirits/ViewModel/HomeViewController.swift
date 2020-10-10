@@ -110,6 +110,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 }
 
 extension HomeViewController: FavouriteCocktailDelegate{
+    
     func addCocktailAsFavorite(_ drinkId: String) {
         viewModel.setCocktailAsFavorite(drinkId: drinkId)
     }
@@ -118,5 +119,8 @@ extension HomeViewController: FavouriteCocktailDelegate{
         viewModel.removeCocktailFromFavorite(drinkId: drinkId)
     }
     
+    func updatePersonalNote(_ drinkId: String, _ note: String) {
+        viewModel.updatePersonalNote(drinkId: drinkId, note: note)
+    }
     
 }

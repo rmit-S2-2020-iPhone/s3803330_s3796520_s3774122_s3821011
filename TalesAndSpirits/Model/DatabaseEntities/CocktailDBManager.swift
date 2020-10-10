@@ -52,6 +52,22 @@ class CocktailDBManager{
         
     }
     
+    func updateCocktailWithNote(_ drinkId: String,_ note: String){
+        
+        let index = fetchIndexByDrinkId(drinkId)
+        
+        if index != -1 {
+            let nsCocktail = cocktails[index]
+            nsCocktail.setValue(note, forKeyPath: "personalizedNote")
+            do {
+                try managedContext.save()
+                print("saved to DB")
+            }catch let error as NSError{
+                print("Unable to save data to core data:  \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
     private func fetchIndexByDrinkId(_ drinkId: String) -> Int{
         for (index, cocktail) in cocktails.enumerated(){
             if cocktail.id == drinkId{

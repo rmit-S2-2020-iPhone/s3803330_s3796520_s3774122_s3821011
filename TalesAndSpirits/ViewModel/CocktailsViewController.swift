@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CocktailsViewController: UITableViewController, RefreshData {
+class CocktailsViewController: UITableViewController, RefreshData, UISplitViewControllerDelegate {
     
     var cocktailViewModel: CocktailViewModel = CocktailViewModel()
     
@@ -17,11 +17,17 @@ class CocktailsViewController: UITableViewController, RefreshData {
     override func viewDidLoad() {
         super.viewDidLoad()
         cocktailViewModel.delegate = self
+        splitViewController?.delegate = self
+        splitViewController?.preferredDisplayMode = .allVisible
 
     }
     
     func updateUIWithRestData() {
         self.tableView.reloadData()
+    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 
     
@@ -55,14 +61,15 @@ class CocktailsViewController: UITableViewController, RefreshData {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("lookinh")
+        
+        if indexPath.row != 0{
         let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeSceneViewController") as! RecipeSceneViewController
-        print("passed")
         cocktailViewModel.fetchCocktailById(index: indexPath.row - 1)
         detailViewController.viewModel = RecipeSceneViewModel(cocktail: cocktailViewModel.getCocktail(byIndex: indexPath.row - 1))
         detailViewController.delegate = self
         
         splitViewController?.showDetailViewController(detailViewController, sender: self)
+        }
         
     }
     
@@ -92,6 +99,9 @@ extension CocktailsViewController: FavouriteCocktailDelegate{
         cocktailViewModel.removeCocktailFromFavorite(drinkId: drinkId)
     }
     
+    func updatePersonalNote(_ drinkId: String, _ note: String) {
+        cocktailViewModel.updatePersonalNote(drinkId: drinkId, note: note)
+    }
     
 }
 

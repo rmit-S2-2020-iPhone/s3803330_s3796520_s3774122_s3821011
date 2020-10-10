@@ -11,34 +11,31 @@ import UIKit
 protocol FavouriteCocktailDelegate {
     func addCocktailAsFavorite(_ drinkId: String)
     func removeCocktailAsFavorite(_ drinkId: String)
+    func updatePersonalNote(_ drinkId: String,_ note: String)
 }
 
-class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshRecipeScene {
+class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RefreshRecipeScene, UITextViewDelegate {
     
     
-    //var cocktailViewModel: CocktailViewModel?
     var viewModel: RecipeSceneViewModel?
     var delegate: FavouriteCocktailDelegate?
-    //var index: Int?
     
     @IBOutlet weak var cocktailNameLabel: UILabel!
-    @IBOutlet weak var cocktailImageView: UIImageView!
-    
-    @IBOutlet weak var addNoteButton: UIButton!
+    @IBOutlet weak var cocktailImageView: UIImageView!    
+    @IBOutlet weak var saveNoteButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var drinkInfoTableView: UITableView!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var preparationLabel: UILabel!
-    
-    @IBOutlet weak var personalNoteTextView: UITextView!
+    @IBOutlet weak var personalizedNoteTextView: UITextView!
     
     private let defaultDisabledTextViewMessage = "Add this cocktail to MyDiary to add personal note"
     private let defaultEnabledTextViewMessage = "Add a personal note to your favorite cocktail"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //cocktailViewModel?.delegate = self
         viewModel?.delegate = self
+        personalizedNoteTextView.delegate = self
         
         
         populateView()
@@ -49,11 +46,9 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         
-        // Do any additional setup after loading the view.
     }
     
     private func populateView(){
-        personalNoteTextView.isEditable = false
         if let viewModel = viewModel{
             cocktailNameLabel.text = viewModel.getCocktailName()
             cocktailImageView.image = viewModel.getCocktailImage()
@@ -61,7 +56,9 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             if let isFavorite = viewModel.getCocktailIsFavorite(){
                 if(isFavorite){
                     favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
-                    addNoteButton.isEnabled = true
+                    //addNoteButton.isEnabled = true
+                    saveNoteButton.isEnabled = true
+                    personalizedNoteTextView.isEditable = true
                     
                     var personalNote = defaultEnabledTextViewMessage
                     if let note = viewModel.getCocktailPersonalizedNote(){
@@ -69,12 +66,22 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
                             personalNote = note
                         }
                     }
-                    personalNoteTextView.text = personalNote
+                    
+                    if personalNote != defaultEnabledTextViewMessage{
+                        removePlaceholderText()
+                        personalizedNoteTextView.text = personalNote
+                    }else{
+                        showPlaceholderText(defaultEnabledTextViewMessage)
+                    }
+                    //personalizedNoteTextView.text = personalNote
                     
                 }else{
                     favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
-                    addNoteButton.isEnabled = false
-                    personalNoteTextView.text = defaultDisabledTextViewMessage
+                    //addNoteButton.isEnabled = false
+                    saveNoteButton.isEnabled = false
+                    personalizedNoteTextView.isEditable = false
+                    //personalizedNoteTextView.text = defaultDisabledTextViewMessage
+                    showPlaceholderText(defaultDisabledTextViewMessage)
                 }
             }
         }
@@ -155,21 +162,15 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         }else{
             favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
             if let viewModel = viewModel{
-                //viewModel.setCocktailAsFavorite(value: true)
                 
-                // TODO: Add cocktail to database
                 if let drinkId = viewModel.getCocktailId(){
                     delegate?.addCocktailAsFavorite(drinkId)
                 }
                 
-                //cocktailViewModel.setCocktailAsFavorite(index: index)
-                addNoteButton.isEnabled = true
-//                var note = defaultEnabledTextViewMessage
-//                let personalNote = cocktailViewModel.getCocktailPersonalizedNote(byIndex: index)
-//                if !personalNote.isEmpty{
-//                    note = personalNote
-//                }
-                personalNoteTextView.text = defaultEnabledTextViewMessage
+                //addNoteButton.isEnabled = true
+                saveNoteButton.isEnabled = true
+                personalizedNoteTextView.isEditable = true
+                personalizedNoteTextView.text = defaultEnabledTextViewMessage
             }
             
         }
@@ -179,26 +180,51 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func addNoteButtonPressed(_ sender: Any) {
         //Check if textview contains default message, if no add it to personal note
         
-        if personalNoteTextView.text != defaultEnabledTextViewMessage{
+        if let personalNote = personalizedNoteTextView.text, personalNote != defaultEnabledTextViewMessage{
             if let viewModel = viewModel{
-                viewModel.setCocktailPersonalNote(note: personalNoteTextView.text)
+                viewModel.setCocktailPersonalNote(note: personalNote)
             }
         }
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let destination = segue.destination as? AddNotePopOverViewController
-        
-        if let destination = destination{
-            destination.delegate = self
-            destination.existingNote = personalNoteTextView.text
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if personalizedNoteTextView.text == defaultEnabledTextViewMessage{
+        removePlaceholderText()
         }
-        
     }
     
-    func showAlert(_ message: String){
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if personalizedNoteTextView.text.isEmpty{
+            if let viewModel = viewModel, let isFavorite = viewModel.getCocktailIsFavorite(){
+                var message = defaultDisabledTextViewMessage
+                if isFavorite{
+                    message = defaultEnabledTextViewMessage
+                }
+                showPlaceholderText(message)
+            }
+            
+        }
+    }
+    
+    
+    @IBAction func saveNoteButtonPressed(_ sender: Any) {
+        if let note = personalizedNoteTextView.text{
+            if !note.isEmpty && note != defaultEnabledTextViewMessage{
+                if let viewModel = viewModel, let drinkId = viewModel.getCocktailId(), let name = viewModel.getCocktailName(){
+                    if note != viewModel.getCocktailPersonalizedNote(){
+                        viewModel.setCocktailPersonalNote(note: note)
+                        delegate?.updatePersonalNote(drinkId, note)
+                        showSuccessMessage(title: "Saved", message: "Personal Note for \(name) saved")
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    private func showAlert(_ message: String){
         let alert = UIAlertController(title: "Remove from MyDiary", message: message, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action  in self.removeFavorite()
@@ -210,35 +236,34 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    func removeFavorite(){
+    private func showSuccessMessage(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        
+        present(alert, animated: true)
+    }
+    
+    private func removeFavorite(){
         favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
         if let viewModel = viewModel{
-            //viewModel.setCocktailAsFavorite(value: false)
             viewModel.setCocktailPersonalNote(note: "")
-            // TODO: Delete cocktail from database
             if let drinkId = viewModel.getCocktailId(){
                 delegate?.removeCocktailAsFavorite(drinkId)
             }
-            //cocktailViewModel.removeCocktailFromFavorite(index: index)
         }
-        addNoteButton.isEnabled = false
-        personalNoteTextView.text = defaultDisabledTextViewMessage
+        saveNoteButton.isEnabled = false
+        personalizedNoteTextView.isEditable = false
+        personalizedNoteTextView.text = defaultDisabledTextViewMessage
     }
     
-    
-}
-
-extension RecipeSceneViewController: AddNotePopOverDelegate{
-    func updateNote(_ text: String) {
-        personalNoteTextView.text = text
-        if text != defaultEnabledTextViewMessage{
-            if let viewModel = viewModel{
-                viewModel.setCocktailPersonalNote(note: text)
-            }
-        }
+    private func showPlaceholderText(_ message: String){
+        personalizedNoteTextView.text = message
+        personalizedNoteTextView.textColor = .lightGray
     }
     
-    
-    
-    
+    private func removePlaceholderText(){
+        personalizedNoteTextView.text = ""
+        personalizedNoteTextView.textColor = .black
+    }
 }
