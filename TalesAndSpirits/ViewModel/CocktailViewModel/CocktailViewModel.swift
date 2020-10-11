@@ -13,6 +13,7 @@ class CocktailViewModel {
     
     //Reference to model
     private var _model = REST_Request.shared
+    //Reference to core data model
     private var _favoriteCocktailModel = CocktailDBManager.shared
     
     var delegate: RefreshData?{
@@ -26,10 +27,12 @@ class CocktailViewModel {
         return _model.cocktails.count
     }
     
+    //variables used by child classes to access model
     var model: REST_Request{
         return _model
     }
     
+    //variables used by child classes to access model
     var favoriteCocktailModel: CocktailDBManager{
         return _favoriteCocktailModel
     }
@@ -62,6 +65,7 @@ class CocktailViewModel {
         return image
     }
     
+    //Add cocktail to database
     func setCocktailAsFavorite(drinkId: String){
         let index = fetchIndexByDrinkId(drinkId)
         if index != -1{
@@ -70,6 +74,7 @@ class CocktailViewModel {
         }
     }
     
+    //Delete cocktail from database
     func removeCocktailFromFavorite(drinkId: String){
         let index = fetchIndexByDrinkId(drinkId)
         if index != -1{
@@ -79,6 +84,7 @@ class CocktailViewModel {
         favoriteCocktailModel.deleteCocktail(drinkId)
     }
     
+    //Update Personal Note into database
     func updatePersonalNote(drinkId: String, note: String){
         let index = fetchIndexByDrinkId(drinkId)
         if index != -1{

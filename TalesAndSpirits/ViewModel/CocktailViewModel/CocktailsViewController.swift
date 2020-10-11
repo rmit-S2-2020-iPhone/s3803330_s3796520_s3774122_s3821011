@@ -39,6 +39,8 @@ class CocktailsViewController: UITableViewController, RefreshData, UISplitViewCo
         
         let cell: UITableViewCell
         
+        //Row 0 contains the cocktail label
+        //For all rows != 0, populate cell with cocktailName and image
         if indexPath.row != 0{
             cell = tableView.dequeueReusableCell(withIdentifier: "CocktailCell", for: indexPath)
             
@@ -62,6 +64,8 @@ class CocktailsViewController: UITableViewController, RefreshData, UISplitViewCo
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        //Row 0 contains the cocktail label
+        //For all rows != 0, 
         if indexPath.row != 0{
         let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "RecipeSceneViewController") as! RecipeSceneViewController
         cocktailViewModel.fetchCocktailById(index: indexPath.row - 1)

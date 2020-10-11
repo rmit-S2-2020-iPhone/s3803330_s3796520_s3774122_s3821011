@@ -137,6 +137,8 @@ class REST_Request{
         task.resume()
     }
     
+    //This function starts fetching images in the background while the user views the data
+    //The priority is set to low so that other network call made by user are executed first
     private func getCocktailImagesAsync(){
         for cocktail in cocktails{
             if cocktail.image == nil{
@@ -188,6 +190,9 @@ class REST_Request{
         task.resume()
     }
     
+    //This function is called during initialization
+    //Since this is singleton class, this function is also called once
+    //Once the popular cocktails are fetched, all cocktails fetch call is initiated to fetch detail in background
     private func getPopularCocktail(_ request: URLRequest){
         let task = session.dataTask(with: request, completionHandler: {
             data, response, fetchError in

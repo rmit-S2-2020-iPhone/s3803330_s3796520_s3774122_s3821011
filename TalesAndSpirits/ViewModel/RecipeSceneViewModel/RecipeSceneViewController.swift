@@ -32,6 +32,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     private let defaultDisabledTextViewMessage = "Add this cocktail to MyDiary to add personal note"
     private let defaultEnabledTextViewMessage = "Add a personal note to your favorite cocktail"
     
+    //Assigning delegates to this class and populating view
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.delegate = self
@@ -56,10 +57,10 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             if let isFavorite = viewModel.getCocktailIsFavorite(){
                 if(isFavorite){
                     favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
-                    //addNoteButton.isEnabled = true
                     saveNoteButton.isEnabled = true
                     personalizedNoteTextView.isEditable = true
                     
+                    //Check if personalNote is empty populate Personal Note Text View with placeholder text
                     var personalNote = defaultEnabledTextViewMessage
                     if let note = viewModel.getCocktailPersonalizedNote(){
                         if !note.isEmpty{
@@ -73,14 +74,11 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
                     }else{
                         showPlaceholderText(defaultEnabledTextViewMessage)
                     }
-                    //personalizedNoteTextView.text = personalNote
                     
                 }else{
                     favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
-                    //addNoteButton.isEnabled = false
                     saveNoteButton.isEnabled = false
                     personalizedNoteTextView.isEditable = false
-                    //personalizedNoteTextView.text = defaultDisabledTextViewMessage
                     showPlaceholderText(defaultDisabledTextViewMessage)
                 }
             }
@@ -94,7 +92,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
-    
+    //Set Cell Count according to type of tableview- DrinksInfo/Ingredients
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCount = 0
         if tableView == self.drinkInfoTableView{
@@ -108,6 +106,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         return rowCount
     }
     
+    //Populate Table view with cells according to the type of tableview- DrinksInfo/Ingredients
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var finalCell =  UITableViewCell()
@@ -156,7 +155,9 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
+        //If the cocktail is already a favourtite cocktail, show remove alert, else add it favourite
         if favoriteButton.currentBackgroundImage == UIImage(named: "Star-filled"){
+            //If the cocktail is created by user, removing it deletes the cocktail. Showing appropriate messages
             if let viewModel = viewModel, let isUserDefined = viewModel.getCocktailIsUserDefined(), isUserDefined{
                 showAlert("Once Removed all information regarding this cocktail will be removed from the app. You cannot undo this step. Do you wish to continue?")
             }else{
@@ -164,6 +165,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
         }else{
+            //When clicked, the cocktail will be added to favourite and appear under My Diary. Call delegate to add this cocktail to MyDiary
             favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
             if let viewModel = viewModel{
                 
@@ -176,18 +178,6 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
         }
-    }
-    
-    
-    @IBAction func addNoteButtonPressed(_ sender: Any) {
-        //Check if textview contains default message, if no add it to personal note
-        
-        if let personalNote = personalizedNoteTextView.text, personalNote != defaultEnabledTextViewMessage{
-            if let viewModel = viewModel{
-                viewModel.setCocktailPersonalNote(note: personalNote)
-            }
-        }
-        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -209,7 +199,7 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    
+    //Check the content in personalizedNoteTextView and update cocktail with current note. Call delegate to passed updated note
     @IBAction func saveNoteButtonPressed(_ sender: Any) {
         if let note = personalizedNoteTextView.text{
             if !note.isEmpty && note != defaultEnabledTextViewMessage{
@@ -246,6 +236,9 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
         present(alert, animated: true)
     }
     
+    //This function resets the view to show cocktail that is removed from Favourite(My Diary)
+    //Calls the delegate to remove the cocktail from My Diary list
+    //If the cocktail is custom cocktail remove the cocktail and exit view
     private func removeFavorite(){
         favoriteButton.setBackgroundImage(UIImage(named: "Star"), for: .normal)
         if let viewModel = viewModel{

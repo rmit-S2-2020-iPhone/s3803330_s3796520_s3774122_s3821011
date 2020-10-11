@@ -183,7 +183,10 @@ class AddNewCocktailController: UIViewController,UITextViewDelegate{
     
 
     
-    
+    //When Save button is clicked
+    //Validate the user inputs
+    //Call delegate to add cocktail to My Diary
+    //Mandatory fields to be filled by user: CocktailName, Image(can be no_image_available as well) and At least 1 entry for ingredient and quantity
     @IBAction func SaveNewCocktail(_ sender: Any) {
         
         var cocktailDetails: [String: String] = [:]
@@ -294,16 +297,16 @@ class AddNewCocktailController: UIViewController,UITextViewDelegate{
         present(alert, animated: true)
     }
     
+    //Save cocktail details and exit view
     func saveDataAndExit(_ cocktailDetails: [String: String],_ image: UIImage?){
         delegate?.addCocktail(cocktailDetails, image: imageView.image)
         self.navigationController?.popViewController(animated: true)
     }
     
     func showMissingEntryAlert(_ message: String){
+        
         let alert = UIAlertController(title: "Invalid/Missing Entry", message: message, preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-        
         present(alert, animated: true)
     }
     
@@ -361,11 +364,8 @@ extension AddNewCocktailController: UIImagePickerControllerDelegate
     func saveImage (image: UIImage, path: String)
     {
         let pngImageData = UIImagePNGRepresentation(image)
-        
         let docDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        
         let imageUniqueName : Int64 = Int64(NSDate().timeIntervalSince1970 * 1000);
-        
         let filePath = docDir.appendingPathComponent("\(imageUniqueName).png");
         
         do{

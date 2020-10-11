@@ -26,71 +26,52 @@ class TalesAndSpiritsUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func homeHasCollectionView()
-    {
-        let app = XCUIApplication()
+    func testHomeHasCollectionView(){
         
+        let app = XCUIApplication()
         XCTAssertTrue(app.collectionViews.element.exists)
         
     }
     
-    func favouriteIsAdded()
-    {
+    func testFavouriteIsAdded(){
         
         let app = XCUIApplication()
-        
         app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Long Island Tea").element.tap()
-        
         app.scrollViews.otherElements.buttons["Star"].tap()
-        
-        XCTAssertTrue(app.buttons["Star"].isSelected)
+        XCTAssertTrue(app.buttons["Star"].isEnabled)
         
     }
     
     
     
-    func cocktailHasTableView()
-        
-    {
+    func testCocktailHasTableView(){
         
         let app = XCUIApplication()
-        
         XCUIApplication().tabBars.buttons["Cocktails"].tap()
-        
         XCTAssertTrue(app.tables.element.exists)
-        
         XCTAssertFalse(app.collectionViews.element.exists)
         
     }
     
     
     
-    func addNewCocktailViewButtonExists() {
+    func testAddNewCocktailViewButtonExists() {
         
         let app = XCUIApplication()
-        
         app.tabBars.buttons["My Diary"].tap()
-        
         app.tables/*@START_MENU_TOKEN@*/.buttons["icons8 add 100"]/*[[".cells.buttons[\"icons8 add 100\"]",".buttons[\"icons8 add 100\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        
-        XCTAssertTrue(app.buttons["Pick from Library"].exists)
-        
-        XCTAssertTrue(app.textFields["CocktailName"].exists)
+        XCTAssertTrue(app.buttons["Pick From Library"].exists)
+        XCTAssertTrue(app.textFields["Quantity"].exists)
         
     }
     
     
     
-    func developerLabelExist()
-        
-    {
+    func testDeveloperLabelExist(){
         
         let app = XCUIApplication()
-        
         app.tabBars.buttons["More"].tap()
-        
-        let tf = app.staticTexts["Meet the Developers"]
-        
+        let tf = app.staticTexts["DEVELOPMENT TEAM"]
         XCTAssertTrue(tf.exists)
         
     }
