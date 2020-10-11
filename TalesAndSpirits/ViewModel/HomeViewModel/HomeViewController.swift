@@ -33,21 +33,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.count + 3
+        return viewModel.count + 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCollectionView", for: indexPath)as? DataCollectionView
-            cell?.searchBar.isUserInteractionEnabled = true
-            return cell!
             
-        }else if indexPath.row == 1{
+        if indexPath.row == 0{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "labelCollectionView", for: indexPath)as? DataCollectionView
             cell?.titleText.isUserInteractionEnabled = false
             return cell!
             
-        }else if indexPath.row == 2{
+        }else if indexPath.row == 1{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath) as? DataCollectionView
             
             if let cell = cell{
@@ -59,8 +55,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionView", for: indexPath)as? DataCollectionView
             
             if let cell = cell{
-                cell.imageView.image = viewModel.getCocktailImage(byIndex: (indexPath.item - 3))
-                cell.nameLabel.text = viewModel.getCocktailName(byIndex: (indexPath.item - 3))
+                cell.imageView.image = viewModel.getCocktailImage(byIndex: (indexPath.item - 2))
+                cell.nameLabel.text = viewModel.getCocktailName(byIndex: (indexPath.item - 2))
             }
             
             return cell!
@@ -71,7 +67,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let bounds = collectionView.bounds
         let position = indexPath.row
         if(position == 0){return CGSize(width: bounds.width, height: 50)}
-        else if(position == 1){return CGSize(width: bounds.width, height: 80)}
         else{
             return CGSize(width: 201, height: 230)}
     }
@@ -91,18 +86,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            //newDestination.viewModel = RecipeSceneViewModel(cocktailViewModel.getCocktail(byIndex: <#T##Int#>))
             newDestination.delegate = self
-            if selectedItem.row == 2{
+            if selectedItem.row == 1{
                 viewModel.fetchRandomCocktail()
                 newDestination.viewModel = RecipeSceneViewModel(cocktail: nil)
                 
             }else{
-                viewModel.fetchCocktailById(index: selectedItem.item - 3)
-                newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: selectedItem.item - 3))
-                //newDestination.viewModel?.delegate = newDestination
-                //print("Home: \(newDestination.viewModel!)")
-                //newDestination.index = selectedItem.item - 3
+                viewModel.fetchCocktailById(index: selectedItem.item - 2)
+                newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: selectedItem.item - 2))
             }
         }
         

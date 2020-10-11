@@ -75,17 +75,13 @@ class MyDiaryTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
         if let newDestination = segue.destination as? AddNewCocktailController{
-            print("add cocktail segue")
             newDestination.delegate = self
         }
-        print("prepare Segue: \(segue.destination)")
         
         guard let selectedRow = self.tableView.indexPathForSelectedRow
             else {return}
 
-        
         if let newDestination = segue.destination as? RecipeSceneViewController{
-            print("recipe")
             newDestination.delegate = self
             newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: (selectedRow.row - 2)))
         }

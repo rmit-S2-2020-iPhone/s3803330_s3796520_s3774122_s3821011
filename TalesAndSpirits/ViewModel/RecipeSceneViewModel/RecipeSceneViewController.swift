@@ -157,7 +157,11 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         if favoriteButton.currentBackgroundImage == UIImage(named: "Star-filled"){
-            showAlert("Once Removed all personal notes will be lost. Do you want to continue?")
+            if let viewModel = viewModel, let isUserDefined = viewModel.getCocktailIsUserDefined(), isUserDefined{
+                showAlert("Once Removed all information regarding this cocktail will be removed from the app. You cannot undo this step. Do you wish to continue?")
+            }else{
+                showAlert("Once Removed all personal notes will be lost. Do you wish to continue?")
+            }
             
         }else{
             favoriteButton.setBackgroundImage(UIImage(named: "Star-filled"), for: .normal)
@@ -166,8 +170,6 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
                 if let drinkId = viewModel.getCocktailId(){
                     delegate?.addCocktailAsFavorite(drinkId)
                 }
-                
-                //addNoteButton.isEnabled = true
                 saveNoteButton.isEnabled = true
                 personalizedNoteTextView.isEditable = true
                 personalizedNoteTextView.text = defaultEnabledTextViewMessage
@@ -251,10 +253,14 @@ class RecipeSceneViewController: UIViewController, UITableViewDelegate, UITableV
             if let drinkId = viewModel.getCocktailId(){
                 delegate?.removeCocktailAsFavorite(drinkId)
             }
+            saveNoteButton.isEnabled = false
+            personalizedNoteTextView.isEditable = false
+            personalizedNoteTextView.text = defaultDisabledTextViewMessage
+            if let isUserDefined = viewModel.getCocktailIsUserDefined(), isUserDefined{
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        saveNoteButton.isEnabled = false
-        personalizedNoteTextView.isEditable = false
-        personalizedNoteTextView.text = defaultDisabledTextViewMessage
+        
     }
     
     private func showPlaceholderText(_ message: String){

@@ -26,7 +26,6 @@ class CocktailDBManager{
         
         do {
             try managedContext.save()
-            print("saved to DB")
         }catch let error as NSError{
             print("Unable to save data to core data:  \(error), \(error.userInfo)")
         }
@@ -61,7 +60,6 @@ class CocktailDBManager{
             nsCocktail.setValue(note, forKeyPath: "personalizedNote")
             do {
                 try managedContext.save()
-                print("saved to DB")
             }catch let error as NSError{
                 print("Unable to save data to core data:  \(error), \(error.userInfo)")
             }
@@ -81,10 +79,6 @@ class CocktailDBManager{
         do{
             let result = try managedContext.fetch(CocktailEntity.fetchRequest())
             cocktails = result as! [CocktailEntity]
-            print("loadData")
-            for cocktail in cocktails{
-                print(cocktail)
-            }
         }catch let error as NSError{
             print("Unable to load data from core data: \(error), \(error.userInfo)")
         }
