@@ -69,7 +69,6 @@ class AddNewCocktailController: UIViewController,UITextViewDelegate{
         RecipeText.delegate = self
         NoteTextView.delegate = self
         
-       // cellView.te = "\(AddNewCocktailController.cellCount)"
         self.RecipeText.layer.borderWidth = 1
         self.NoteTextView.layer.borderWidth = 1
         self.RecipeText.layer.borderColor = UIColor.lightGray.cgColor

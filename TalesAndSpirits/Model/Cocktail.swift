@@ -25,12 +25,6 @@ class Cocktail {
     private var _personalizedNote: String
     private var _isFavorite: Bool
     
-//    class var nextUserDefinedId: String{
-//        customCocktailId += 1
-//        let newID = "U" + String(customCocktailId)
-//        return newID
-//    }
-    
     var cocktailId: String{
         get { return _cocktailId}
         set(newId){ _cocktailId = newId}

@@ -67,7 +67,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let bounds = collectionView.bounds
         let position = indexPath.row
         if(position == 0){return CGSize(width: bounds.width, height: 50)}
-        //else if(position == 1){return CGSize(width: bounds.width, height: 80)}
         else{
             return CGSize(width: 201, height: 230)}
     }
@@ -87,7 +86,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let newDestination = segue.destination as? RecipeSceneViewController
         
         if let newDestination = newDestination{
-            //newDestination.viewModel = RecipeSceneViewModel(cocktailViewModel.getCocktail(byIndex: <#T##Int#>))
             newDestination.delegate = self
             if selectedItem.row == 1{
                 viewModel.fetchRandomCocktail()
@@ -96,9 +94,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }else{
                 viewModel.fetchCocktailById(index: selectedItem.item - 2)
                 newDestination.viewModel = RecipeSceneViewModel(cocktail: viewModel.getCocktail(byIndex: selectedItem.item - 2))
-                //newDestination.viewModel?.delegate = newDestination
-                //print("Home: \(newDestination.viewModel!)")
-                //newDestination.index = selectedItem.item - 3
             }
         }
         

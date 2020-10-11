@@ -52,7 +52,6 @@ class REST_Request{
         _cocktails = []
         _popularCocktails = []
         fetchPopularCocktails()
-        //fetchCocktails()
     }
     
     private func fetchCocktails(){
@@ -100,7 +99,6 @@ class REST_Request{
             }else{
                 let fetchDetails: CocktailsJson = try! JSONDecoder().decode(CocktailsJson.self, from: data!)
                 let allCocktails = fetchDetails.drinks
-                print(allCocktails.count)
                 for cocktail in allCocktails{
                     //Check if cocktail already exists
                     //If no add it to the list
@@ -109,15 +107,10 @@ class REST_Request{
                         self._cocktails.append(newCocktail)
                     }
                 }
-                //Notify Controller Cocktail Data is retrieved
+                //Notify Controller Cocktail Data is retrieved and start fetching images asynchronously
                 DispatchQueue.main.sync {
                     self.delegate?.updateUIWithRestData()
-                }
-                print(self.cocktails.count)
-                for cocktail in self.cocktails{
-                    if cocktail.image == nil{
-                        self.getCocktailImage(cocktail: cocktail)
-                    }
+                    self.getCocktailImagesAsync()
                 }
             }
         })
@@ -134,25 +127,38 @@ class REST_Request{
                 if fetchDetails.drinks.count > 0{
                     let cocktailDetails = fetchDetails.drinks[0]
                     self.fetchDetailsFromJson(cocktailJson: cocktailDetails, index: index)
-                    print(cocktailDetails.strDrink)
                 }
                 DispatchQueue.main.sync {
                     self.detailedViewDelegate?.updateModel(self.cocktails[index])
                 }
             }
         })
+        task.priority = 1.0
         task.resume()
     }
     
-    private func getCocktailImage(cocktail : Cocktail){
+    private func getCocktailImagesAsync(){
+        for cocktail in cocktails{
+            if cocktail.image == nil{
+                fetchCocktailImageAsync(cocktail)
+            }
+        }
+    }
+    
+    private func fetchCocktailImageAsync(_ cocktail: Cocktail){
         let url = cocktail.imageName
         guard let imageURL = URL(string: url) else{ return }
-        let data = try? Data(contentsOf: imageURL)
-        var image: UIImage? = nil
-        if let imageData = data{
-            image = UIImage(data: imageData)
+        
+        let task = session.dataTask(with: imageURL) { (data, _, _) in
+            if let data = data {
+                DispatchQueue.main.async {
+                    cocktail.image = UIImage(data: data)
+                }
+            }
         }
-        cocktail.image = image
+        
+        task.priority = 0.0
+        task.resume()
     }
     
     private func getRandomCocktail(_ request: URLRequest){
@@ -178,6 +184,7 @@ class REST_Request{
                 }
             }
         })
+        task.priority = 1.0
         task.resume()
     }
     
@@ -189,7 +196,6 @@ class REST_Request{
             }else{
                 let fetchDetails: CocktailsJson = try! JSONDecoder().decode(CocktailsJson.self, from: data!)
                 let allCocktails = fetchDetails.drinks
-                print(allCocktails.count)
                 for cocktail in allCocktails{
                     let index = self.checkIfCocktailExists(drinkId: cocktail.idDrink)
                     //Check if cocktail already exists
@@ -204,7 +210,7 @@ class REST_Request{
                         self._popularCocktails.append(self._cocktails[index])
                     }
                 }
-                //Notify Controller Cocktail Data is retrieved
+                //Notify Controller, Cocktail Data is retrieved and start fetching remaining cocktails aysnchronously
                 DispatchQueue.main.sync {
                     self.delegate?.updateUIWithRestData()
                     self.fetchCocktails()

@@ -83,7 +83,6 @@ class CocktailsViewController: UITableViewController, RefreshData, UISplitViewCo
             cocktailViewModel.fetchCocktailById(index: selectedRow.row-1)
             newDestination.delegate = self
             newDestination.viewModel = RecipeSceneViewModel(cocktail: cocktailViewModel.getCocktail(byIndex: selectedRow.row-1))
-            //newDestination.index = selectedRow.row-1
         }
     }
     
