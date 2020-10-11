@@ -374,18 +374,6 @@ extension AddNewCocktailController: UIImagePickerControllerDelegate
         }catch{
             print("couldn't write image")
         }
-        
-        /* Test to see if the image was written */
-        filePath = docDir.appendingPathComponent("\(imageUniqueName).png");
-        
-        if FileManager.default.fileExists(atPath: filePath.path){
-            
-            if let _ = UIImage(contentsOfFile : filePath.path){
-                
-                let confirmImage = UIImage(named : filePath.path)
-                print(confirmImage!.size)
-            }
-        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

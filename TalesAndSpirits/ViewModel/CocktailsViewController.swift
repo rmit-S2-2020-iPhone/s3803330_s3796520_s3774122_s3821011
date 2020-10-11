@@ -72,20 +72,6 @@ class CocktailsViewController: UITableViewController, RefreshData, UISplitViewCo
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let selectedRow = self.tableView.indexPathForSelectedRow
-            else {return}
-        
-        let newDestination = segue.destination as? RecipeSceneViewController
-        
-        if let newDestination = newDestination{
-            cocktailViewModel.fetchCocktailById(index: selectedRow.row-1)
-            newDestination.delegate = self
-            newDestination.viewModel = RecipeSceneViewModel(cocktail: cocktailViewModel.getCocktail(byIndex: selectedRow.row-1))
-        }
-    }
-    
 }
 
 extension CocktailsViewController: FavouriteCocktailDelegate{
