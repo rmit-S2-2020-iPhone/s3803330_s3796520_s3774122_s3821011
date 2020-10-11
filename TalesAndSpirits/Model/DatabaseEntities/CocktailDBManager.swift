@@ -19,6 +19,7 @@ class CocktailDBManager{
     
     private (set) var cocktails: [CocktailEntity]
     
+    //Add to database
     func addCocktail( _ cocktail: Cocktail){
         
         let nsCocktail = createNSCocktail(cocktail)
@@ -32,6 +33,7 @@ class CocktailDBManager{
         
     }
     
+    //Delete from database
     func deleteCocktail(_ drinkId: String){
         
         let index = fetchIndexByDrinkId(drinkId)
@@ -51,6 +53,7 @@ class CocktailDBManager{
         
     }
     
+    //Update entry in database
     func updateCocktailWithNote(_ drinkId: String,_ note: String){
         
         let index = fetchIndexByDrinkId(drinkId)
@@ -66,6 +69,7 @@ class CocktailDBManager{
         }
     }
     
+    
     private func fetchIndexByDrinkId(_ drinkId: String) -> Int{
         for (index, cocktail) in cocktails.enumerated(){
             if cocktail.id == drinkId{
@@ -75,6 +79,7 @@ class CocktailDBManager{
         return -1
     }
     
+    //Read from database, executed once during app start-up
     private func loadCocktails(){
         do{
             let result = try managedContext.fetch(CocktailEntity.fetchRequest())
