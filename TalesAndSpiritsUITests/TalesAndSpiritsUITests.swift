@@ -36,7 +36,7 @@ class TalesAndSpiritsUITests: XCTestCase {
     func testFavouriteIsAdded(){
         
         let app = XCUIApplication()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Long Island Tea").element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Mojito").element.tap()
         app.scrollViews.otherElements.buttons["Star"].tap()
         XCTAssertTrue(app.buttons["Star"].isEnabled)
         
