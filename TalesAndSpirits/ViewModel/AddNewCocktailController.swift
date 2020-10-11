@@ -366,7 +366,7 @@ extension AddNewCocktailController: UIImagePickerControllerDelegate
         
         let imageUniqueName : Int64 = Int64(NSDate().timeIntervalSince1970 * 1000);
         
-        var filePath = docDir.appendingPathComponent("\(imageUniqueName).png");
+        let filePath = docDir.appendingPathComponent("\(imageUniqueName).png");
         
         do{
             try pngImageData?.write(to : filePath , options : .atomic)
@@ -374,6 +374,7 @@ extension AddNewCocktailController: UIImagePickerControllerDelegate
         }catch{
             print("couldn't write image")
         }
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
