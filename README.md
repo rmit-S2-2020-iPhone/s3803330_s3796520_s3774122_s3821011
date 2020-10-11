@@ -23,4 +23,6 @@ To run app -
 
 2. Download and unzip the project.
 
-3. Open project in xcode and press run.
+3. Open project in xcode, chooose iPhone XR and press run.
+
+4. Open simulator to run the app.
