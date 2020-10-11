@@ -97,7 +97,6 @@ class CocktailViewModel {
     }
     
     func copySavedCocktailsFromDBToModel(){
-        print("copying data")
         for (index,cocktailEntity) in favoriteCocktailModel.cocktails.enumerated(){
             //Check if the cocktail is created by user
             //If No add it to rest of the cocktails

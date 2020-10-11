@@ -185,11 +185,7 @@ class AddNewCocktailController: UIViewController,UITextViewDelegate{
     
     
     @IBAction func SaveNewCocktail(_ sender: Any) {
-
         
-        print("saved button clicked")
-        //Validation here
-        //Fetch all the data input
         var cocktailDetails: [String: String] = [:]
         
         var missingUserInput: Bool = false
@@ -230,7 +226,6 @@ class AddNewCocktailController: UIViewController,UITextViewDelegate{
         }
         
         if let recipe = RecipeText.text, !recipe.isEmpty && recipe != defaultRecipeTextViewMessage{
-            print("recipe: \(recipe)")
             cocktailDetails["recipe"] = recipe
         }else{
             missingUserInput = true
